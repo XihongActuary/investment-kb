@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>专题二 权益估值三派 · 投资学 · 科目F8</title>
+<meta name="description" content="绝对估值（DDM/DCF）、相对估值（倍数）、剩余收益（RI）三大流派——统一框架、适用场景与险资权益估值视角。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html" class="on">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">专题 T.02</div>
+    <h1>权益估值三派</h1>
+    <div class="sub">算出一只股票「值多少钱」的三种思路——绝对、相对、剩余，最终指向同一个答案</div>
+    <div class="meta">
+      <span>承接 CH.04 §4.4–4.5</span>
+      <span>对应真题 2014/2017/2023</span>
+      <span>难度 ★★★★</span>
+      <span>核心能力：选择估值方法并交叉验证</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>专题定位：</b>权益估值是「<b>绝对估值、相对估值、剩余收益</b>」三大流派。本专题把三派放到统一框架下（现金流 × 贴现率），讲清「<b>什么时候用哪一派、为什么三派能互相印证</b>」，并落到险资权益投资特有的估值视角。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s1">三派总览：同一个现金流，三种数法</a></li>
+      <li><a href="#s2">派一 · 绝对估值（DDM / FCFE / FCFF）</a></li>
+      <li><a href="#s3">派二 · 相对估值（倍数法）</a></li>
+      <li><a href="#s4">派三 · 剩余收益（RI）——精算师的最爱</a></li>
+      <li><a href="#s5">三派如何互相印证</a></li>
+      <li><a href="#s6">险资权益估值的三个独特视角</a></li>
+      <li><a href="#calc">演算器：DDM 与 PE 反推</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="sn">T2.1</span>三派总览：同一个现金流，三种数法</h2>
+    <div class="arch">
+      <div class="arch-top">
+        <b>权益估值三派</b>
+        <div class="meta"><span>绝对</span><span>相对</span><span>剩余</span></div>
+      </div>
+      <div class="arch-grid g4">
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">派一</span><span class="ac-wt hot">主流</span></div><h4>绝对估值</h4><p>DDM / FCFE / FCFF，把未来现金流折现</p></a>
+        <a class="arch-card key" href="#s3"><div class="ac-top"><span class="ac-no">派二</span><span class="ac-wt hot">高频</span></div><h4>相对估值</h4><p>PE / PB / PS / PEG，与可比公司比倍数</p></a>
+        <a class="arch-card spec" href="#s4"><div class="ac-top"><span class="ac-no">派三</span><span class="ac-wt">精算</span></div><h4>剩余收益 RI</h4><p>B₀ + 超额收益现值，适合不分红公司</p></a>
+        <a class="arch-card" href="#s5"><div class="ac-top"><span class="ac-no">统一</span><span class="ac-wt">—</span></div><h4>统一框架</h4><p>三派在假设一致时结果相同，可交叉验证</p></a>
+      </div>
+      <div class="arch-hint"><b>一句话统一：</b>三派都回到「<b>价值 = 现金流 × 贴现率</b>」。绝对估值<b>直接数现金流</b>，相对估值<b>借市场数现金流</b>（通过可比公司），剩余收益<b>数「超出资本成本的现金流」</b>。</div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">T2.2</span>派一 · 绝对估值（DDM / FCFE / FCFF）</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>DDM（股利贴现）</b>：V₀ = Σ D<sub>t</sub>/(1+r)<sup>t</sup>　→ 戈登：V₀ = D₁/(r−g)<br>
+        <b>FCFE（股权自由现金流）</b>：V₀ = Σ FCFE<sub>t</sub>/(1+r<sub>e</sub>)<sup>t</sup><br>
+        <b>FCFF（公司自由现金流）</b>：V<sub>公司</sub> = Σ FCFF<sub>t</sub>/(1+WACC)<sup>t</sup>；股权 = 公司 − 净债务
+      </div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>模型</th><th>适用</th><th>不适用</th><th>核心缺陷</th></tr></thead>
+        <tbody>
+          <tr><td>DDM</td><td>分红稳定成熟公司（银行、公用）</td><td>不分红、高成长公司</td><td>依赖分红政策</td></tr>
+          <tr><td>FCFE</td><td>FCFE 为正且与盈利匹配</td><td>高资本开支（FCFE 常负）</td><td>资本开支预测难</td></tr>
+          <tr class="note-td"><td>FCFF</td><td>杠杆变动大、并购估值</td><td>资本结构稳定时过度复杂</td><td>WACC 敏感</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><b>DDM 的「戈登恒等式」是理解一切估值的钥匙：</b>V₀ = D₁/(r−g) 可变形为 <b>r = D₁/V₀ + g</b>——即「<b>期望收益 = 股利收益率 + 增长率</b>」。这是所有「股债性价比」「估值分位」分析的起点。</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">T2.3</span>派二 · 相对估值（倍数法）</h2>
+    <p class="lead">相对估值不直接算「值多少钱」，而是算「<b>比同类贵还是便宜</b>」。它是市场情绪的「温度计」。</p>
+    <div class="formula">
+      <div class="fx">
+        <b>领先 P/E</b>：P₀/E₁ = d/(r−g)　→ 由戈登模型推出，三个驱动：分红率 d、增长率 g、风险 r<br>
+        <b>P/B</b>：P₀/B₀ = (ROE − g)/(r − g)　→ 关键驱动是 <b>ROE</b><br>
+        <b>PEG</b>：(P/E)/g×100　→ PEG &lt; 1 视为便宜（但 g 为负时失真）
+      </div>
+    </div>
+    <div class="warn"><b>相对估值的三大局限（真题 2012 大题 38 的标准答案）：</b><br>
+    ① 「可比」难成立（业务、成长、会计、资本结构不同）；<br>
+    ② 无法识别系统性高估/低估（行业整体贵时，用平均倍数会一错俱错）；<br>
+    ③ 对会计口径敏感（非经常性损益、折旧、商誉）。</div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">T2.4</span>派三 · 剩余收益（RI）——精算师的最爱</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>剩余收益</b>：RI<sub>t</sub> = E<sub>t</sub> − r<sub>e</sub> × B<sub>t−1</sub><br>
+        <b>价值</b>：V₀ = B₀ + Σ RI<sub>t</sub>/(1+r<sub>e</sub>)<sup>t</sup><br><br>
+        <span style="font-size:13px">V₀ = 当前净资产 + 未来超额收益现值。超额收益 = 盈利超过「资本成本×净资产」的部分。</span>
+      </div>
+    </div>
+    <div class="prac">
+      <b>为什么精算师偏爱 RI：</b>① <b>不分红也能估</b>（DDM 失效）；② <b>以 B₀ 打底，对终值假设不敏感</b>（比 DDM 稳健）；③ <b>与内含价值（EV）同构</b>——EV = 调整后净资产 + 有效业务价值，正是「B₀ + 超额收益现值」的保险业版本（详见 <a href="ch4.html#s4">CH.04 §4.4</a>）。<b>精算师天生习惯「净资产 + 未来价值」的分解。</b>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">T2.5</span>三派如何互相印证</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>交叉验证</th><th>逻辑</th><th>结论一致时</th><th>结论分歧时</th></tr></thead>
+        <tbody>
+          <tr><td>DDM vs RI</td><td>同一公司、同一假设，两模型结果应相等</td><td>模型自洽</td><td>检查 g、r、B₀ 假设</td></tr>
+          <tr><td>绝对 vs 相对</td><td>绝对估值算「内在价值」，相对估值算「市场情绪」</td><td>价值与价格一致 → 合理定价</td><td>判断「是市场错了还是假设错了」</td></tr>
+          <tr class="note-td"><td>P/E vs PEG</td><td>P/E 看静态贵贱，PEG 看「贵得值不值」</td><td>—</td><td>高 P/E 高增长可能比低 P/E 低增长更便宜</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><b>实务金句：</b>「<b>绝对估值定方向（买不买），相对估值定时机（何时买），剩余收益定质量（值不值得长期持有）。</b>三派结合，才是一套完整的估值体系。」</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">T2.6</span>险资权益估值的三个独特视角</h2>
+    <p class="lead">险资买股票，与公募基金有本质区别。这决定了它的估值视角也不同。</p>
+    <div class="prac">
+      <b>视角一 · 看重「股息率」而非「涨幅」。</b>险资考核覆盖负债成本，<b>高股息股票能提供稳定的当期现金流</b>（匹配负债的现金流需求），且可用 FVOCI 分类平滑利润。所以险资偏爱<b>高股息、低波动、现金牛</b>的股票（银行、公用事业、能源）。<br><br>
+      <b>视角二 · 看重「P/B」与「ROE 的可持续性」。</b>险资是长钱，不赌短期成长，<b>更看重「ROE 能否长期高于资本成本」</b>（对应 RI 模型）。P/B &gt; 1 且 ROE 稳定 → 值得长期持有。<br><br>
+      <b>视角三 · 看重「波动对资本的影响」。</b>权益占用了高额资本（偿二代风险因子 28%–40%），<b>高波动股票会加剧偿付能力波动</b>。因此险资权益配置倾向<b>低波动、分散化</b>，而非集中押注高弹性标的。
+    </div>
+    <div class="tip"><b>一句话总结：</b>「<b>公募基金买股票看『能涨多少』，险资买股票看『每年能分多少、占多少资本、波动多大』。</b>前者是交易者思维，后者是长期持有人思维。」</div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">T2.7</span>演算器</h2>
+    <div class="calc" id="calc-ddm">
+      <h4>戈登模型与领先 P/E 反推</h4>
+      <div class="row"><label>下一期股利 D₁</label><input class="calc-in" id="g_d1" value="3" type="number" step="0.1"></div>
+      <div class="row"><label>股权成本 r（%）</label><input class="calc-in" id="g_r" value="10" type="number" step="0.1"></div>
+      <div class="row"><label>增长率 g（%）</label><input class="calc-in" id="g_g" value="5" type="number" step="0.1"></div>
+      <div class="row"><label>每股盈利 E₁</label><input class="calc-in" id="g_e1" value="5" type="number" step="0.1"></div>
+      <button class="calc-run">计算内在价值与 P/E</button>
+      <div class="verdict" id="g_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-ddm');
+        box.__run=function(){
+          var d1=+document.getElementById('g_d1').value, r=+document.getElementById('g_r').value/100;
+          var g=+document.getElementById('g_g').value/100, e1=+document.getElementById('g_e1').value;
+          if(r<=g){document.getElementById('g_out').innerHTML='<span class="calc-hint">需满足 r &gt; g。</span>';return}
+          var v=d1/(r-g), pe=v/e1, dy=d1/v;
+          document.getElementById('g_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>V₀ = D₁/(r−g) = '+d1+'/('+(r*100).toFixed(1)+'%−'+(g*100).toFixed(1)+'%) = <span class="fin">'+v.toFixed(2)+'</span></li>'
+            +'<li>领先 P/E = V₀/E₁ = '+v.toFixed(2)+'/'+e1+' = <span class="fin">'+pe.toFixed(2)+'</span></li>'
+            +'<li>股利收益率 = D₁/V₀ = <span class="fin">'+(dy*100).toFixed(2)+'%</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>内在价值 '+v.toFixed(2)+'，领先 P/E = '+pe.toFixed(2)+' 倍，股利收益率 '+(dy*100).toFixed(2)+'%。'
+            +'<br><b>验证：r = D₁/V₀ + g = '+(dy*100).toFixed(2)+'% + '+(g*100).toFixed(1)+'% = '+(r*100).toFixed(1)+'% ✓（戈登恒等式）</b>';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">T2.8</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 某公司 ROE = 20%，股权成本 r = 10%，留存比率 b = 60%。其领先 P/E（P₀/E₁）最接近（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 10</li>
+        <li>B. 12.5</li>
+        <li>C. 20</li>
+        <li>D. 25</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：A。</b></p>
+          <p class="ans-detail">g = ROE×b = 20%×60% = 12%；d = 1−b = 40%</p>
+          <p class="ans-detail">P₀/E₁ = d/(r−g) = 0.4/(0.10−0.12) —— 但 r&lt;g 分母为负，公式失效！</p>
+          <div class="warn"><b>这是个「陷阱题」：</b>当 ROE 远高于 r 时，g = 12% &gt; r = 10%，戈登模型<b>不适用</b>（假设 r&gt;g 不成立）。正确做法：ROE 长期必然回归 r（竞争），应用<b>两阶段模型</b>或假设 ROE 衰减。<b>本题应选「无法用戈登模型」或题目需补充 ROE 回归假设。</b></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 保险公司权益投资更偏好下列哪类股票（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 高波动、高成长、低分红</li>
+        <li>B. 高股息、低波动、稳定 ROE</li>
+        <li>C. 高弹性、高 β、不分红</li>
+        <li>D. 概念题材、高换手</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：B。</b></p>
+          <p class="ans-detail">险资考核覆盖负债成本、资本占用与利润稳定性，故偏爱<b>高股息（匹配现金流）、低波动（少占资本）、稳定 ROE（长期可持续）</b>的股票。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>3. 为什么说「剩余收益模型与内含价值模型是同构的」？请简述二者的对应关系与区别。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail"><b>同构关系：</b>RI 的 V₀ = B₀ + ΣRI/(1+r)<sup>t</sup>；EV = 调整后净资产 + 有效业务价值（VIF）。二者都是「<b>现在的家底 + 未来超额收益现值</b>」。</p>
+          <p class="ans-detail"><b>对应：</b>B₀ ↔ ANW；ΣRI 现值 ↔ VIF；新业务 RI ↔ 新业务价值 NBV×倍数。</p>
+          <p class="ans-detail"><b>区别：</b>① RI 用会计口径，EV 用偿付能力/精算口径；② RI 资金成本 = r<sub>e</sub>，EV 用风险贴现率 RDR；③ RI 是股东视角，EV 是保单视角。</p>
+          <div class="tip"><b>金句：</b>「EV 可以看作『RI 模型在保险业的行业特化版本』。」</div>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="topic-equity">○ 标记本页已完成</button>
+    <div class="pager">
+      <a href="topic-term.html">← 专题一 利率期限与久期</a>
+      <a href="topic-option.html">专题三 期权与希腊字母 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
