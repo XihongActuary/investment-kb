@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>专题四 业绩评价与归因 · 投资学 · 科目F8</title>
+<meta name="description" content="四大风险调整绩效比率、Brinson 归因、多期与风险归因、险资业绩评价的独特性——超越考试的业绩专题。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html" class="on">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">专题 T.04</div>
+    <h1>业绩评价与归因</h1>
+    <div class="sub">「赚了多少」只是起点，「承担多少风险赚的」「赚的是谁的钱」才是真正的评价</div>
+    <div class="meta">
+      <span>承接 CH.05 §5.7</span>
+      <span>对应真题 2014/2015/2023</span>
+      <span>难度 ★★★</span>
+      <span>核心能力：Brinson 归因与业绩解读</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>专题定位：</b>业绩评价是「<b>管理闭环的最后一环</b>」。本专题在 CH.05 基础上，深化 <b>Brinson 归因、多期归因、风险归因</b>，并重点讲清「<b>险资业绩评价与公募的根本区别</b>」。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s1">四大比率：各自回答什么问题</a></li>
+      <li><a href="#s2">Brinson 归因：配置 + 选择 + 交互</a></li>
+      <li><a href="#s3">多期归因与风险归因</a></li>
+      <li><a href="#s4">险资业绩评价的四个独特之处</a></li>
+      <li><a href="#calc">演算器：四大比率 + 归因</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="sn">T4.1</span>四大比率：各自回答什么问题</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>比率</th><th>公式</th><th>分母</th><th>回答的问题</th><th>适用</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sharpe</b></td><td>(R<sub>p</sub>−r<sub>f</sub>)/σ</td><td>总风险</td><td>「每承担一单位总风险，赚多少超额」</td><td>组合是投资者全部资产</td></tr>
+          <tr><td><b>Treynor</b></td><td>(R<sub>p</sub>−r<sub>f</sub>)/β</td><td>系统风险</td><td>「每承担一单位系统风险，赚多少」</td><td>组合是大组合的一部分</td></tr>
+          <tr><td><b>Jensen α</b></td><td>R<sub>p</sub>−[r<sub>f</sub>+β(R<sub>M</sub>−r<sub>f</sub>)]</td><td>—</td><td>「超额收益是多少（绝对）」</td><td>评价选股能力</td></tr>
+          <tr class="note-td"><td><b>信息比率 IR</b></td><td>α/σ(α)</td><td>跟踪误差</td><td>「主动收益 vs 主动风险」</td><td>评价主动管理能力</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn"><b>关键辨析：</b>Sharpe 用 σ、Treynor 用 β。<b>若组合高度集中（非系统风险大），Sharpe 会低于 Treynor</b>——这正是 2015 大题 37「排名不一致」的标准答案。</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">T4.2</span>Brinson 归因：配置 + 选择 + 交互</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>总超额 = 配置贡献 + 选择贡献 + 交互项</b><br><br>
+        <b>配置贡献</b> = Σ (w<sub>pi</sub> − w<sub>Bi</sub>) × R<sub>Bi</sub>　（权重偏离 × <b>基准收益</b>）<br>
+        <b>选择贡献</b> = Σ w<sub>Bi</sub> × (R<sub>pi</sub> − R<sub>Bi</sub>)　（<b>基准权重</b> × 类内超额）<br>
+        <b>交互项</b> = Σ (w<sub>pi</sub> − w<sub>Bi</sub>) × (R<sub>pi</sub> − R<sub>Bi</sub>)
+      </div>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">配置用基准收益，选择用基准权重；两个基准别搞反，交互两项都偏离</span>」
+    </div>
+    <div class="tip"><b>深度解读（超越考试）：</b>Brinson 归因的深层含义是「<b>把运气与能力分开</b>」。配置贡献考验「大类判断」，选择贡献考验「个股判断」，交互项是「两者的耦合」。<b>长期看，配置贡献的可持续性通常高于选择贡献</b>——因为大类配置是「低频、可复现」的决策，而选股 α 更容易被市场有效性侵蚀。</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">T4.3</span>多期归因与风险归因</h2>
+    <div class="prac">
+      <b>多期归因（超越单期）：</b>单期 Brinson 归因无法简单「加总」到多期（因为每期的权重基准会变）。多期归因需用<b>几何复利</b>或<b>算术平均 + 权重漂移修正</b>。<b>实务中常按「日/月」做单期归因，再按时间加权聚合</b>。<br><br>
+      <b>风险归因（归因的另一半）：</b>收益归因回答「赚了多少、从哪赚」，风险归因回答「风险在哪、有多大」。风险归因把组合风险分解到<b>资产类别、行业、个股、因子</b>，用 <b>边际 VaR / 成分 VaR</b> 衡量各部分的贡献。<b>收益归因 + 风险归因 = 完整的业绩诊断。</b>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">T4.4</span>险资业绩评价的四个独特之处</h2>
+    <div class="prac">
+      <b>① 双重基准</b>：绝对基准（覆盖负债成本）+ 相对基准（跑赢市场）。公募基金只有相对基准，险资<b>先要「不亏负债」</b>。<br><br>
+      <b>② 资产负债匹配度</b>：久期缺口、现金流匹配、免疫误差——这是险资<b>独有</b>的考核维度（见 CH.06）。<br><br>
+      <b>③ 会计与综合收益并重</b>：IFRS17 下，资产分类（FVTPL/FVOCI/AC）影响利润波动，考核要「利润 + 综合收益 + 资本占用」三者并重。<br><br>
+      <b>④ 长考核周期</b>：险资是长钱，考核周期 3–5 年甚至更长，<b>避免「追逐短期排名」的短视行为</b>。
+    </div>
+    <div class="tip"><b>金句：</b>「<b>公募基金的评价标准是『跑赢了多少』，险资的评价标准是『跑赢的同时，负债端稳不稳、资本够不够、利润波动大不大』。</b>」</div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">T4.5</span>演算器</h2>
+    <div class="calc" id="calc-perf">
+      <h4>四大绩效比率计算</h4>
+      <div class="row"><label>组合收益 R<sub>p</sub>（%）</label><input class="calc-in" id="pf_rp" value="12" type="number" step="0.1"></div>
+      <div class="row"><label>组合标准差 σ（%）</label><input class="calc-in" id="pf_s" value="18" type="number" step="0.1"></div>
+      <div class="row"><label>组合 β</label><input class="calc-in" id="pf_b" value="1.1" type="number" step="0.1"></div>
+      <div class="row"><label>市场收益 R<sub>M</sub>（%）</label><input class="calc-in" id="pf_rm" value="9" type="number" step="0.1"></div>
+      <div class="row"><label>无风险利率 r<sub>f</sub>（%）</label><input class="calc-in" id="pf_rf" value="3" type="number" step="0.1"></div>
+      <button class="calc-run">计算四大比率</button>
+      <div class="verdict" id="pf_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-perf');
+        box.__run=function(){
+          var rp=+document.getElementById('pf_rp').value/100, s=+document.getElementById('pf_s').value/100;
+          var b=+document.getElementById('pf_b').value, rm=+document.getElementById('pf_rm').value/100, rf=+document.getElementById('pf_rf').value/100;
+          if(s<=0||b<=0){document.getElementById('pf_out').innerHTML='<span class="calc-hint">σ 与 β 需大于 0。</span>';return}
+          var sharpe=(rp-rf)/s, treynor=(rp-rf)/b, jensen=rp-(rf+b*(rm-rf));
+          var mSharpe=(rm-rf)/1, mTren=(rm-rf)/1;
+          document.getElementById('pf_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>Sharpe = (R<sub>p</sub>−r<sub>f</sub>)/σ = <span class="fin">'+sharpe.toFixed(3)+'</span>（市场 '+(mSharpe).toFixed(3)+'）</li>'
+            +'<li>Treynor = (R<sub>p</sub>−r<sub>f</sub>)/β = <span class="fin">'+treynor.toFixed(3)+'</span>（市场 '+(mTren).toFixed(3)+'）</li>'
+            +'<li>Jensen α = R<sub>p</sub> − [r<sub>f</sub>+β(R<sub>M</sub>−r<sub>f</sub>)] = <span class="fin">'+(jensen*100).toFixed(2)+'%</span></li>'
+            +'<li>α&gt;0 表明存在超额收益（选股能力）</li>'
+            +'</ol></div>'
+            +'<b>结论：</b>Sharpe '+(sharpe>mSharpe?'高于':'低于')+'市场、Treynor '+(treynor>mTren?'高于':'低于')+'市场、α = '+(jensen*100).toFixed(2)+'%。'
+            +(jensen>0?'<br><b>基金表现优于市场，存在正 α。</b>':'<br><b>基金表现弱于市场，α 为负。</b>');
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">T4.6</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 若某基金是投资者「全部资产」，最合适的业绩评价指标是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. Treynor 比率</li>
+        <li>B. Sharpe 比率</li>
+        <li>C. Jensen α</li>
+        <li>D. 信息比率</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：B。</b></p>
+          <p class="ans-detail">组合是「全部资产」时，投资者承担的是<b>总风险</b>（含非系统风险），应用 Sharpe（分母 σ）。Treynor 用 β（系统风险），只在「组合是大组合一部分」时适用。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">计算</span>2. 组合权重：股票 60%（基准 50%）、债券 40%（基准 50%）；股票组合收益 12%（基准 10%）、债券组合收益 6%（基准 5%）。求 Brinson 归因的配置贡献与选择贡献。<span class="pts">6 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail">配置贡献 = (0.6−0.5)×10% + (0.4−0.5)×5% = 1.0% − 0.5% = <b>0.5%</b></p>
+          <p class="ans-detail">选择贡献 = 0.5×(12%−10%) + 0.5×(6%−5%) = 1.0% + 0.5% = <b>1.5%</b></p>
+          <p class="ans-detail">交互项 = (0.6−0.5)(12%−10%) + (0.4−0.5)(6%−5%) = 0.2% − 0.1% = 0.1%</p>
+          <p class="ans-detail">总超额 = 0.5% + 1.5% + 0.1% = <b>2.1%</b> ✓</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>3. 简述险资业绩评价与公募基金业绩评价的三个主要区别。<span class="pts">6 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail">① <b>基准不同</b>：险资有「绝对基准（覆盖负债成本）+ 相对基准」，公募只有相对基准；</p>
+          <p class="ans-detail">② <b>维度不同</b>：险资多了「资产负债匹配度」（久期缺口、现金流匹配）；</p>
+          <p class="ans-detail">③ <b>周期不同</b>：险资考核周期更长（3–5 年），避免短视。</p>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="topic-perf">○ 标记本页已完成</button>
+    <div class="pager">
+      <a href="topic-option.html">← 专题三 期权与希腊字母</a>
+      <a href="topic-alm.html">专题五 ALM 与险资配置 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
