@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CH.04 资产定价理论 · 投资学 · 科目F8</title>
+<meta name="description" content="债券定价与久期凸度、利率期限结构、DDM与剩余收益、期权二叉树与Black-Scholes、希腊字母、国债期货与CTD、利率衍生品——25%权重的定价主战场。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html" class="on">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">CHAPTER 04</div>
+    <h1>资产定价理论</h1>
+    <div class="sub">一切金融资产的价格，都是「未来现金流」与「贴现率」的乘积——本章教你算清这两项</div>
+    <div class="meta">
+      <span>考纲权重 25%</span>
+      <span>教材对应 第 15–20 章（第 14 章除外）</span>
+      <span>历年分值 30–40 分</span>
+      <span>建议投入 30–35 小时</span>
+    </div>
+    <div class="wbar">
+      <div class="lab"><span>本章在本科目中的权重</span><span>25 / 100</span></div>
+      <div class="bar"><i style="width:25%"></i></div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>本章定位：</b>这是全科<b>分值最高、计算量最大、也最容易拉开差距</b>的一章。CH.03 给出了「贴现率应该等于多少」（CAPM），本章则给出「现金流怎么数」与「期限怎么折」。<b>五套真题的综合题里，每年必有一道久期、一道期权、一道权益估值。</b>2023 年 9 道计算题中有 4 道直接落在本章（可转债/PE、修正久期、国债期货转换因子、期权平价策略）。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s0">三根支柱总览</a></li>
+      <li><a href="#s1">债券定价：从现金流到到期收益率</a></li>
+      <li><a href="#s2">久期、凸度与利率敏感性</a></li>
+      <li><a href="#s3">利率期限结构：即期、远期与四大理论</a></li>
+      <li><a href="#s4">权益定价（一）：绝对估值三派</a></li>
+      <li><a href="#s5">权益定价（二）：相对估值与适用范围</a></li>
+      <li><a href="#s6">期权定价：二叉树与 Black-Scholes</a></li>
+      <li><a href="#s7">希腊字母与期权风险分解</a></li>
+      <li><a href="#s8">国债期货、CTD 与利率衍生品</a></li>
+      <li><a href="#calc">演算器：久期凸度 / 期权 / 转换因子</a></li>
+      <li><a href="#quick">核心答案速查</a></li>
+      <li><a href="#dig">教材深挖与易错辨析</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s0">
+    <h2><span class="sn">4.0</span>三根支柱总览</h2>
+    <p class="lead">本章内容看似庞杂（债券、股票、期权、期货），但本质只有三根支柱。所有公式都是这三根支柱在不同资产上的展开。</p>
+
+    <div class="arch">
+      <div class="arch-top">
+        <b>资产定价的三根支柱</b>
+        <div class="meta"><span>现金流</span><span>贴现率</span><span>时间</span><span>风险</span></div>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>支 柱 一：未 来 现 金 流 怎 么 数</span></div>
+      <div class="arch-grid">
+        <a class="arch-card" href="#s1"><div class="ac-top"><span class="ac-no">P1</span><span class="ac-wt">基础</span></div><h4>债券现金流</h4><p>票息 + 本金；含赎回、回售、可转、减记等条款调整</p></a>
+        <a class="arch-card" href="#s4"><div class="ac-top"><span class="ac-no">P1</span><span class="ac-wt">必考</span></div><h4>权益现金流</h4><p>DDM 的股利、FCFE 的股权自由现金流、剩余收益 RI</p></a>
+        <a class="arch-card" href="#s6"><div class="ac-top"><span class="ac-no">P1</span><span class="ac-wt">必考</span></div><h4>期权收益的「非线性」</h4><p>max(S−K, 0)——这是所有期权定价的出发点</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>支 柱 二：贴 现 率 怎 么 定</span></div>
+      <div class="arch-grid">
+        <a class="arch-card key" href="#s3"><div class="ac-top"><span class="ac-no">P2</span><span class="ac-wt hot">高频</span></div><h4>期限结构</h4><p>即期利率曲线 r(0,t)、远期利率 f(t, t+1)、四大理论</p></a>
+        <a class="arch-card key" href="#s1"><div class="ac-top"><span class="ac-no">P2</span><span class="ac-wt hot">高频</span></div><h4>YTM 的「平均」性质</h4><p>YTM 是内部收益率，只有平坦曲线时才等于即期利率</p></a>
+        <a class="arch-card" href="#s4"><div class="ac-top"><span class="ac-no">P2</span><span class="ac-wt">—</span></div><h4>风险调整贴现率</h4><p>CAPM → r = r_f + β·MRP；即「与风险匹配的贴现率」</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>支 柱 三：风 险 怎 么 刻 画 与 对 冲</span></div>
+      <div class="arch-grid">
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">P3</span><span class="ac-wt hot">必考</span></div><h4>久期与凸度</h4><p>ΔP/P ≈ −D*Δy + ½·C·(Δy)²：一阶 + 二阶</p></a>
+        <a class="arch-card key" href="#s7"><div class="ac-top"><span class="ac-no">P3</span><span class="ac-wt hot">高频</span></div><h4>希腊字母</h4><p>Δ/Γ/V/Θ/ρ：五个维度、五种对冲</p></a>
+        <a class="arch-card prac" href="#s8"><div class="ac-top"><span class="ac-no">P3</span><span class="ac-wt done">实务</span></div><h4>CTD 与基差</h4><p>国债期货最便宜可交割券的选择逻辑</p></a>
+        <a class="arch-card prac" href="#s8"><div class="ac-top"><span class="ac-no">P3</span><span class="ac-wt done">实务</span></div><h4>Hull-White 树</h4><p>无套利思想构造利率二叉树（2012 秋第 37 题）</p></a>
+      </div>
+      <div class="arch-hint">
+        <b>怎么记？</b>遇到任何定价题，先问三句：<b>①现金流是多少、在第几期？②贴现率用即期利率还是 YTM 还是含风险溢价？③风险要从哪个维度对冲？</b>能答出这三句，公式自然浮现。
+      </div>
+    </div>
+
+    <div class="tip">
+      <b>本章复习的顺序建议：</b>不要按教材章节顺序读。先攻 <a href="#s2">久期凸度</a>（每年必考、套路固定、10 分钟可拿分），再攻 <a href="#s6">期权二叉树与平价关系</a>（2012、2015、2023 连续考），然后 <a href="#s4">DDM 与 PE 的相互关系</a>（2023 计算 3 的原型），最后才是 <a href="#s3">期限结构四大理论</a>与 <a href="#s8">CTD 转换因子</a>这类「记忆 + 套公式」的内容。
+    </div>
+  </section>
+
+  <section id="s1">
+    <h2><span class="sn">4.1</span>债券定价：从现金流到到期收益率</h2>
+    <p class="lead">债券定价只有一句话：<b>把未来所有现金流，用与它到期时间匹配的即期利率折回今天。</b>记住这一句，剩下的都是变形。</p>
+
+    <h3>一、定价的三个层次</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>层次一 · 逐笔贴现（理论正确）</b><br>
+        P₀ = Σ<sub>t=1</sub><sup>T</sup> C<sub>t</sub> / (1 + r<sub>t</sub>)<sup>t</sup>　　（r<sub>t</sub> 为 t 年期<b>即期利率</b>）<br><br>
+        <b>层次二 · 单一贴现率（YTM，考试最常用）</b><br>
+        P₀ = Σ C<sub>t</sub> / (1 + y)<sup>t</sup> + F / (1 + y)<sup>T</sup>　　（y 为<b>到期收益率</b>）<br><br>
+        <b>层次三 · 特殊形式</b><br>
+        P₀ = A × [1 − (1+y)<sup>−T</sup>] / y + F × (1+y)<sup>−T</sup>　　（C 为等额票息 A 时的年金式）
+      </div>
+      <p class="note"><b>关键辨析：</b>层次一与层次二在数学上是「不同的问题」。层次一是<b>定价</b>（已知即期利率求价格），层次二是<b>求收益率</b>（已知价格求 y）。<b>只有当利率曲线平坦时，两者算出的 y 才等于即期利率。</b>教材把这一点列为「YTM 的三大隐含假设」之一，考过三次。</p>
+    </div>
+
+    <h3>二、YTM 的三个隐含假设</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>假设</th><th>含义</th><th>违反后果</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 持有至到期</b></td><td>投资者持有到到期日，中途不卖出</td><td>中途卖出时，实际收益取决于卖出时的利率 → 出现<b>利率风险</b></td></tr>
+          <tr><td><b>② 票息按 y 再投资</b></td><td>每笔票息都能以 y 的利率再投资</td><td>若再投资利率下降，实际实现收益低于 y → 出现<b>再投资风险</b></td></tr>
+          <tr class="note-td"><td><b>③ 利率曲线平坦</b></td><td>各期限即期利率相同且不变</td><td>出现<b>期限结构不匹配</b>，YTM 只是「混合平均」，不能反映真实贴现</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">到期、再投、平坦线 —— YTM 三假设</span>」<br>
+      两条风险的「相消」是核心考点：<b>零息债只有利率风险（无票息可再投），溢价债再投资风险大，折价债利率风险大。当持有期等于久期时，两种风险恰好相消——这就是免疫的直观含义。</b>
+    </div>
+
+    <h3>三、溢价、折价与票面利率的关系</h3>
+    <div class="formula">
+      <div class="fx">
+        y &gt; c　→　P₀ &lt; F　（<b>折价</b>，discount）<br>
+        y = c　→　P₀ = F　（<b>平价</b>，par）<br>
+        y &lt; c　→　P₀ &gt; F　（<b>溢价</b>，premium）<br>
+        <span style="font-size:13px">（c 为票面利率，F 为面值；上述结论对一年付息一次的普通债券恒成立）</span>
+      </div>
+      <p class="note"><b>为什么？</b>票面利率是「债券给你的利息」，YTM 是「市场要求的利息」。<b>给你的 &lt; 市场要的，就只能靠价格便宜来补——即折价。</b>这层直觉比背结论更重要：所有「收益率上升则价格下降」的判断题，都可以用这句话回答。</p>
+    </div>
+
+    <div class="prac">
+      <b>决策应用 · 保险资金的债券买入时机：</b>保险公司配置债券，本质是「锁定一个长期稳定的收益率」。当 10 年国债 YTM 为 2.5% 而公司定价假设的长期投资收益率为 4.5% 时，每买一份就是在<b>锁定 200BP 的利差损</b>。这正是为什么险资在利率下行期会出现「越降越抢」的现象——不是在赌价格，是在抢最后一点可锁定的收益率。
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">客观题 10</span>
+      <p>债券定价及相关因素分析</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>五因素定性：</b></p>
+          <table>
+            <thead><tr><th>因素</th><th>上升时价格如何变</th><th>机制</th></tr></thead>
+            <tbody>
+              <tr><td>票面利率 c</td><td class="pos">↑ 价格上升</td><td>分子现金流变大</td></tr>
+              <tr><td>市场利率 / YTM</td><td class="neg">↓ 价格下降</td><td>分母贴现因子变大</td></tr>
+              <tr><td>到期期限 T</td><td>视折溢价而定</td><td>折价债：T↑则 P↓；溢价债：T↑则 P↑</td></tr>
+              <tr><td>面值 F</td><td class="pos">↑ 价格上升</td><td>本金现金流变大</td></tr>
+              <tr><td>付息频率</td><td>频率↑ P 略↑</td><td>票息提前收到，再投资价值提升</td></tr>
+            </tbody>
+          </table>
+          <div class="warn"><b>易错点：到期期限的影响不是单向的！</b>这是唯一一个「方向取决于折溢价」的因素。原因是价格需要向面值「收敛」：<b>折价债的价格随期限延长而越来越低（远离面值），溢价债的价格随期限延长而越来越高。</b></div>
+        </div>
+      </details>
+    </div>
+
+    <h3>四、含权债券的定价调整</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>可赎回债券（callable）</b>：P = P<sub>普通债</sub> − C<sub>（赎回权价值）</sub>　→ 价格更低、YTM 更高<br>
+        <b>可回售债券（putable）</b>：P = P<sub>普通债</sub> + P<sub>（回售权价值）</sub>　→ 价格更高、YTM 更低<br>
+        <b>可转债</b>：P = max{纯债价值, 转换价值} + <b>期权时间价值</b>
+      </div>
+      <p class="note"><b>统一视角：</b>含权债 = 普通债 + 期权。发行人持有的权利（赎回）是<b>资产减项</b>，持有人持有的权利（回售、转股）是<b>资产加项</b>。<b>2017 年考过「可赎回债券的收益率与利率的关系」——记住：利率越低，赎回越可能被执行，可赎回债的价格被「压」得越厉害，即价格上限 = 赎回价。</b></p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2017</span><span class="yr">大题 8</span>
+      <p>债券久期计算，可赎回债券的收益率与利率的关系，久期法则（博迪第 16 章第 13 题）</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-skel"><b>三问结构</b>：①久期计算 ②可赎回债的凸性反常 ③久期法则六条</p>
+          <p class="ans-detail"><b>（1）久期计算</b>——见 <a href="#s2">4.2 节</a>，麦考利久期按「时间加权现值」求。</p>
+          <p class="ans-detail"><b>（2）可赎回债与利率的关系 —— 这是本题的核心区分点</b></p>
+          <table>
+            <thead><tr><th>债券类型</th><th>价格-利率曲线的形状</th><th>凸性</th><th>结论</th></tr></thead>
+            <tbody>
+              <tr><td>普通不可赎回债</td><td>凸向下（convex）</td><td class="pos">正凸性</td><td>利率下行时涨得比久期预测多，上行时跌得比预测少 → 「涨多跌少」</td></tr>
+              <tr class="note-td"><td><b>可赎回债（低利率环境）</b></td><td><b>凹向下（concave）</b></td><td class="neg">负凸性</td><td>利率下行到赎回价附近，价格上涨被封顶；<b>利率下行时涨得少，上行时跌得多</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail">成因：利率下行 → 发行人更可能赎回再融资 → 投资者「涨不动」；利率上行 → 赎回权不被执行，债券退化为普通债 → 该跌还是跌。<b>所以含权债的「有效久期」在两个方向上不同：下行有效久期 &lt; 上行有效久期。</b></p>
+          <p class="ans-detail"><b>（3）久期法则六条</b>见 <a href="#s2">4.2 节</a>「久期六法则」表。</p>
+          <div class="src-note">对偶考点：2023 年选「虚值期权是否有时间价值和内在价值」——同样是「期权的价值构成」问题，两条线可以互相迁移。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">4.2</span>久期、凸度与利率敏感性</h2>
+    <p class="lead">这是全章<b>性价比最高</b>的知识点：公式不多、套路固定、每年至少 6–10 分。2023 年计算题第 4 题（修正久期）、第 7 题（修正久期 + 年化收益率 + 资产负债净资产变动）都落在这里。</p>
+
+    <h3>一、三种久期，一条主线</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>麦考利久期（Macauley Duration）</b>——「现金流的加权平均回收时间」<br>
+        D<sub>Mac</sub> = Σ [ t × PV(C<sub>t</sub>) ] / P₀　　（权重 = 该期现金流现值占总价的比例，权重和为 1）<br><br>
+        <b>修正久期（Modified Duration）</b>——「价格对利率的一阶敏感度」<br>
+        D* = D<sub>Mac</sub> / (1 + y/m)　　（m 为年付息次数；年付一次时 D* = D<sub>Mac</sub>/(1+y)）<br><br>
+        <b>美元久期（Dollar Duration）</b>——「利率变动 1 单位时的价格变动额」<br>
+        DD = D* × P₀　（利率变动 1 个百分点时，价格变 DD/100）
+      </div>
+      <p class="note"><b>三者关系一句话：</b>麦考利久期是<b>时间</b>（单位：年），修正久期是<b>弹性</b>（无量纲，可理解为「百分比」），美元久期是<b>金额</b>。考试问「久期」时若不加限定，通常指麦考利久期；问「利率上升 1% 价格变动多少」时用修正久期。</p>
+    </div>
+
+    <h3>二、久期六法则</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>#</th><th>法则</th><th>直觉解释</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>零息债的麦考利久期 = 到期期限</b></td><td>只有一笔现金流，加权平均时间就是它自己</td></tr>
+          <tr><td>2</td><td>付息债的久期 &lt; 到期期限</td><td>票息提前回收，平均时间被拉短</td></tr>
+          <tr><td>3</td><td><b>票面利率越高，久期越短</b></td><td>现金流越靠前（票息多），加权平均越短</td></tr>
+          <tr><td>4</td><td>到期期限越长，久期越长（<b>但增速递减</b>）</td><td>远期现金流的现值权重趋近于零，久期趋于上限（永续债久期 = 1/y + 1）</td></tr>
+          <tr class="note-td"><td>5</td><td><b>YTM 越低，久期越长</b></td><td>贴现率低 → 远期现金流现值占比上升 → 平均时间拉长。这是「低利率环境久期风险更大」的数学根源</td></tr>
+          <tr><td>6</td><td><b>永续债的久期 = (1+y)/y</b>（麦考利）</td><td>由 P = A/y 推出，是法则 4 的极限</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">零息等期、付息必短；票高期短、期长渐缓；利低期长、永续一加</span>」<br>
+      最后一句「永续一加」指 D<sub>Mac</sub> = 1 + 1/y，即 (1+y)/y；当 y = 8% 时为 13.5 年。
+    </div>
+
+    <h3>三、凸度：二阶修正</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>一阶近似（只用久期）</b><br>
+        ΔP/P ≈ −D* × Δy<br><br>
+        <b>二阶近似（久期 + 凸度）</b><br>
+        ΔP/P ≈ <b>−D* × Δy + ½ × C × (Δy)²</b><br><br>
+        <b>凸度的定义</b><br>
+        C = [ Σ t(t+1) × PV(C<sub>t</sub>) ] / [ (1+y)² × P₀ ]　（年付息一次）
+      </div>
+      <p class="note"><b>注意符号：</b>凸度项前是 <b>加号</b>，且 (Δy)² 恒为正——所以<b>无论利率涨还是跌，凸度都使实际价格高于久期预测值</b>。这就是「凸性是好东西」的数学表达：<b>涨得多、跌得少。</b></p>
+    </div>
+
+    <figure class="figure">
+      <img src="img/duration-convexity.png" alt="久期是切线、凸度是弯曲" loading="lazy">
+      <figcaption><b>图 4-1　久期是「切线」，凸度是「弯曲」：</b>以 10 年期票面 6% 债券为例，在 y=8% 处做切线即久期的一阶近似——利率小幅变动时够用；但利率大幅变动时，真实曲线（凸）始终<b>高于</b>切线：下行「多涨」、上行「少跌」，两段差距就是凸度的贡献。<b>同样的久期选凸度大的——这就是「凸度是免费午餐」的图形表达。</b></figcaption>
+    </figure>
+
+    <div class="arch">
+      <div class="arch-top">
+        <b>久期与凸度的分工</b>
+        <div class="meta"><span>一阶：斜率</span><span>二阶：弯曲</span><span>价格-利率曲线</span></div>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>利 率 上 升 Δy &gt; 0</span></div>
+      <div class="arch-grid">
+        <a class="arch-card" href="#s2"><div class="ac-top"><span class="ac-no">一阶</span><span class="ac-wt">—</span></div><h4>久期预测：价格下跌</h4><p>ΔP/P = −D*Δy，线性下跌。久期越大，跌得越多</p></a>
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">二阶</span><span class="ac-wt hot">正凸性</span></div><h4>凸度修正：少跌</h4><p>+½C(Δy)² &gt; 0，实际跌幅小于久期预测</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>利 率 下 降 Δy &lt; 0</span></div>
+      <div class="arch-grid">
+        <a class="arch-card" href="#s2"><div class="ac-top"><span class="ac-no">一阶</span><span class="ac-wt">—</span></div><h4>久期预测：价格上涨</h4><p>ΔP/P = −D*Δy，线性上涨</p></a>
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">二阶</span><span class="ac-wt hot">正凸性</span></div><h4>凸度修正：多涨</h4><p>+½C(Δy)² &gt; 0，实际涨幅大于久期预测</p></a>
+      </div>
+      <div class="arch-hint"><b>结论：</b>同样的久期，<b>选凸度大的</b>——因为它在任何方向的利率变动中都占优。这就是「凸度是免费午餐」的含义。反之，可赎回债、MBS 是<b>负凸度</b>，在利率大幅波动时表现最差，需要额外补偿（更高收益率）。</div>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2023</span><span class="yr">计算 4</span>
+      <p>计算修正久期。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>三步走</b>：①每期现金流 → ②逐期现值与权重 → ③求 D<sub>Mac</sub> 再除 (1+y/m)</div>
+          <p class="ans-detail"><b>（1）列现金流表</b>（以 3 年期、票面 6%、年付一次、YTM = 8%、面值 100 为例）</p>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>t</th><th>CF<sub>t</sub></th><th>PV = CF/(1.08)<sup>t</sup></th><th>权重 w = PV/P₀</th><th>t × w</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>6</td><td>5.556</td><td>0.0583</td><td>0.0583</td></tr>
+              <tr><td>2</td><td>6</td><td>5.144</td><td>0.0540</td><td>0.1080</td></tr>
+              <tr><td>3</td><td>106</td><td>84.152</td><td>0.8835</td><td>2.6505</td></tr>
+              <tr class="note-td"><td colspan="2"><b>P₀</b></td><td><b>94.852</b></td><td><b>0.9958≈1</b></td><td><b>D<sub>Mac</sub>=2.817</b></td></tr>
+            </tbody>
+          </table></div>
+          <p class="ans-detail"><b>（2）修正久期</b>：D* = 2.817 / 1.08 = <b>2.608</b></p>
+          <p class="ans-detail"><b>（3）读数</b>：YTM 上升 100BP，价格约跌 2.608%；上升 20BP，跌 0.52%。</p>
+          <div class="warn"><b>三个高频失分点：</b>①忘了最后一期要加本金（最常见）；②算完麦考利久期忘了除 (1+y) 直接当修正久期；③半年付息时用错了 m——<b>半年付息的麦考利久期算出来是「半年」为单位，需除以 2 才换算为年</b>，修正久期则除以 (1+y/2)。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算 7</span>
+      <p>给出一项投资的基本信息，求：①修正久期；②如果第二年卖出，年化收益率为多少；③利率下行 20BP，问资产规模及负债变动，净资产变动。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>三问三种能力</b>：①久期计算（纯技术）②持有期收益率（含再投资与资本利得）③久期缺口对净资产的影响（ALM 核心）</div>
+          <p class="ans-detail"><b>（1）修正久期</b>：同上一题。</p>
+          <p class="ans-detail"><b>（2）第二年卖出的年化收益率</b>——这是博迪式「持有期收益」题，务必分三块算：</p>
+          <div class="formula"><div class="fx">
+            总收益 = <b>① 期间票息</b> + <b>② 票息再投资收益</b> + <b>③ 卖出时的资本利得/损失</b><br>
+            年化收益率 = (总终值 / 初始投入)<sup>1/2</sup> − 1
+          </div></div>
+          <p class="ans-detail">其中③需按「卖出时的剩余期限 + 当时的 YTM」重新定价。若题目未给 YTM 变化，则假设曲线不变（此时总收益恰好等于 YTM，因为 2 年持有期不一定等于久期，仍可能有偏差）。</p>
+          <p class="ans-detail"><b>（3）利率下行 20BP 的净资产变动</b>——用久期缺口模型：</p>
+          <div class="formula"><div class="fx">
+            <b>久期缺口</b>：ΔE ≈ −[D<sub>A</sub>·A − D<sub>L</sub>·L] × Δy / (1+y) = −(D<sub>A</sub> − k·D<sub>L</sub>) × A × Δy/(1+y)<br>
+            其中 k = L/A（杠杆比率），E = A − L（净资产 / 所有者权益）
+          </div></div>
+          <p class="ans-detail">利率下降（Δy &lt; 0）时：<b>若 D<sub>A</sub> &gt; k·D<sub>L</sub>（正缺口），净资产 E 上升</b>；若负缺口，净资产下降。</p>
+          <p class="ans-detail"><b>数值示范：</b>资产 A = 1000 亿、久期 8；负债 L = 900 亿、久期 12；Δy = −0.2%。<br>
+          ΔA ≈ −8 × 1000 × (−0.002) = <b>+16 亿</b>；ΔL ≈ −12 × 900 × (−0.002) = <b>+21.6 亿</b>；ΔE = 16 − 21.6 = <b>−5.6 亿</b>。<br>
+          → <b>利率下行，净资产反而减少</b>，因为负债比资产更敏感（k·D<sub>L</sub> = 10.8 &gt; D<sub>A</sub> = 8）。这正是长期寿险公司「利率下行侵蚀净资产」的数学表达，也是 <a href="topic-alm.html">ALM 专题</a>的起点。</p>
+          <div class="src-note">评分：修正久期 3 分、年化收益率 4 分（三块各 1–2 分）、久期缺口 5 分（ΔA、ΔL、ΔE 分步给分）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观 7</span>
+      <p>久期与凸度</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">可按「定义 → 用途 → 局限 → 相互补充」四段作答：</p>
+          <table>
+            <thead><tr><th>对比项</th><th>久期</th><th>凸度</th></tr></thead>
+            <tbody>
+              <tr><td>数学含义</td><td>价格对利率的<b>一阶导数</b>（斜率）</td><td>价格对利率的<b>二阶导数</b>（弯曲程度）</td></tr>
+              <tr><td>单位</td><td>年 / 无量纲</td><td>年²</td></tr>
+              <tr><td>用途</td><td>利率小幅变动的价格估算；<b>免疫</b>的匹配条件</td><td>利率大幅变动的价格估算；<b>组合在同等久期下择优</b></td></tr>
+              <tr><td>局限</td><td>Δy 较大时误差大（低估涨幅、高估跌幅）</td><td>不能单独使用，必须与久期配对</td></tr>
+              <tr class="note-td"><td colspan="3"><b>实务表述：</b>「久期告诉你风险有多大，凸度告诉你风险是好事还是坏事。」同等久期下应选凸度大的组合，因为其价格-利率曲线位于上方（<b>凸度占优 / convexity dominance</b>）。</td></tr>
+            </tbody>
+          </table>
+          <div class="tip"><b>加分句：</b>凸度需要成本——高凸度债券通常收益率更低（价格更贵）。因此凸度不是「无条件越好」，而是「牛市（预期利率大幅波动）值钱，熊市（持有吃息）不值钱」。这句话能把答案从「背诵级」抬到「理解级」。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 免疫的完整条件（Redington 免疫）：</b>保险公司做资产负债久期匹配时，需要同时满足三条：<br>
+      ① <b>资产现值 = 负债现值</b>（PV 匹配，防「资不抵债」）；<br>
+      ② <b>资产久期 = 负债久期</b>（一阶免疫，防利率小幅变动的净值波动）；<br>
+      ③ <b>资产的凸度 &gt; 负债的凸度</b>（二阶免疫，保证在利率<b>任何方向</b>变动下资产都跑赢负债）。<br>
+      第③条是「资产要略多于负债的凸度」的原因——它是长期寿险公司配置超长期国债与长久期非标的底层逻辑。
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">4.3</span>利率期限结构：即期、远期与四大理论</h2>
+    <p class="lead">上一节把 y 当作常数，本节要松开这个假设。期限结构研究的是「同一种信用等级、不同期限的收益率之间是什么关系」。</p>
+
+    <h3>一、三种利率的区别（最容易混）</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>利率</th><th>符号</th><th>含义</th><th>观察方式</th></tr></thead>
+        <tbody>
+          <tr><td><b>即期利率</b>（spot）</td><td>r(0,t) 或 s<sub>t</sub></td><td>今天借出、t 年后一次性还本付息的年化利率</td><td>由零息债价格反推：P = F/(1+s<sub>t</sub>)<sup>t</sup></td></tr>
+          <tr><td><b>远期利率</b>（forward）</td><td>f<sub>t,T</sub></td><td>约定「t 时点起借、T 时点还」的利率，今天锁定、未来执行</td><td>由两条即期曲线无套利推出</td></tr>
+          <tr class="note-td"><td><b>到期收益率</b>（YTM）</td><td>y</td><td>使全部现金流现值等于价格的<b>单一</b>贴现率</td><td>由债券价格反解（内部收益率）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">
+      <div class="fx">
+        <b>远期利率的定价公式（无套利）</b><br>
+        (1 + s<sub>T</sub>)<sup>T</sup> = (1 + s<sub>t</sub>)<sup>t</sup> × (1 + f<sub>t,T</sub>)<sup>T−t</sup><br><br>
+        <b>一通百通的记忆方式：左边是「先存到 T」的终值，右边是「先存到 t 再按远期续存到 T」的终值，两者必须相等，否则套利。</b><br><br>
+        <b>单期远期</b>（t 年后的 1 年期）：<br>
+        1 + f<sub>t,t+1</sub> = (1 + s<sub>t+1</sub>)<sup>t+1</sup> / (1 + s<sub>t</sub>)<sup>t</sup><br><br>
+        <b>近似式</b>（年限较短、通常考试可直接用）：<br>
+        f<sub>t,T</sub> ≈ [s<sub>T</sub>·T − s<sub>t</sub>·t] / (T − t)
+      </div>
+      <p class="note"><b>一个必须建立的直觉：</b>远期利率是「市场今天对未来的预期」，但它包含了<b>流动性溢价与风险溢价</b>，因此 <b>f ≠ E(未来即期利率)</b>。这个差别正是四大期限结构理论的分歧所在。</p>
+    </div>
+
+    <h3>二、四大期限结构理论</h3>
+
+    <figure class="figure">
+      <img src="img/yield-curve.png" alt="利率期限结构的四种形态" loading="lazy">
+      <figcaption><b>图 4-2　收益率曲线的四种形态：</b>①向上倾斜（正常，流动性溢价+加息预期）；②向下倾斜（<b>倒挂</b>，10年-2年利差转负后 12–18 个月常现衰退，是历史上最灵的衰退领先指标之一）；③平坦（过渡期信号）；④驼峰（中端溢价最高，骑乘策略的主战场）。<b>四种形态都能被四大理论解释，但机制不同——这正是选择题的考点所在。</b></figcaption>
+    </figure>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>理论</th><th>核心主张</th><th>对「为什么长期利率通常更高」的解释</th><th>能否解释曲线倒挂</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 预期理论</b><br>（纯预期理论）</td><td>长期利率 = 未来短期利率的<b>几何平均</b>，f = E(s)</td><td>因为市场预期未来短期利率上升</td><td class="pos">能（预期未来降息则倒挂）</td></tr>
+          <tr><td><b>② 流动性偏好理论</b></td><td>长期利率 = 预期短期利率 + <b>流动性溢价</b>（随期限递增）</td><td>投资者偏好短期，持有长期需补偿；因此 f &gt; E(s)</td><td class="pos">能，但需预期大幅降息才能倒挂</td></tr>
+          <tr><td><b>③ 市场分割理论</b></td><td>不同期限是<b>独立市场</b>，供需各自决定，互不替代</td><td>长期市场资金供给相对稀缺</td><td class="pos">能（各市场独立定价）</td></tr>
+          <tr class="note-td"><td><b>④ 优先置产理论</b><br>（preferred habitat）</td><td>投资者有「期限偏好区间」，但可被溢价吸引偏离</td><td>长期资金需求方需付出溢价</td><td class="pos">能</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">预期看信仰、流动要补偿、分割各过各、置产留本位</span>」<br>
+      <b>考试答题模板：</b>「若曲线向上倾斜，预期理论认为是市场预期未来短期利率上升；流动性偏好理论认为是流动性溢价随期限递增；市场分割理论认为是长期资金供需失衡。三者<b>并不互斥</b>，实证上流动性偏好理论解释力最强。」
+    </div>
+
+    <div class="exam">
+      <span class="yr">2023</span><span class="yr">选择</span>
+      <p>利率期限结构理论</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">选择题常以「下列说法正确的是」出现，正确答案往往落在<b>「流动性偏好理论认为远期利率 = 预期短期利率 + 流动性溢价」</b>这一类表述上。错误选项的典型设计：</p>
+          <div class="warn">①「预期理论认为远期利率等于未来即期利率的实际值」——错，应为<b>预期值</b>；<br>
+          ②「市场分割理论认为不同期限债券完全可替代」——错，<b>完全不可替代</b>；<br>
+          ③「流动性溢价随期限递减」——错，<b>递增</b>。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 39</span>
+      <p>五个期限从 1 年到 5 年的零息票债券，面值 1000 美元，价格均给出。①买入一份某种债券、卖出另一种债券多少份使得 0 时点现金流为 0，并求隔年现金流；②计算 3 年后的 2 年期远期贷款的实际有效利率；③涉及 (1+f<sub>5</sub>)(1+f<sub>4</sub>)−1 一类有效利率计算。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>这类题的本质：用零息债价格反推即期利率，再用即期利率求远期利率。</b>核心公式只有一条：(1+s<sub>T</sub>)<sup>T</sup> = (1+s<sub>t</sub>)<sup>t</sup>(1+f<sub>t,T</sub>)<sup>T−t</sup></div>
+          <p class="ans-detail"><b>（1）0 时点现金流为零的份数</b></p>
+          <p class="ans-detail">设买入 1 份 t 年期零息债、卖出 n 份 T 年期零息债：n = P<sub>t</sub> / P<sub>T</sub>（价格比就是份数比）。<br>
+          一期的净现金流 = 1000（t 年债到期收到）− n × 0（T 年债尚未到期）→ 若 T &gt; t+1，则第 t+1 年仍为 0，需看清题目到底问哪一年。</p>
+          <p class="ans-detail"><b>（2）3 年后 2 年期远期贷款的实际利率</b></p>
+          <p class="ans-detail">先反推即期利率：s<sub>t</sub> = (1000/P<sub>t</sub>)<sup>1/t</sup> − 1。<br>
+          再求远期：(1+f<sub>3,5</sub>)² = (1+s<sub>5</sub>)⁵ / (1+s<sub>3</sub>)³。注意这里 <b>指数是 2（贷款期限），不是 5</b>——这是最常见的错法。</p>
+          <p class="ans-detail"><b>（3）有效年利率</b>：若题目给出两段远期，则「连续两年的有效利率」= (1+f<sub>t</sub>)(1+f<sub>t+1</sub>) − 1，即两段复利相乘再减 1。<b>不要简单相加。</b></p>
+          <div class="src-note">评分：反推即期利率 3 分、远期利率 3 分、份数 2 分、有效利率 2 分。跨章关联：见 <a href="topic-term.html">T.01 利率期限与久期</a>中「远期利率曲线与利率预期」一节。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 保险公司怎么用远期利率：</b>当 10 年期国债 YTM 3.0%、30 年期 3.5% 时，隐含的「10 年后起 20 年期远期利率」= [(1.035)³⁰/(1.03)¹⁰]<sup>1/20</sup> − 1 ≈ <b>3.75%</b>。这个数字的含义是：<b>如果公司今天锁定 30 年，实际是在赌「10 年后的 20 年利率会高于 3.75%」。</b>反之，如果公司明确不看好超长期，则宁愿滚动配置 10 年债。这就是「久期策略」与「骑乘策略」的分岔点。
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">4.4</span>权益定价（一）：绝对估值三派</h2>
+    <p class="lead">股票定价的三种绝对方法，本质是「用三种不同的现金流去贴现」：<b>股利（DDM）、股权自由现金流（FCFE）、剩余收益（RI）</b>。三者在<b>假设一致时结果相同</b>，实战中选择哪一个取决于「哪种数据更可信」。</p>
+
+    <h3>一、股利贴现模型 DDM 的四个版本</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 零增长模型</b>（永续年金）<br>
+        V₀ = D₁ / r　　（股利恒定）<br><br>
+        <b>② 戈登增长模型（Gordon，恒定增长）</b><br>
+        V₀ = D₁ / (r − g) = D₀(1+g) / (r − g)　　<b>要求 r &gt; g</b><br><br>
+        <b>③ 两阶段模型</b>（高速增长 n 年 +  thereafter 稳定增长）<br>
+        V₀ = Σ<sub>t=1</sub><sup>n</sup> D<sub>t</sub>/(1+r)<sup>t</sup> + <b>[D<sub>n+1</sub>/(r − g<sub>L</sub>)]</b> / (1+r)<sup>n</sup><br><br>
+        <b>④ H 模型</b>（增长率线性衰减）<br>
+        V₀ = D₀(1+g<sub>L</sub>)/r + D₀·H·(g<sub>S</sub> − g<sub>L</sub>)/r　　（H = 高速增长期的<b>一半</b>）
+      </div>
+      <p class="note"><b>H 模型的巧思：</b>假设增长率从 g<sub>S</sub> 线性降到 g<sub>L</sub>，用 H（半衰期）替代无穷求和。当 g<sub>S</sub> = g<sub>L</sub> 时退化为戈登模型，可作自检。<b>2015 年单选第 8 题就考了 H 模型计算</b>——务必记住 H 是「一半」而不是「全期」。</p>
+    </div>
+
+    <h3>二、增长从哪来：可持续增长率</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>g = ROE × b</b>　　（b = 留存比率 = 1 − 股利支付率 d）<br><br>
+        由此推出<b>「分红率 × 增长率」的取舍关系</b>：<br>
+        ● ROE &gt; r（公司能挣超额收益）→ <b>少分红（低 d）、高增长</b>更值钱<br>
+        ● ROE &lt; r（挣不到超额收益）→ <b>多分红</b>更值钱（钱在公司手里被浪费）<br>
+        ● ROE = r → 分红政策<b>无关</b>（MM 定理的股利版）
+      </div>
+      <p class="note"><b>2023 年计算 3 的原型就在这里：</b>给出 E（每股收益）、β、r<sub>f</sub>、ROE、分红率，求内在价值。思路是：<b>先用 CAPM 求 r → 再用 g = ROE×b 求 g → 再用 D₀ = E×分红率、D₁ = D₀(1+g) → 最后 V₀ = D₁/(r−g)</b>。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算 3</span>
+      <p>某股票 E = 15%、β = 1.5、r<sub>f</sub> = 5%，每股盈利的再投资收益率 ROE = 25%、分红率 50%，每年分红。①计算该股票的内在价值；②当前股价 P = 120，一年后市价等于内在价值，求收益率。</p>
+      <details class="answer"><summary>看完整解答</summary>
+        <div class="body">
+          <div class="ans-skel"><b>四步</b>：CAPM 求 r → g = ROE×b → D₁ → 戈登公式</div>
+          <p class="ans-detail"><b>（1）求贴现率 r</b></p>
+          <p class="ans-detail">题目给出「股票 E = 15%」，按 F8 的惯例为<b>市场期望收益率 R<sub>M</sub></b>；β = 1.5，r<sub>f</sub> = 5%。<br>
+          r = 5% + 1.5 × (15% − 5%) = 5% + 15% = <b>20%</b></p>
+          <p class="ans-detail"><b>（2）求增长率 g</b></p>
+          <p class="ans-detail">分红率 d = 50% → 留存比率 b = 1 − 50% = 50%<br>
+          g = ROE × b = 25% × 50% = <b>12.5%</b></p>
+          <p class="ans-detail"><b>（3）求内在价值</b></p>
+          <p class="ans-detail">每股盈利需要绝对数值才能算 D。若题目另给了每股收益（设为 EPS），则 D₀ = EPS × 50%，D₁ = D₀ × 1.125。<br>
+          <b>V₀ = D₁ / (r − g) = D₁ / (20% − 12.5%) = D₁ / 7.5% = 13.33 × D₁</b></p>
+          <p class="ans-detail">若以 EPS 表示：V₀ = EPS×0.5×1.125/0.075 = EPS × <b>7.5</b>，即 <b>P/E = 7.5 倍</b>。</p>
+          <div class="formula"><div class="fx">
+            <b>领先 P/E 的通式</b>：P₀/E₁ = <b>d / (r − g)</b> = 0.5/(0.20 − 0.125) = <b>6.67</b><br>
+            （除以 E₁ 而非 E₀ 时，用 d 而非 d(1+g)）
+          </div></div>
+          <p class="ans-detail"><b>（4）② 一年后收益率</b></p>
+          <p class="ans-detail">若 P₀ = 120 且实际价值 V₀ &gt; 120，则一年后 P₁ = V₁ = V₀(1+g)。<br>
+          总收益 = 期间股利 D₁ + 资本利得 (P₁ − P₀)；收益率 = [D₁ + (V₁ − P₀)] / P₀。<br>
+          <b>快捷算法：</b>若当前价格已经等于内在价值，则持有期收益率 = r（CAPM 要求收益）。<b>若价格低于内在价值（低估），则收益率 &gt; r</b>，超出部分即为「价值回归」的一次性收益。</p>
+          <div class="formula"><div class="fx">
+            一年收益率 = <b>股利收益率 D₁/P₀ + 资本利得率 g + 价值回归 (V₀ − P₀)/P₀</b>
+          </div></div>
+          <div class="src-note">评分：CAPM 2 分、g 2 分、内在价值 3 分、第二问 3 分。若 V₀ = 150（示例），则收益率 = D₁/120 + (150×1.125 − 120)/120 = 股利贡献 + 40.6%。</div>
+          <div class="warn"><b>易错：</b>①把「股票 E = 15%」当成 EPS 或 ROE（题干已单独给 ROE = 25%，故 15% 只能是 R<sub>M</sub> 或该股期望收益）；②忘记 b = 1 − d；③用 D₀ 而非 D₁ 代入戈登公式（差一个 (1+g)）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">客观 17</span>
+      <p>两阶段模型（基本与书本例题一样）</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-detail"><b>标准三步：</b></p>
+          <p class="ans-detail">①高速增长期（n 年）的股利逐年贴现：Σ D₀(1+g<sub>S</sub>)<sup>t</sup>/(1+r)<sup>t</sup>；</p>
+          <p class="ans-detail">②第 n 年末的终值：<b>P<sub>n</sub> = D<sub>n+1</sub>/(r − g<sub>L</sub>) = D₀(1+g<sub>S</sub>)<sup>n</sup>(1+g<sub>L</sub>)/(r − g<sub>L</sub>)</b>；</p>
+          <p class="ans-detail">③将 P<sub>n</sub> 折回 0 时点：P<sub>n</sub>/(1+r)<sup>n</sup>；V₀ = ①+③。</p>
+          <div class="warn"><b>最高频错法：</b>把 P<sub>n</sub> 当成 V₀，忘记折现 n 期。<b>记法：终值在第 n 年末，必须再贴现 n 期。</b>另外注意 D<sub>n+1</sub> 用的是<b>稳定期增长率</b> g<sub>L</sub>，而不是 g<sub>S</sub>。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>三、FCFE / FCFF 与剩余收益模型</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>FCFE（股权自由现金流）</b><br>
+        FCFE = 净利润 + 折旧摊销 − 资本支出 − 营运资本增加 + <b>净新增借款</b><br>
+        V₀ = Σ FCFE<sub>t</sub>/(1+r<sub>e</sub>)<sup>t</sup>　（r<sub>e</sub> 为股权成本 = CAPM）<br><br>
+        <b>FCFF（公司自由现金流）</b><br>
+        FCFF = EBIT×(1−T) + 折旧摊销 − 资本支出 − 营运资本增加<br>
+        V<sub>公司</sub> = Σ FCFF<sub>t</sub>/(1+WACC)<sup>t</sup>　→ 股权价值 = 公司价值 − 净债务<br><br>
+        <b>剩余收益模型（RI / EBO）</b><br>
+        RI<sub>t</sub> = E<sub>t</sub> − r<sub>e</sub> × B<sub>t−1</sub>　　（超额收益 = 净利 − 期初净资产 × 股权成本）<br>
+        V₀ = B₀ + Σ RI<sub>t</sub>/(1+r<sub>e</sub>)<sup>t</sup>
+      </div>
+      <p class="note"><b>剩余收益模型为什么重要：</b>它把公司价值拆成两块——<b>「今天的净资产 B₀」+「未来创造超额收益的现值」</b>。这解决了 DDM 的一个致命缺陷：<b>不分红的公司（如成长股、保险公司）无法用 DDM，但可以用 RI。</b>而且 RI 对终值假设的敏感性远低于 DDM，这是它被卖方广泛使用的原因。</p>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>模型</th><th>现金流</th><th>贴现率</th><th>适用公司</th><th>主要缺陷</th></tr></thead>
+        <tbody>
+          <tr><td><b>DDM</b></td><td>股利</td><td>r<sub>e</sub></td><td>分红稳定、成熟期公司（银行、公用事业）</td><td>不分红/分红政策不稳定者失效</td></tr>
+          <tr><td><b>FCFE</b></td><td>股权自由现金流</td><td>r<sub>e</sub></td><td>FCFE 为正且与盈利匹配的公司</td><td>FCFE 常为负（高成长、高资本开支）</td></tr>
+          <tr><td><b>FCFF</b></td><td>公司自由现金流</td><td>WACC</td><td>杠杆变动大、控制权交易（并购估值）</td><td>需算 WACC，对资本结构假设敏感</td></tr>
+          <tr class="note-td"><td><b>RI</b></td><td>超额收益</td><td>r<sub>e</sub></td><td><b>不分红公司、金融/保险公司</b></td><td>依赖会计数据（净资产、净利）的质量；会计政策变更会扭曲</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观 2、3</span>
+      <p>①自由现金流模型与剩余收益模型的比较；②剩余收益模型与内含价值模型的关系</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <h3>第 2 问：FCF 与 RI 的比较</h3>
+          <p class="ans-detail">四个维度作答即可拿满：<b>①现金流口径</b>（FCF 看实体现金流，RI 看会计超额收益）；<b>②数据来源</b>（FCF 需预测资本开支与营运资本，RI 依赖资产负债表与利润表）；<b>③对分红的依赖</b>（都不依赖，优于 DDM）；<b>④敏感性</b>（FCF 对终值假设极敏感，RI 因以 B₀ 打底而更稳健）。</p>
+
+          <h3>第 3 问：RI 与内含价值（EV）—— <span class="pos">这是本库与 F3 库的连接点</span></h3>
+          <p class="ans-detail"><b>内含价值的经典分解：</b></p>
+          <div class="formula"><div class="fx">
+            <b>EV = 调整后净资产（ANW） + 有效业务价值（VIF）</b><br>
+            VIF = 现有业务未来利润的现值（按风险贴现率）<br>
+            <b>新业务价值（NBV）= 当年新单未来利润的现值</b>
+          </div></div>
+          <p class="ans-detail"><b>与 RI 的对应关系：</b></p>
+          <table>
+            <thead><tr><th>RI 模型</th><th>内含价值体系</th><th>含义</th></tr></thead>
+            <tbody>
+              <tr><td>B₀（期初净资产）</td><td>调整后净资产 ANW</td><td>「今天已经有的家底」——两者都要求按市值/公允价值调整</td></tr>
+              <tr><td>Σ RI<sub>t</sub>/(1+r)<sup>t</sup></td><td>有效业务价值 VIF</td><td>「存量业务未来创造的超额收益」</td></tr>
+              <tr class="note-td"><td>若再加新业务</td><td>+ 新业务价值倍数 × NBV</td><td>「未来新单的价值」——RI 框架下相当于假设持续获得正 RI</td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>本质区别（答题金句）：</b></p>
+          <div class="tip">
+            ① <b>RI 是「会计视角」</b>，用通用会计准则的净资产与净利；<b>EV 是「精算视角」</b>，用偿付能力口径的认可资产与「最优估计 + 风险边际」的负债。<br>
+            ② <b>RI 假设资金成本 = 股权成本 r<sub>e</sub></b>；<b>EV 用风险贴现率（RDR）</b>，通常 10%–11%，内含了对负债不确定性的补偿。<br>
+            ③ RI 是<b>股东视角的剩余</b>，EV 是<b>保单视角的剩余</b>。二者在「存量业务的未来利润现值」这一层上是同构的——<b>EV 可以看作「RI 模型在保险业的一个行业特化版本」</b>。
+          </div>
+
+          <h3>第 4 问（2012 秋延续）：从投资学角度阐述一般公司与保险公司价值的区别</h3>
+          <p class="ans-detail"><b>三点核心差异：</b></p>
+          <p class="ans-detail"><b>① 现金流的方向与确定性反了。</b>一般公司先投入后收钱（资本开支在前、收入在后）；保险公司<b>先收钱后付款</b>（保费在前、赔付在后），因此现金流为负久期——这正是「负债久期长于资产久期」的根源，也使得保险公司的投资端成为价值创造的主战场。</p>
+          <p class="ans-detail"><b>② 负债的计量是核心。</b>一般公司的价值 ≈ 经营资产 − 带息负债，负债是「确定的名义金额」；保险公司的价值却取决于<b>准备金假设</b>（发生率、退保率、费用率、贴现率）。<b>贴现率变动 50BP，EV 可能变动 10% 以上</b>——这是保险股估值折价的根本原因。</p>
+          <p class="ans-practice"></p>
+          <p class="ans-detail"><b>③ 价值的时间结构不同。</b>一般公司的价值主要在「未来新增」，存量资产易被复制；保险公司的价值一大半在<b>存量有效业务（VIF）</b>，是已经锁定的、受利率影响但不受竞争影响的现金流。因此保险股分析必须「三分法」：<b>ANW（现在）+ VIF（过去卖的保单）+ NBV×倍数（未来能卖的保单）</b>。</p>
+          <div class="src-note">跨库延伸：EV、NBV、CSM 的完整口径见 F3 知识库（寿险精算评估实务）；本章只需掌握「RI ↔ VIF」的同构关系这条主线。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2017</span><span class="yr">大题 9</span>
+      <p>股利贴现模型（博迪原题第 18 章第 20 题）</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-detail">博迪第 18 章第 20 题的经典结构：给出「近期 ROE、留存比率、未来 ROE 变化、市场资本化率」，求<b>①当前股价 ②市盈率 ③PVGO（增长机会现值）</b>。</p>
+          <div class="formula"><div class="fx">
+            <b>PVGO 分解式</b>（这是本题的价值所在）：<br>
+            P₀ = E₁/r + <b>PVGO</b><br>
+            → 第一项是「不增长的价值」（把全部盈利分掉），第二项是「增长机会的现值」<br>
+            → <b>若 ROE &gt; r，PVGO &gt; 0，增长创造价值；若 ROE &lt; r，PVGO &lt; 0，增长毁灭价值</b>
+          </div></div>
+          <p class="ans-detail"><b>标准套路：</b>先算 b、g = ROE×b、D₁ = E₁(1−b)，再 V₀ = D₁/(r−g)；PVGO = V₀ − E₁/r。若后续 ROE 下降，则用两阶段模型。</p>
+          <div class="tip"><b>答题加分：</b>算出 PVGO 为负时，一定要解释「因为 ROE 低于资本成本，公司每留存一元只创造不到一元的价值，故应提高分红率」。这是从「会算」到「懂投资」的分界线。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">4.5</span>权益定价（二）：相对估值与适用范围</h2>
+    <p class="lead">绝对估值算「应该值多少」，相对估值算「比同类贵还是便宜」。<b>2012 秋第 38 题直接考「相对价值法的优缺点及适用范围」（5 分）</b>，2015、2023 年也各有一道 PE/PB 的选择题。</p>
+
+    <h3>一、五大倍数</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>倍数</th><th>公式</th><th>驱动因素</th><th>适用</th><th>不适用</th></tr></thead>
+        <tbody>
+          <tr><td><b>P/E</b><br>市盈率</td><td>P₀/E₁ = d/(r−g)</td><td>分红率、增长率、风险</td><td>盈利稳定、成熟行业（消费、公用事业）</td><td>亏损公司、周期股（E 剧烈波动）、高杠杆公司</td></tr>
+          <tr><td><b>P/B</b><br>市净率</td><td>P₀/B₀ = (ROE−g)/(r−g)</td><td>ROE、增长率、风险</td><td><b>金融、保险、银行</b>（资产即业务）</td><td>轻资产公司（净资产不反映价值，如互联网）</td></tr>
+          <tr><td><b>P/S</b><br>市销率</td><td>P₀/S₁</td><td>净利率、周转率、增长</td><td>尚未盈利但有收入的成长公司</td><td>低毛利、成本结构差异大的行业</td></tr>
+          <tr><td><b>PEG</b></td><td>(P/E) / g×100</td><td>—</td><td>高成长公司横向比较（PEG &lt; 1 视为便宜）</td><td>负增长、低增长公司（分母失真）</td></tr>
+          <tr class="note-td"><td><b>EV/EBITDA</b></td><td>(市值+净债务)/EBITDA</td><td>经营效率</td><td><b>资本结构差异大、跨国比较、并购</b></td><td>重资产折旧政策差异大的行业</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2012</span><span class="yr">大题 38（5 分）</span>
+      <p>相对价值法的优缺点及适用范围。</p>
+      <details class="answer"><summary>看标准答案</summary>
+        <div class="body">
+          <div class="ans-skel"><b>结构</b>：定义 1 句 + 优点 3 条 + 缺点 3 条 + 适用范围 2 条</div>
+          <p class="ans-detail"><b>定义：</b>相对价值法（市场法）是通过可比公司或可比交易的估值倍数，推算目标公司价值的方法，包括 P/E、P/B、P/S、EV/EBITDA 等。</p>
+          <p class="ans-detail"><b>优点：</b></p>
+          <p class="ans-detail">① <b>简单快速</b>——只需少数输入（价格与某一财务指标），不像 DCF 需长期预测；</p>
+          <p class="ans-detail">② <b>反映市场情绪与当下定价</b>——它是「市场愿意付多少」的直接读数，适合判断相对贵贱、寻找套利机会；</p>
+          <p class="ans-detail">③ <b>数据易得、可跨公司横向比较</b>——尤其适合并购定价、IPO 定价、行业排序。</p>
+          <p class="ans-detail"><b>缺点：</b></p>
+          <p class="ans-detail">① <b>「可比」很难成立</b>——业务结构、成长阶段、会计政策、资本结构不同，倍数不可比；</p>
+          <p class="ans-detail">② <b>系统性高估/低估无法识别</b>——若整个行业被高估，用行业平均倍数会「一错俱错」（<b>相对估值不能回答「整体贵不贵」</b>）；</p>
+          <p class="ans-detail">③ <b>会计口径敏感</b>——非经常性损益、折旧政策、并购商誉都会扭曲分母。</p>
+          <p class="ans-detail"><b>适用范围：</b>① 有<b>足够多</b>业务相近的可比公司、且市场定价相对有效的行业（成熟期行业、金融业）；② 用于<b>相对判断</b>（选股、择时、IPO 定价），而非绝对内在价值判断。<b>实务中通常与 DCF 交叉验证使用。</b></p>
+          <div class="src-note">评分：定义 1 分、优点 2 分、缺点 1 分、适用范围 1 分。答出「不能识别整体市场泡沫」这一点最加分。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">选择 22</span>
+      <p>关于市盈率模型、市净率模型的描述和适用情况</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>核心判断依据（一句话）：</b>看<b>分母的口径是否与「价值创造的核心」一致</b>。</p>
+          <p class="ans-detail">● <b>银行、保险</b>：价值创造来自「资产规模 × 利差/ROE」，资产即业务 → 用 <b>P/B</b>；且 P/B &gt; 1 意味着市场认可其 ROE &gt; r。</p>
+          <p class="ans-detail">● <b>消费品、制造业</b>：价值创造来自「销售的盈利能力」→ 用 <b>P/E</b>。</p>
+          <p class="ans-detail">● <b>互联网、轻资产</b>：净资产不反映真实价值（人力资本、网络效应）→ <b>P/B 失效</b>，应用 P/S 或 EV/EBITDA。</p>
+          <div class="warn"><b>常见错误选项：</b>「P/B 适用于所有行业，因为净资产最稳定」——错，轻资产行业净资产与价值几乎无关。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2023</span><span class="yr">选择</span>
+      <p>市盈率 PE</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">选择题常考「P/E 的倒数（盈利收益率 E/P）与债券收益率比较」：<b>E/P 本质上是股权投资的「当期账面回报率」，可与 10 年国债收益率做「股债性价比」比较。</b>当沪深 300 的 E/P 为 7%（即 P/E = 14）而 10 年国债为 2.5% 时，股权风险溢价（ERP）达 4.5%——这是险资判断「权益仓位该加还是该减」的一个参考锚。</p>
+          <div class="tip">另一个高频考点：<b>P/E 上升不等于贵。</b>若 r 下降或 g 上升，P/E 会自然抬升。判断「贵」必须看 <b>P/E 相对自身历史分位 + 相对 g</b>（即 PEG）。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">4.6</span>期权定价：二叉树与 Black-Scholes</h2>
+    <p class="lead">期权定价的全部思想，浓缩成一句话：<b>用标的资产与无风险资产，复制出期权的到期收益，那么期权今天的价格必须等于复制组合的成本——否则就有套利。</b></p>
+
+    <h3>一、单期二叉树：从「复制」出发</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>设定</b>：标的现价 S₀，上涨后 uS₀、下跌后 dS₀，无风险利率 r（单期）。<br><br>
+        <b>风险中性概率</b><br>
+        p = (1 + r − d) / (u − d)　　（连续复利时：p = (e<sup>rT</sup> − d)/(u − d)）<br><br>
+        <b>期权价格</b><br>
+        C₀ = [ p × C<sub>u</sub> + (1−p) × C<sub>d</sub> ] / (1 + r)<br><br>
+        <b>复制组合（对冲比率）</b><br>
+        Δ = (C<sub>u</sub> − C<sub>d</sub>) / (S<sub>u</sub> − S<sub>d</sub>)　　（买 Δ 份股票 + 借入 B）<br>
+        B = (C<sub>d</sub> − Δ·S<sub>d</sub>) / (1+r)　→ C₀ = Δ·S₀ − B
+      </div>
+      <p class="note"><b>两种算法必须都会：</b>「风险中性法」快、「复制法」能回答「对冲比率是多少」。<b>两者结果恒等，这就是「风险中性定价与无套利定价等价」的含义。</b>考试若问「需要买多少股股票对冲」，只能用复制法。</p>
+    </div>
+
+    <figure class="figure">
+      <img src="img/binomial.png" alt="两期二叉树示意图" loading="lazy">
+      <figcaption><b>图 4-3　两期二叉树（u=1.2、d=0.8、S₀=50）：</b>时间从左到右，上分支概率 p（朱砂）、下分支概率 1−p（青绿）。p 不是真实概率，而是「让标的按无风险利率增长」的<b>风险中性概率</b>。倒推定价：从右往左逐层贴现，每个节点 C = [p·C<sub>上</sub>+(1−p)·C<sub>下</sub>]/(1+r)；<b>美式期权在每个节点还要比较「立即行权 vs 继续」取大者</b>。</figcaption>
+    </figure>
+
+    <h3>二、两期二叉树</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>倒推法（backward induction）</b>：从到期日往前逐层贴现<br>
+        C<sub>u</sub> = [p·C<sub>uu</sub> + (1−p)·C<sub>ud</sub>]/(1+r)<br>
+        C<sub>d</sub> = [p·C<sub>ud</sub> + (1−p)·C<sub>dd</sub>]/(1+r)<br>
+        C₀ = [p·C<sub>u</sub> + (1−p)·C<sub>d</sub>]/(1+r)<br><br>
+        <b>美式期权</b>：在<b>每个节点</b>都要比较「继续持有价值」与「立即行权价值」，取<b>较大者</b>。<br>
+        <b>欧式期权</b>：只需在到期日取 max，中间节点不比较。<br><br>
+        <b>注意 u、d 与波动率的关系</b>：u = e<sup>σ√Δt</sup>，d = 1/u = e<sup>−σ√Δt</sup>
+      </div>
+      <p class="note"><b>2023 年考「美式期权的计算：两期，看涨」——</b>两期看涨的美式期权在<b>无股利</b>时不会提前行权，因此价格等于欧式；但若题目给了<b>股利</b>或<b>深度实值</b>，就需要在每个节点做比较。<b>答题时务必写出「比较」这一步，即使结论是不提前行权。</b></p>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">选择</span>
+      <p>美式期权的计算：两期，看涨。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>五步</b>：画树 → 算 p → 到期日收益 → 倒推一层（比较行权）→ 倒推至 0 时点（比较行权）</div>
+          <p class="ans-detail"><b>关键判断：</b>两期看涨期权是否提前行权？<b>无股利时：不提前行权</b>（提前行权相当于放弃时间价值，且要提前付出 K）。<b>有股利时：可能在除息前提前行权</b>（为了获得股利）。<b>看跌期权则可能提前行权</b>（为了提前拿到 K 去吃利息，尤其深度实值时）。</p>
+          <div class="formula"><div class="fx">
+            <b>记忆对：欧式看涨不提前、美式看跌会提前、有股利的看涨可能提前</b>
+          </div></div>
+          <p class="ans-detail"><b>另一个高频考点（2023 选择）：「虚值期权是否有时间价值和内在价值」</b></p>
+          <table>
+            <thead><tr><th>期权状态</th><th>内在价值</th><th>时间价值</th><th>总价值</th></tr></thead>
+            <tbody>
+              <tr><td>实值（in-the-money）</td><td class="pos">S−K &gt; 0</td><td class="pos">&gt; 0</td><td>S−K + TV</td></tr>
+              <tr><td>平值（at-the-money）</td><td>0</td><td class="pos">&gt; 0</td><td>TV</td></tr>
+              <tr class="note-td"><td><b>虚值（out-of-the-money）</b></td><td><b>0</b></td><td><b>&gt; 0（只要未到期）</b></td><td><b>TV &gt; 0</b></td></tr>
+              <tr><td>到期日的虚值</td><td>0</td><td><b>0</b></td><td><b>0</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>结论：</b>虚值期权<b>没有内在价值，但有时间价值</b>（因为到期前仍有转实的可能）。只有「到期日的虚值期权」价值为零。这是选择题的经典陷阱。</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>三、看涨看跌平价关系（Put-Call Parity）</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>欧式期权、无股利</b><br>
+        C + PV(K) = P + S₀　→　<b>C − P = S₀ − K·e<sup>−rT</sup></b><br><br>
+        <b>有股利（连续股息率 q）</b><br>
+        C − P = S₀·e<sup>−qT</sup> − K·e<sup>−rT</sup><br><br>
+        <b>离散股利</b>：用 S₀ − PV(D) 替代 S₀
+      </div>
+      <p class="note"><b>为什么必须成立：</b>组合 A（买看涨 + 存 PV(K) 现金）与组合 B（买看跌 + 买股票）在到期日<b>收益完全相同</b>（都等于 max(S<sub>T</sub>, K)）。既然未来一样，今天价格必须一样，否则套利。<b>这就是推导的全部，考试若要求「用 X₀、P₀、B₀、K 表示 C₀」，写出这条收益等同即可。</b></p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">大题 35（3 分）</span>
+      <p>市场上有 A（股票，价格过程 X）、B（欧式看涨，执行价 K）、C（欧式看跌，执行价 K）、D（T 年期零息无风险债，利率 r）。用 X₀、P₀、B₀、K 表示 C₀，写出推导过程。</p>
+      <details class="answer"><summary>看标准推导</summary>
+        <div class="body">
+          <p class="ans-detail"><b>推导（三步）：</b></p>
+          <p class="ans-detail"><b>第一步 · 构造两个组合</b><br>
+          组合 Ⅰ：买入 1 份看涨期权 C（价格 C₀）+ 买入 1 份零息债（价格 B₀，到期还 K）<br>
+          组合 Ⅱ：买入 1 份看跌期权 P（价格 P₀）+ 买入 1 份股票（价格 X₀）</p>
+          <p class="ans-detail"><b>第二步 · 比较 T 时刻的收益</b></p>
+          <table>
+            <thead><tr><th>情形</th><th>组合 Ⅰ 到期值</th><th>组合 Ⅱ 到期值</th></tr></thead>
+            <tbody>
+              <tr><td>X<sub>T</sub> ≥ K</td><td>max(X<sub>T</sub>−K,0) + K = <b>X<sub>T</sub></b></td><td>0 + X<sub>T</sub> = <b>X<sub>T</sub></b></td></tr>
+              <tr><td>X<sub>T</sub> &lt; K</td><td>0 + K = <b>K</b></td><td>(K−X<sub>T</sub>) + X<sub>T</sub> = <b>K</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail">两种情形下收益<b>完全相等</b>，均为 max(X<sub>T</sub>, K)。</p>
+          <p class="ans-detail"><b>第三步 · 无套利 → 今日价格相等</b><br>
+          C₀ + B₀ = P₀ + X₀</p>
+          <p class="ans-detail"><b>故：C₀ = P₀ + X₀ − B₀</b></p>
+          <p class="ans-detail">若 B₀ 定义为「到期偿还 1 元」的零息债价格，则 B₀ = e<sup>−rT</sup>，有 <b>C₀ = P₀ + X₀ − K·e<sup>−rT</sup></b>；若 B₀ 定义为「到期偿还 K 元」的债券价格，则 <b>C₀ = P₀ + X₀ − B₀</b>。</p>
+          <div class="src-note">评分：构造组合 1 分、收益比较表 1 分、无套利结论 1 分。答案要「先说构造、再说比较、最后说无套利」，顺序错会扣逻辑分。</div>
+          <div class="warn"><b>辨析：平价关系只对欧式期权成立。</b>美式期权因可提前行权，只能得到不等式：<b>S₀ − K ≤ C − P ≤ S₀ − K·e<sup>−rT</sup></b>。这是常见的选择题考点。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算 6</span>
+      <p>买入价格为 A 的欧式看涨期权，卖出价格为 B 的欧式看跌期权，期限相同，期权费差额为 0。①B &gt; A 和 B = A 时的交易策略分别是什么？原因？②有关交易头寸。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>本题考的是「期权费差额为 0」如何用平价关系反推 S₀ 与 PV(K) 的关系，再据此选策略。</b></div>
+          <p class="ans-detail"><b>核心：期权费差额为 0 即 C = P</b>，代入平价关系 C − P = S₀ − PV(K)：</p>
+          <div class="formula"><div class="fx">
+            <b>C = P　⟺　S₀ = PV(K) = K·e<sup>−rT</sup></b><br>
+            即：<b>当前股价恰好等于执行价的现值</b>（期权处于「远期平值」状态）
+          </div></div>
+          <p class="ans-detail"><b>（1）B &gt; A 时（看跌期权费更高）</b></p>
+          <p class="ans-detail">由 C − P = S₀ − PV(K) &lt; 0 → <b>S₀ &lt; PV(K)</b>，即股价低于执行价现值。<br>
+          此时买看涨、卖看跌：<b>合成一个远期多头</b>（到期收益 = S<sub>T</sub> − K）。由于 S₀ &lt; PV(K)，这个合成多头相当于<b>以低于现值的价格买入标的</b>，具有正的价值 → 应当执行「<b>买入看涨 + 卖出看跌</b>」的合成多头策略。</p>
+          <p class="ans-detail"><b>（2）B = A 时（期权费相等）</b></p>
+          <p class="ans-detail">由 C = P → <b>S₀ = PV(K)</b>。此时合成多头（S<sub>T</sub> − K）的现值为零，<b>不存在无风险套利机会</b>。<br>
+          策略：可做「<b>转换套利（conversion）</b>」或「<b>反向转换（reversal）</b>」的头寸组合，但两种方向都无套利收益，实际意义在于<b>做市商对冲敞口</b>：买 C + 卖 P + 卖空股票 + 买入 PV(K) 债券 = 零成本、零风险、零收益。</p>
+          <p class="ans-detail"><b>（2）交易头寸的完整表述（答题要写出四腿）</b></p>
+          <table>
+            <thead><tr><th>策略</th><th>看涨</th><th>看跌</th><th>标的</th><th>债券</th><th>合成效果</th></tr></thead>
+            <tbody>
+              <tr><td>合成远期多头</td><td class="pos">买 C</td><td class="neg">卖 P</td><td>—</td><td>—</td><td>到期得 S<sub>T</sub> − K</td></tr>
+              <tr><td>合成远期空头</td><td class="neg">卖 C</td><td class="pos">买 P</td><td>—</td><td>—</td><td>到期得 K − S<sub>T</sub></td></tr>
+              <tr class="note-td"><td><b>转换套利</b></td><td class="pos">买 C</td><td class="neg">卖 P</td><td class="neg">卖空 S</td><td class="pos">买 PV(K) 债</td><td>锁定无风险收益（若 C 便宜时为正）</td></tr>
+              <tr><td><b>反向转换</b></td><td class="neg">卖 C</td><td class="pos">买 P</td><td class="pos">买 S</td><td class="neg">借钱（卖债）</td><td>锁定无风险收益（若 C 贵时为正）</td></tr>
+            </tbody>
+          </table>
+          <div class="src-note">评分：识别 C=P 对应 S₀=PV(K) 2 分、两种情形的方向判断各 2 分、四腿头寸表述 3 分。能写出「合成远期」这个词最关键。</div>
+          <div class="tip"><b>实务延伸：</b>保险资金若要用期权做「保本 + 参与上涨」的结构（如变额年金、分红险的权益参与），本质上就是「买债券 + 买看涨」或「买股票 + 买看跌」——两者由平价关系等价。这解释了为什么保本产品的成本可以精确算出，也解释了 <a href="ch5.html">CPPI 策略</a>与「期权复制」的内在一致性。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 32</span>
+      <p>期货期权的二叉树：现价 50，两年期，无风险市场利率 6%，价格可能上涨或下降 20%。①构造一个期货欧式期权的二叉树模型；②执行价 60 时的欧式看涨期权价值；③执行价 60 时的欧式看跌期权价值，并证明欧式看跌-看涨期权满足的平价公式。</p>
+      <details class="answer"><summary>看完整解答</summary>
+        <div class="body">
+          <div class="ans-skel"><b>注意三点</b>：①「两年期」且每年涨跌 20% → 两期树；②期货期权的定价中，标的为<b>期货价格</b>，其风险中性漂移为 0（不是 r）；③看跌用平价关系验证，可省一半计算</div>
+
+          <h3>（1）构造二叉树</h3>
+          <p class="ans-detail">u = 1.2、d = 0.8（价格上/下 20%）。期货价格 F₀ = 50。</p>
+          <div class="formula"><div class="fx">
+            <b>期货期权的风险中性概率（关键区别）</b><br>
+            p = (1 − d)/(u − d) = (1 − 0.8)/(1.2 − 0.8) = 0.2/0.4 = <b>0.5</b><br>
+            <span style="font-size:13px">（因为期货价格的期望在风险中性测度下<b>不增长</b>，漂移为 0，故分子是 1 而不是 1+r）</span>
+          </div></div>
+          <p class="ans-detail"><b>期货价格树：</b></p>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>层</th><th>结点</th><th>期货价格 F</th></tr></thead>
+            <tbody>
+              <tr><td>t=0</td><td>F₀</td><td>50</td></tr>
+              <tr><td>t=1</td><td>F<sub>u</sub> / F<sub>d</sub></td><td>60 / 40</td></tr>
+              <tr class="note-td"><td>t=2</td><td>F<sub>uu</sub> / F<sub>ud</sub> / F<sub>dd</sub></td><td><b>72 / 48 / 32</b></td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>（2）欧式看涨期权（K = 60）</h3>
+          <p class="ans-detail"><b>到期收益：</b>C<sub>uu</sub> = max(72−60,0) = 12；C<sub>ud</sub> = max(48−60,0) = 0；C<sub>dd</sub> = max(32−60,0) = 0</p>
+          <p class="ans-detail"><b>倒推 t=1：</b><br>
+          C<sub>u</sub> = [0.5×12 + 0.5×0]/1.06 = 6/1.06 = <b>5.660</b><br>
+          C<sub>d</sub> = [0.5×0 + 0.5×0]/1.06 = <b>0</b></p>
+          <p class="ans-detail"><b>倒推 t=0：</b><br>
+          C₀ = [0.5×5.660 + 0.5×0]/1.06 = 2.830/1.06 = <b>2.670</b></p>
+          <p class="ans-detail"><b>验算（直接风险中性期望法）：</b>C₀ = [p²×12]/(1.06)² = 0.25×12/1.1236 = 3/1.1236 = <b>2.670</b> ✓</p>
+
+          <h3>（3）欧式看跌期权（K = 60）与平价验证</h3>
+          <p class="ans-detail"><b>到期收益：</b>P<sub>uu</sub> = 0；P<sub>ud</sub> = 60−48 = 12；P<sub>dd</sub> = 60−32 = 28</p>
+          <p class="ans-detail">P<sub>u</sub> = [0.5×0 + 0.5×12]/1.06 = 5.660；P<sub>d</sub> = [0.5×12 + 0.5×28]/1.06 = 20/1.06 = 18.868</p>
+          <p class="ans-detail">P₀ = [0.5×5.660 + 0.5×18.868]/1.06 = 12.264/1.06 = <b>11.570</b></p>
+          <p class="ans-detail"><b>平价关系验证（期货期权版）：</b></p>
+          <div class="formula"><div class="fx">
+            期货期权的平价关系：<b>C − P = (F₀ − K)/(1+r)<sup>T</sup></b><br><br>
+            左边：2.670 − 11.570 = <b>−8.900</b><br>
+            右边：(50 − 60)/(1.06)² = −10/1.1236 = <b>−8.900</b>　✓<br><br>
+            <span style="font-size:13px">（对比：现货期权的平价是 C − P = S₀ − K/(1+r)<sup>T</sup>，即 −10/1.1236 = 50 − 56.18 = −6.18。差别在于期货期权<b>不需要</b>为 S₀ 与 PV(K) 之间的关系额外付出成本。）</span>
+          </div></div>
+          <div class="warn"><b>本题最大陷阱：</b>把 p 算成 (1.06 − 0.8)/(1.2 − 0.8) = 0.65。<b>期货期权的风险中性概率分子是 1（不是 1+r），因为期货价格是无成本持有的、风险中性下期望不变。</b>这是「股票期权」与「期货期权」的唯一但致命的区别。</div>
+          <div class="src-note">评分：树正确 3 分、p 正确 1 分、看涨 2 分、看跌 2 分、平价验证 2 分（含正确写出期货版平价式）。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>四、Black-Scholes 模型</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>欧式看涨</b><br>
+        C₀ = S₀·N(d₁) − K·e<sup>−rT</sup>·N(d₂)<br><br>
+        <b>欧式看跌</b><br>
+        P₀ = K·e<sup>−rT</sup>·N(−d₂) − S₀·N(−d₁)<br><br>
+        <b>其中</b><br>
+        d₁ = [ln(S₀/K) + (r + σ²/2)·T] / (σ√T)<br>
+        d₂ = d₁ − σ√T<br><br>
+        <b>N(·)</b> 为标准正态分布累积函数；<b>N(d₂)</b> 经济含义 = 期权到期时处于实值的风险中性概率
+      </div>
+      <p class="note"><b>五个输入、一个输出：</b>S₀（现价）、K（执行价）、T（期限）、r（无风险利率）、σ（波动率）。<b>只有 σ 不可直接观测</b>——这就是「隐含波动率」存在的原因，也是期权交易本质上是「交易波动率」的原因。</p>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>输入变量上升</th><th>看涨期权价格</th><th>看跌期权价格</th><th>直觉</th></tr></thead>
+        <tbody>
+          <tr><td>S₀（股价）↑</td><td class="pos">↑</td><td class="neg">↓</td><td>涨了，看涨更值钱</td></tr>
+          <tr><td>K（执行价）↑</td><td class="neg">↓</td><td class="pos">↑</td><td>买贵了，看涨更不值钱</td></tr>
+          <tr><td>T（期限）↑</td><td class="pos">↑</td><td class="pos">↑</td><td>时间越长，转实的机会越大（无股利时）</td></tr>
+          <tr><td>r（利率）↑</td><td class="pos">↑</td><td class="neg">↓</td><td>K 的现值变小 → 看涨受益；提前拿 K 的机会成本变大 → 看跌受损</td></tr>
+          <tr class="note-td"><td><b>σ（波动率）↑</b></td><td class="pos"><b>↑</b></td><td class="pos"><b>↑</b></td><td><b>唯一同时推高看涨与看跌的因素</b>——因为期权收益是「单边不对称」的，波动越大越有利</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观 4、5</span>
+      <p>①美式看跌期权 ②B-S 模型与看涨-看跌平价关系</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>（1）美式看跌期权的核心特点</b></p>
+          <p class="ans-detail">① <b>可能提前行权</b>：深度实值时，提前行权可立即拿到 K 并按市场利率再投资，若这部分利息超过「等待的时间价值」，就应行权。</p>
+          <p class="ans-detail">② <b>美式看跌 ≥ 欧式看跌</b>，且<b>美式看跌 ≥ K − S₀</b>（内在价值下界更紧，因可立即行权）。</p>
+          <p class="ans-detail">③ <b>提前行权的边界</b>：当 S₀ 足够低（深度实值）、r 足够高、T 足够长时，提前行权最优。<b>无股利的美式看涨则永不提前行权</b>——这是最经典的对称考点。</p>
+          <p class="ans-detail"><b>（2）B-S 与平价关系的关系</b></p>
+          <p class="ans-detail">B-S 模型给出 C₀ 后，可直接用平价关系求 P₀ = C₀ − S₀ + K·e<sup>−rT</sup>，<b>无需再算一遍 N(−d₁)、N(−d₂)</b>。<br>
+          <b>验证：</b>把 C₀ = S₀N(d₁) − Ke<sup>−rT</sup>N(d₂) 代入上式，得<br>
+          P₀ = S₀N(d₁) − Ke<sup>−rT</sup>N(d₂) − S₀ + Ke<sup>−rT</sup> = Ke<sup>−rT</sup>[1−N(d₂)] − S₀[1−N(d₁)] = <b>Ke<sup>−rT</sup>N(−d₂) − S₀N(−d₁)</b> ✓<br>
+          这正是看跌期权的 B-S 公式。<b>所以「看跌公式」不是独立推导出来的，而是平价关系的推论。</b></p>
+          <div class="tip"><b>答题技巧：</b>题目问「B-S 模型与平价关系」时，最好的答案是<b>先用 B-S 算 C₀，再用平价关系求 P₀</b>，然后<b>反过来用代数验证</b>两个公式一致。这样同时展示了「会用」与「懂证明」。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">大题 36（3 分）</span>
+      <p>变额年金保险产品，最低累积保证。保险金 = max{保证给付 G，子账户市值}。保费全部投资于风险资产，价值服从几何布朗运动（μ, σ），期限 T，连续无风险利率 r。①写出变额年金价格满足的等式；②保险公司为对冲波动风险持有的风险资产权重。</p>
+      <details class="answer"><summary>看答题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>本质：变额年金的最低保证 = 一个欧式看跌期权（对投保人而言），对保险公司是负债中的嵌入式期权。</b></div>
+          <p class="ans-detail"><b>（1）价格等式</b></p>
+          <p class="ans-detail">投保人在 T 时刻获得 max(G, S<sub>T</sub>) = S<sub>T</sub> + max(G − S<sub>T</sub>, 0) = <b>S<sub>T</sub> + 看跌期权收益</b></p>
+          <div class="formula"><div class="fx">
+            <b>V₀ = S₀ + P₀（欧式看跌，执行价 G，期限 T）</b><br>
+            即：变额年金价值 = 账户价值 + 最低保证的价值<br><br>
+            用 B-S 展开：<br>
+            <b>V₀ = S₀ + G·e<sup>−rT</sup>·N(−d₂) − S₀·N(−d₁)</b><br>
+            其中 d₁ = [ln(S₀/G) + (r + σ²/2)T]/(σ√T)，d₂ = d₁ − σ√T
+          </div></div>
+          <p class="ans-detail">等价写法（用看涨）：V₀ = G·e<sup>−rT</sup> + C₀（看涨，执行价 G）——由平价关系可知两式相等。<b>实务中保险公司常用「债券 + 看涨」的视角来理解：先锁定 G 的现值，再用剩余的钱买上涨期权。</b></p>
+          <p class="ans-detail"><b>（2）对冲权重</b></p>
+          <p class="ans-detail">对 S₀ 求偏导（即 delta）：∂V₀/∂S₀ = 1 + ∂P₀/∂S₀ = 1 + [N(d₁) − 1] = <b>N(d₁)</b></p>
+          <div class="formula"><div class="fx">
+            <b>持有的风险资产权重 w = N(d₁)</b>　（0 ≤ w ≤ 1）<br><br>
+            <span style="font-size:13px">经济含义：当账户市值远高于保证（深度实值，d₁ 很大）时，N(d₁) → 1，几乎全部投风险资产；当账户市值远低于保证（深度虚值）时，N(d₁) → 0，几乎全部投债券以锁定 G。<b>这就是「动态保本」的内在机制。</b></span>
+          </div></div>
+          <div class="tip"><b>这道题是整个 CH.05「CPPI 保本策略」的数学源头。</b>CPPI 用的是「乘数 × 缓冲」的启发式规则，而期权复制法给出的是精确的、随市场状态连续调整的最优权重。两者目标相同、实现路径不同：<b>CPPI 简单但非最优，期权复制最优但需连续交易与波动率假设。</b>详见 <a href="ch5.html">CH.05 §保本策略</a>。</div>
+          <div class="warn"><b>注意题目中的「死亡力 μ」：</b>这是变额年金（含身故给付）的精算设定。当题目给出死亡力时，需要把「生存概率」引入期望——通常化为「死亡给付 = 账户价值 × 死亡概率」的附加项，或用 <b>脱退率调整后的有效期限 T'</b> 近似。<b>答题时点出「死亡力影响的是期望的测度，即用生存概率加权」即可，不必强行积出解析式。</b></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="sn">4.7</span>希腊字母与期权风险分解</h2>
+    <p class="lead">如果 S₀、σ、T、r 都在变，期权价格的变化就是一个多元函数的全微分。<b>每个希腊字母，就是这个全微分中的一项。</b>2015 年单选第 23 题直接考五个希腊字母的定义，2014 年主观第 6 题考 delta。</p>
+
+    <div class="formula">
+      <div class="fx">
+        <b>期权价格的全微分（理解希腊字母的唯一正确方式）</b><br>
+        dC = <b>Δ</b>·dS + <b>½Γ</b>·(dS)² + <b>V</b>·dσ + <b>Θ</b>·dt + <b>ρ</b>·dr<br><br>
+        <span style="font-size:13px">每项就是你暴露的「一种风险」；每项前的系数，就是你对那种风险的「敞口大小」。</span>
+      </div>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>希腊字母</th><th>定义</th><th>看涨期权</th><th>看跌期权</th><th>含义与对冲</th></tr></thead>
+        <tbody>
+          <tr><td><b>Delta（Δ）</b></td><td>∂C/∂S</td><td class="pos">0 ~ 1（实值趋 1）</td><td class="neg">−1 ~ 0</td><td>标的涨 1 元，期权涨 Δ 元。<b>Δ 中性 = 用 Δ 份标的对冲</b>（动态对冲的基础）</td></tr>
+          <tr><td><b>Gamma（Γ）</b></td><td>∂²C/∂S² = ∂Δ/∂S</td><td class="pos">&gt; 0（平值最大）</td><td class="pos">&gt; 0</td><td>Δ 的变化速度。<b>Γ 大 = 需频繁调仓</b>；多头期权 = 正 Γ，空头 = 负 Γ</td></tr>
+          <tr><td><b>Vega（V）</b></td><td>∂C/∂σ</td><td class="pos">&gt; 0（平值最大）</td><td class="pos">&gt; 0</td><td>波动率升 1%，期权涨多少。<b>期权多头 = 做多波动率</b></td></tr>
+          <tr><td><b>Theta（Θ）</b></td><td>∂C/∂t（时间流逝）</td><td class="neg">通常 &lt; 0</td><td class="neg">通常 &lt; 0</td><td>时间价值每天衰减的量。<b>期权多头 = 付 Θ、收 Γ/Vega；期权空头 = 收 Θ、付 Γ/Vega</b></td></tr>
+          <tr class="note-td"><td><b>Rho（ρ）</b></td><td>∂C/∂r</td><td class="pos">&gt; 0</td><td class="neg">&lt; 0</td><td>利率敏感度。<b>短期期权几乎不重要（ρ 最小）</b>，长期期权才需关注</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">Delta 管方向、Gamma 管转弯、Vega 管恐慌、Theta 管时光、Rho 管利息</span>」<br>
+      <b>符号记忆三句：</b>①看涨 Δ 正看跌 Δ 负；②<b>长期权（多头）Γ 正、Vega 正、Θ 负</b>；③<b>Rho：看涨正、看跌负</b>（能记住第②句，大半选择题就能秒杀）。
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观 6</span>
+      <p>欧式看涨看跌期权的 delta</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <div class="formula"><div class="fx">
+            <b>B-S 下的 Delta</b><br>
+            看涨：Δ<sub>C</sub> = N(d₁)　（0 ~ 1，恒为正）<br>
+            看跌：Δ<sub>P</sub> = N(d₁) − 1 = <b>−N(−d₁)</b>　（−1 ~ 0，恒为负）<br><br>
+            <b>关键恒等式</b>：<b>Δ<sub>C</sub> − Δ<sub>P</sub> = 1</b><br>
+            （由平价关系 C − P = S₀ − Ke<sup>−rT</sup> 两边对 S 求导即得，因为后两项与 S 无关）
+          </div></div>
+          <p class="ans-detail"><b>这个恒等式的三层含义（答题加分点）：</b></p>
+          <p class="ans-detail">① <b>「买看涨 + 卖看跌」= 买 1 份股票</b>——这就是上一节 2023 年第 6 题的「合成远期多头」，delta 恰好为 1。</p>
+          <p class="ans-detail">② <b>对冲一份看涨空头，需买 N(d₁) 份股票</b>；而<b>对冲一份看跌空头，需卖空 N(−d₁) 份股票</b>（即 Δ<sub>P</sub> 为负，空头的 Δ 为正）。</p>
+          <p class="ans-detail">③ <b>动态对冲（delta hedging）的逻辑</b>：Δ 随 S 变化 → 必须不断调仓 → 调仓成本与 Γ 成正比。<b>Black-Scholes 的核心洞察是：若可以连续无成本调仓，则期权可被完全复制，故其收益必须等于无风险利率。</b></p>
+          <div class="warn"><b>易错：</b>把看跌的 delta 写成 1 − N(d₁)（正数）——错，<b>看跌 delta 必为负</b>。因为股价涨，看跌期权价格跌。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">选择 23</span>
+      <p>关于 Delta、Theta、Gamma、Vega、Rho 的定义的描述，哪些不正确</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>五个典型错误描述（都是真题爱考的陷阱）：</b></p>
+          <div class="warn">
+          ① 「Gamma 是期权价格对标的价格的一阶导数」——错，<b>二阶</b>；<br>
+          ② 「Theta 表示期权价值对波动率的敏感度」——错，那是 <b>Vega</b>；Theta 是<b>时间</b>；<br>
+          ③ 「到期日临近时 Vega 增大」——错，<b>Vega 减小</b>（时间越少，波动率的影响越小）；<br>
+          ④ 「平值期权的 Gamma 最小」——错，<b>最大</b>；<br>
+          ⑤ 「看跌期权的 Delta 为正」——错，<b>为负</b>。
+          </div>
+          <div class="tip"><b>救命四句：</b>平值期权的 <b>Gamma、Vega、Theta</b> 绝对值都最大；临近到期时 <b>Gamma 最大、Vega 最小</b>；期权多头 <b>Θ 为负</b>；<b>Δ<sub>C</sub> − Δ<sub>P</sub> = 1</b>。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 为什么保险公司卖保本产品的本质是「卖期权」：</b>分红险、万能险的保证利率，等于公司向客户<b>卖出了一个看跌期权</b>（保证下限）。收的保费中，一部分是「期权费」。若公司不做动态对冲（不买债、不调仓），那么在市场下跌时，<b>这个期权会被行权，公司自己承担损失</b>——这就是「利差损」在期权语言下的表述。<b>所以真正的风险管理不是「猜对市场」，而是「算清自己卖了多少期权、有没有对冲工具」。</b>
+    </div>
+  </section>
+
+  <section id="s8">
+    <h2><span class="sn">4.8</span>国债期货、CTD 与利率衍生品</h2>
+    <p class="lead">这是本章<b>最「实务」也最容易失分</b>的部分：公式不难，但概念多、细节多。<b>2023 年计算题第 5 题完整考了转换因子与最便宜可交割券（CTD）</b>，2012 秋第 37 题考了 Hull-White 二叉树构造。</p>
+
+    <h3>一、国债期货的三个核心概念</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 转换因子（Conversion Factor, CF）</b><br>
+        CF = 把可交割券的现金流，按<b>标准券票面利率 3%</b>（中国 10 年期国债期货合约规定）折现到交割月的价值 ÷ 面值 100<br><br>
+        <b>② 发票价格（Invoice Price）</b><br>
+        发票价格 = 期货结算价 × CF + 应计利息<br><br>
+        <b>③ 基差与最便宜可交割券（CTD）</b><br>
+        基差 = 现券净价 − 期货价格 × CF<br>
+        <b>CTD = 基差最小的券</b>（等价于「买入现券 + 交割」的成本最低）
+      </div>
+      <p class="note"><b>为什么会有 CTD：</b>国债期货合约允许用一篮子债券交割，但每只券的票面利率、期限不同，必须用 CF 折算成「等效于标准券」的数量。<b>空头方有权选择用哪只券交割，必然选对自己最有利（成本最低）的那只——这就是 CTD。</b>期货价格本质上跟随 CTD 的价格。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算 5</span>
+      <p>今天为 2023 年 6 月 25 日，长期国债期货合约价格 118.72，标的的面值为 100。①债券 A 面值 100，票面利率 10%，交割月份第一天起 15 年 7 个月到期，利率 6%，半年复利一次，求转换因子；②债券 B 面值 100，票面利率 7%，21 年 4 个月到期，同样条件求转换因子；③债券报价分别为 169、136，问哪个更便宜交割？6 月 25 日交割，应计利息 4.83，则卖出债券现价是多少？</p>
+      <details class="answer"><summary>看完整解答</summary>
+        <div class="body">
+          <div class="ans-skel"><b>CF 的计算口诀：</b>「①先算整年数 n 与零头月数；②按 3% 半年复利折现；③零头月数要「往前折」；④减去应计利息」</div>
+
+          <h3>（1）债券 A 的转换因子</h3>
+          <p class="ans-detail"><b>已知：</b>票面 10%、半年付息（每期 5 元）、剩余期限 15 年 7 个月、折现率 6%（年，半年 3%）。</p>
+          <p class="ans-detail"><b>折算期数：</b>15 年 7 个月 = 15.583 年 ≈ 31.17 个半年期。<br>
+          标准处理：<b>整半年期数 = 31 期</b>（15 年 6 个月），<b>零头 1 个月</b>。</p>
+          <p class="ans-detail"><b>按标准做法（先算到第一个付息日的价值，再往前折 1 个月）：</b></p>
+          <p class="ans-detail">① 从第一个付息日（1 个月后）起，剩余 31 期付息（含最后一次本金）：<br>
+          PV<sub>1</sub> = 5 × [1 − 1.03<sup>−31</sup>]/0.03 + 100 × 1.03<sup>−31</sup><br>
+          1.03<sup>31</sup> = 2.5001 → 1.03<sup>−31</sup> = 0.4000<br>
+          PV<sub>1</sub> = 5 × (1 − 0.4000)/0.03 + 100 × 0.4000 = 5 × 20.000 + 40.00 = <b>140.00</b></p>
+          <p class="ans-detail">② 往前折 1 个月（半年期折现率 3%，1 个月 = 1/6 个半年期）：<br>
+          PV<sub>0</sub> = 140.00 × 1.03<sup>−1/6</sup> = 140.00 × 0.99509 = <b>139.31</b></p>
+          <p class="ans-detail">③ 减去应计利息（1 个月的应计利息 = 5 × 1/6 = 0.833）：<br>
+          净价 = 139.31 − 0.833 = <b>138.48</b></p>
+          <p class="ans-detail">④ <b>CF<sub>A</sub> = 138.48 / 100 = 1.3848</b></p>
+
+          <h3>（2）债券 B 的转换因子</h3>
+          <p class="ans-detail"><b>已知：</b>票面 7%（每期 3.5 元）、剩余 21 年 4 个月、折现 3%（半年）。</p>
+          <p class="ans-detail">整半年期数 = 42 期（21 年），零头 4 个月。</p>
+          <p class="ans-detail">1.03<sup>42</sup> = 3.4241 → 1.03<sup>−42</sup> = 0.2920</p>
+          <p class="ans-detail">① PV<sub>1</sub> = 3.5 × (1 − 0.2920)/0.03 + 100 × 0.2920 = 3.5 × 23.600 + 29.20 = 82.60 + 29.20 = <b>111.80</b></p>
+          <p class="ans-detail">② 往前折 4 个月 = 4/6 个半年期：<br>
+          PV₀ = 111.80 × 1.03<sup>−4/6</sup> = 111.80 × 0.98048 = <b>109.62</b></p>
+          <p class="ans-detail">③ 应计利息 = 3.5 × 4/6 = 2.333；净价 = 109.62 − 2.333 = <b>107.29</b></p>
+          <p class="ans-detail">④ <b>CF<sub>B</sub> = 107.29 / 100 = 1.0729</b></p>
+
+          <h3>（3）哪个更便宜交割？卖出债券现价是多少？</h3>
+          <p class="ans-detail"><b>判据：比较「买入现券成本 − 交割收入」，即基差，最小者为 CTD。</b></p>
+          <p class="ans-detail">期货价 118.72；应计利息 4.83。</p>
+          <table>
+            <thead><tr><th>券</th><th>报价（净价）</th><th>CF</th><th>期货 × CF</th><th>基差 = 净价 − 期货×CF</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>169</td><td>1.3848</td><td>164.40</td><td class="pos">169 − 164.40 = <b>+4.60</b></td></tr>
+              <tr class="note-td"><td>B</td><td>136</td><td>1.0729</td><td>127.38</td><td class="neg">136 − 127.38 = <b>+8.62</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>基差最小者为债券 A → A 是 CTD，更便宜交割。</b></p>
+          <p class="ans-detail"><b>卖出债券的现价（全价）：</b><br>
+          现价 = 净价 + 应计利息 = 169 + 4.83 = <b>173.83</b><br>
+          （若问「交割时收到的发票金额」= 118.72 × 1.3848 + 4.83 = 164.40 + 4.83 = <b>169.23</b>）</p>
+          <div class="src-note">评分：CF<sub>A</sub> 2 分、CF<sub>B</sub> 2 分、CTD 判断 2 分、现价 1 分。数值若因月份折算方式略有差异（如用 31.17 期直接折现）在 1% 以内可给分。</div>
+          <div class="warn"><b>三个易错：</b>①忘了减应计利息（CF 用的是「净价」——严格说 CF 定义中减去的是<b>交割月首日的应计利息</b>）；②零头月份折现方向反了（应往前折，即乘以小于 1 的因子）；③把「报价」当成全价（<b>中国银行间市场的报价惯例是净价</b>，全价 = 净价 + 应计）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2017</span><span class="yr">大题 10</span>
+      <p>估值期货内在价值，套利组合，什么时候不存在套利边际。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <div class="formula"><div class="fx">
+            <b>期货理论价格（持有成本模型）</b><br>
+            F₀ = S₀ × (1 + r − q)<sup>T</sup>　或连续复利：F₀ = S₀·e<sup>(r−q)T</sup><br>
+            （r 为融资成本，q 为持有收益 / 股息率 / 便利收益）<br><br>
+            <b>基差</b> = S₀ − F₀；<b>期货内在价值</b> = F<sub>实际</sub> − F<sub>理论</sub>（>0 为高估）
+          </div></div>
+          <p class="ans-detail"><b>（1）套利组合</b></p>
+          <table>
+            <thead><tr><th>情形</th><th>判断</th><th>套利操作（现金-持有套利）</th><th>到期收益</th></tr></thead>
+            <tbody>
+              <tr><td>F<sub>实际</sub> &gt; F<sub>理论</sub></td><td>期货高估</td><td><b>借钱买入现券 + 卖出期货</b>（cash-and-carry）</td><td class="pos">F<sub>实际</sub> − F<sub>理论</sub> &gt; 0</td></tr>
+              <tr class="note-td"><td>F<sub>实际</sub> &lt; F<sub>理论</sub></td><td>期货低估</td><td><b>卖空现券 + 投资无风险 + 买入期货</b>（reverse cash-and-carry）</td><td class="pos">F<sub>理论</sub> − F<sub>实际</sub> &gt; 0</td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>（2）什么时候不存在套利边际（无套利区间）</b></p>
+          <p class="ans-detail">实务中存在三类摩擦，使 F 可以在一个<b>区间</b>内偏离理论值而不触发套利：</p>
+          <p class="ans-detail">① <b>交易成本</b>（手续费、买卖价差）；<br>
+          ② <b>卖空限制</b>（无法卖空或成本极高——我国融券成本高，故反向套利几乎不可行）；<br>
+          ③ <b>融资约束与保证金</b>（借款利率 &gt; 贷款利率，形成不对称区间）；<br>
+          ④ <b>交割选择权</b>（国债期货的 CTD 选择权、品质期权、时间期权）。</p>
+          <div class="formula"><div class="fx">
+            <b>无套利区间</b>：S₀(1 + r<sub>借</sub> − q)<sup>T</sup> − TC &lt; F₀ &lt; S₀(1 + r<sub>贷</sub> − q)<sup>T</sup> + TC
+          </div></div>
+          <div class="tip"><b>答题加分：</b>指出「<b>理论价格不是一条线，而是一个区间</b>；区间宽度由摩擦成本决定」——这一句直接把这题从「背公式」抬到「懂市场」。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>二、利率衍生品：上限、下限与 Hull-White 二叉树</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>利率上限（Cap）</b>= 一系列欧式<b>利率看涨期权</b>（Caplet）的组合<br>
+        每个 Caplet 的收益 = max(L·(r<sub>t</sub> − R<sub>K</sub>)·Δt, 0)　（L 为名义本金，R<sub>K</sub> 为上限利率）<br><br>
+        <b>利率下限（Floor）</b>= 一系列<b>利率看跌期权</b>（Floorlet）<br>
+        收益 = max(L·(R<sub>K</sub> − r<sub>t</sub>)·Δt, 0)<br><br>
+        <b>互换期权（Swaption）</b>：进入利率互换的权利<br>
+        <b>平价关系</b>：Cap − Floor = Swap（利率上限 − 利率下限 = 利率互换）
+      </div>
+      <p class="note"><b>为什么保险资金关心利率下限：</b>若公司持有<b>浮动利率资产</b>（如浮息债、利率互换收取浮动端），利率下行会直接减少收入。<b>买入利率下限（Floor）= 为浮动收益买一个最低保障</b>——这在结构上与变额年金的「最低累积保证」完全同构。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">大题 37（10 分）</span>
+      <p>已知短期利率服从单因素 Hull-White 模型：dr = θ(t)dt − αr dt + σdZ，α = 0.1、σ = 0.02，Δt = 1 年，Δr = 0.04。1/2/3 年期即期利率 R(1) = 9%、R(2) = 10%、R(3) = 11%。树中结点 (i, j) 表示 r<sub>i,j</sub> = r₀ + jΔr。①构造二叉树；②计算执行利率 10%、数量 10 万元、每年支付一次的 2 年期利率下限在 0 时刻的价值。</p>
+      <details class="answer"><summary>看解题框架与关键思路</summary>
+        <div class="body">
+          <div class="ans-skel"><b>核心思想：无套利 —— 构造的树必须能重现市场给出的即期利率曲线。</b>这是 Hull-White 与「一般二叉树」的根本区别。</div>
+          <p class="ans-detail"><b>（1）构造二叉树（四大步）</b></p>
+          <p class="ans-detail"><b>第一步 · 定步长与风险中性概率</b><br>
+          对 dr = (θ(t) − αr)dt + σdZ，离散化后（Δt = 1）：<br>
+          利率上升概率 p、下降概率 1−p，利率变动幅度 ±Δr = ±0.04。<br>
+          由<b>匹配波动率</b>：σ√Δt = 0.02×1 = 0.02，而树中单期利率变动的标准差 = √[p(1−p)] × 2Δr。<br>
+          取 <b>p = 0.5</b> 时，√(0.25)×2×0.04 = 0.04 ≠ 0.02——因此题设给 Δr = 0.04 与 σ = 0.02，通常取 <b>p = 0.5、Δr = σ√Δt = 0.02</b>；<b>若题目明确 Δr = 0.04，则 p 需由 σ√Δt = 2Δr√[p(1−p)] 反解</b>，得 √[p(1−p)] = 0.02/0.08 = 0.25 → p(1−p) = 0.0625 → <b>p = 0.5</b>（唯一解）。<b>验证：两者一致，说明 Δr = 0.04 是「每期最大变动」，而上下两节点各跳 0.04。</b></p>
+          <p class="ans-detail"><b>第二步 · 用即期利率校准 r₀</b><br>
+          0 时刻的短期利率 r₀ 未知，需用「1 年期零息债价格 = 1/(1+R(1))」校准。<br>
+          1 年期零息债价格 = 1/1.09 = 0.9174，而树中该价格 = 1/(1+r₀) → <b>r₀ = 9%</b>。</p>
+          <p class="ans-detail"><b>第三步 · 校准漂移 θ(t)（Hull-White 的灵魂）</b><br>
+          若不做漂移调整，树只能重现已给定的 r₀；要重现 R(2)、R(3)，必须在每一列叠加时变漂移 a(t)。<br>
+          <b>方法（逐列校准）：</b>令 2 年期零息债价格 1/(1.10)² = 0.8264 等于树中的期望贴现<br>
+          E[1/((1+r₀)(1+r₁))] = 0.5×[1/(1.09)(1+r<sub>u</sub>)] + 0.5×[1/(1.09)(1+r<sub>d</sub>)]<br>
+          解得第一列节点利率 r<sub>u</sub>、r<sub>d</sub> 的<b>中心位置</b>（即该列的漂移 a(1)），使两节点 = a(1) ± 0.04。<br>
+          同理用 R(3) 校准第二列漂移 a(2)。<b>这一步的本质：让树「内生的零息债价格」等于「市场观测值」，从而保证无套利。</b></p>
+          <p class="ans-detail"><b>第四步 · 完整树形（校准后示意）</b><br>
+          校准后，各节点利率不再是 r₀ + jΔr 的简单对称（那只是 Ho-Lee 无均值回归的情形），而是<b>随期限逐渐抬升</b>（因为 R(1)&lt;R(2)&lt;R(3)，曲线向上，漂移为正）。</p>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>时刻</th><th>节点利率（示意，含漂移）</th><th>概率</th></tr></thead>
+            <tbody>
+              <tr><td>t=0</td><td>9%</td><td>—</td></tr>
+              <tr><td>t=1</td><td>13% / 5%</td><td>0.5 / 0.5</td></tr>
+              <tr class="note-td"><td>t=2</td><td><b>17% / 9% / 1%</b></td><td>0.25 / 0.5 / 0.25</td></tr>
+            </tbody>
+          </table></div>
+          <p class="ans-detail"><b>（2）2 年期利率下限的定价（执行利率 10%，名义本金 10 万元，每年付一次，按「期末支付、期初定息」惯例）</b></p>
+          <p class="ans-detail"><b>两个 Floorlet 分别定价：</b></p>
+          <p class="ans-detail"><b>Floorlet 1（t=1 支付，基于 r₀）</b><br>
+          收益 = max(10% − 9%, 0) × 10 万 = 0.01 × 100000 = <b>1000 元</b><br>
+          现值 = 1000 / 1.09 = <b>917.4 元</b></p>
+          <p class="ans-detail"><b>Floorlet 2（t=2 支付，基于 r₁）</b><br>
+          r₁ 上行 → 13%：收益 = max(10%−13%, 0) = 0<br>
+          r₁ 下行 → 5%：收益 = max(10%−5%, 0) × 10 万 = <b>5000 元</b><br>
+          期望收益 = 0.5×0 + 0.5×5000 = 2500 元<br>
+          现值 = 2500 / (1.10)² = 2500 / 1.21 = <b>2066.1 元</b></p>
+          <p class="ans-detail"><b>利率下限总价值 = 917.4 + 2066.1 = 2983.5 元 ≈ 0.298 万元</b></p>
+          <div class="formula"><div class="fx">
+            <b>统一表达式（倒推法）</b>：在树中自右向左，每个节点<br>
+            Floor<sub>node</sub> = max(R<sub>K</sub> − r<sub>node</sub>, 0)×L×Δt + [p·Floor<sub>u</sub> + (1−p)·Floor<sub>d</sub>]/(1+r<sub>node</sub>)
+          </div></div>
+          <div class="warn"><b>两个致命易错：</b>①<b>利率期权的「定息日」与「支付日」错位</b>——t 期支付的 Caplet/Floorlet 用的是 r<sub>t−1</sub>（期初利率），不是 r<sub>t</sub>；②<b>贴现用当期的即期利率路径</b>——每期的贴现率是「该节点所处的利率」，不是统一用 R(2)。</div>
+          <div class="src-note"><b>说明：</b>本题为回忆版，参数（Δr=0.04 与 σ=0.02）存在记忆偏差的可能。答题时<b>得分点在于「先校准 r₀ 与漂移 → 建树 → 倒推」的方法链</b>，而非某个具体数字。Hull-White 相对 Ho-Lee 多一个均值回归项 −αr，其作用是在远期会「往回拉」，避免利率发散。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">4.9</span>演算器</h2>
+
+    <div class="calc" id="calc-dur">
+      <h4>债券久期、凸度与价格变动估算</h4>
+      <div class="row"><label>面值 F</label><input class="calc-in" id="d_f" value="100" type="number"></div>
+      <div class="row"><label>票面利率 c（%）</label><input class="calc-in" id="d_c" value="6" type="number" step="0.1"></div>
+      <div class="row"><label>到期年限 T</label><input class="calc-in" id="d_t" value="3" type="number" step="0.5"></div>
+      <div class="row"><label>年付息次数 m</label><input class="calc-in" id="d_m" value="1" type="number" step="1"></div>
+      <div class="row"><label>到期收益率 y（%）</label><input class="calc-in" id="d_y" value="8" type="number" step="0.1"></div>
+      <div class="row"><label>利率变动 Δy（%，正=上行）</label><input class="calc-in" id="d_dy" value="0.2" type="number" step="0.05"></div>
+      <button class="calc-run">计算久期、凸度与价格变动</button>
+      <div class="verdict" id="d_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-dur');
+        box.__run=function(){
+          var F=+document.getElementById('d_f').value;
+          var c=+document.getElementById('d_c').value/100;
+          var T=+document.getElementById('d_t').value;
+          var m=+document.getElementById('d_m').value;
+          var y=+document.getElementById('d_y').value/100;
+          var dy=+document.getElementById('d_dy').value/100;
+          if(m<=0||T<=0){document.getElementById('d_out').innerHTML='<span class="calc-hint">m 与 T 需大于 0。</span>';return}
+          var n=Math.round(T*m), cp=F*c/m, yp=y/m;
+          var pv=0, num=0, con=0;
+          for(var i=1;i<=n;i++){
+            var cf=(i===n)?cp+F:cp;
+            var d=Math.pow(1+yp,i);
+            var pvi=cf/d;
+            pv+=pvi; num+=i*pvi; con+=i*(i+1)*pvi;
+          }
+          var Dmac=(num/pv)/m;            // 年化麦考利久期
+          var Dmod=Dmac/(1+yp);           // 修正久期（按半年付息）
+          var C=con/(Math.pow(1+yp,2)*pv)/Math.pow(m,2); // 年化凸度
+          var dP1=-Dmod*dy*100;
+          var dP2=(-Dmod*dy+0.5*C*dy*dy)*100;
+          var rows='';
+          for(var i=1;i<=n;i++){
+            var cf=(i===n)?cp+F:cp, d=Math.pow(1+yp,i), pvi=cf/d, w=pvi/pv;
+            rows+='<tr><td>'+i+'</td><td>'+(i===n?(cp+F).toFixed(2)+'（含本金）':cp.toFixed(2))+'</td><td>'+pvi.toFixed(2)+'</td><td>'+w.toFixed(4)+'</td></tr>';
+          }
+          document.getElementById('d_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>每期票息 = F×c/m = '+(cp).toFixed(2)+'，共 '+n+' 期，期末还本 '+F.toFixed(2)+'</li>'
+            +'<li>债券价格 P₀ = Σ CF/(1+y/m)<sup>i</sup> = <span class="fin">'+pv.toFixed(2)+'</span></li>'
+            +'<li>麦考利久期 D = Σ i·PVᵢ/P₀ ÷ m = <span class="fin">'+Dmac.toFixed(3)+'</span> 年</li>'
+            +'<li>修正久期 D* = D/(1+y/m) = <span class="fin">'+Dmod.toFixed(3)+'</span></li>'
+            +'<li>凸度 C = Σ i(i+1)PVᵢ/[(1+y/m)²P₀]/m² = <span class="fin">'+C.toFixed(1)+'</span></li>'
+            +'</ol>'
+            +'<table><tr><th>期数</th><th>现金流</th><th>现值</th><th>权重</th></tr>'+rows+'</table></div>'
+            +'<b>结论：</b>利率变动 '+ (dy*100).toFixed(2) +'% 时——<br>'
+            +'仅用久期：ΔP/P ≈ <span class="fin">'+dP1.toFixed(3)+'%</span>；<br>'
+            +'加凸度修正：ΔP/P ≈ <span class="fin">'+dP2.toFixed(3)+'%</span>。<br>'
+            +'<b>凸度使价格在「上涨时多涨、下跌时少跌」——两次估算的差 '+(dP2-dP1).toFixed(3)+'% 就是凸度的贡献。</b>';
+        };
+      })();
+    </script>
+
+    <div class="calc" id="calc-bt" style="margin-top:20px">
+      <h4>两期二叉树期权定价（含美式比较）</h4>
+      <div class="row"><label>标的现价 S₀</label><input class="calc-in" id="t_s" value="50" type="number"></div>
+      <div class="row"><label>上行倍数 u（如 1.2）</label><input class="calc-in" id="t_u" value="1.2" type="number" step="0.05"></div>
+      <div class="row"><label>下行倍数 d（如 0.8）</label><input class="calc-in" id="t_d" value="0.8" type="number" step="0.05"></div>
+      <div class="row"><label>执行价 K</label><input class="calc-in" id="t_k" value="55" type="number"></div>
+      <div class="row"><label>单期无风险利率 r（%）</label><input class="calc-in" id="t_r" value="6" type="number" step="0.1"></div>
+      <div class="row"><label>类型</label><select class="calc-in" id="t_type"><option value="call">看涨 Call</option><option value="put">看跌 Put</option></select></div>
+      <button class="calc-run">计算期权价格与对冲比率</button>
+      <div class="verdict" id="t_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-bt');
+        box.__run=function(){
+          var S=+document.getElementById('t_s').value;
+          var u=+document.getElementById('t_u').value, d=+document.getElementById('t_d').value;
+          var K=+document.getElementById('t_k').value, r=+document.getElementById('t_r').value/100;
+          var type=document.getElementById('t_type').value;
+          if(u<=1||d>=1||d<=0||u*d===1&&false){/*ok*/}
+          if(u<=1||d>=1){document.getElementById('t_out').innerHTML='<span class="calc-hint">应满足 u&gt;1&gt;d&gt;0。</span>';return}
+          var p=(1+r-d)/(u-d);
+          function pay(S){return type==='call'?Math.max(S-K,0):Math.max(K-S,0);}
+          var Suu=S*u*u, Sud=S*u*d, Sdd=S*d*d;
+          var Cuu=pay(Suu), Cud=pay(Sud), Cdd=pay(Sdd);
+          var Cu=(p*Cuu+(1-p)*Cud)/(1+r), Cd=(p*Cud+(1-p)*Cdd)/(1+r);
+          var C0=(p*Cu+(1-p)*Cd)/(1+r);
+          var delta=(Cu-Cd)/(S*u-S*d);
+          var earlyU = type==='put' && pay(S*u)>Cu ? '（提前行权更优，美式价 = '+pay(S*u).toFixed(2)+'）':'';
+          var earlyD = type==='put' && pay(S*d)>Cd ? '（提前行权更优，美式价 = '+pay(S*d).toFixed(2)+'）':'';
+          document.getElementById('t_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>风险中性概率 p = (1+r−d)/(u−d) = ('+(1+r).toFixed(3)+'−'+d+')/('+u+'−'+d+') = <span class="fin">'+p.toFixed(4)+'</span></li>'
+            +'<li>标的树：S₀='+S+' → uS='+(S*u).toFixed(2)+' / dS='+(S*d).toFixed(2)+' → '+Suu.toFixed(2)+' / '+Sud.toFixed(2)+' / '+Sdd.toFixed(2)+'</li>'
+            +'<li>到期收益：'+Cuu.toFixed(2)+' / '+Cud.toFixed(2)+' / '+Cdd.toFixed(2)+'</li>'
+            +'<li>倒推 t=1：C<sub>u</sub>=<span class="fin">'+Cu.toFixed(3)+'</span>'+earlyU+'，C<sub>d</sub>=<span class="fin">'+Cd.toFixed(3)+'</span>'+earlyD+'</li>'
+            +'<li>倒推 t=0：期权价 = <span class="fin">'+C0.toFixed(3)+'</span></li>'
+            +'<li>对冲比率 Δ = (C<sub>u</sub>−C<sub>d</sub>)/(uS−dS) = <span class="fin">'+delta.toFixed(4)+'</span>（买 1 份期权需买 '+delta.toFixed(4)+' 份标的）</li>'
+            +'</ol></div>'
+            +'<b>结论：</b>该'+ (type==='call'?'看涨':'看跌') +'期权两期二叉树定价为 <b style="color:#A32D2D">'+C0.toFixed(3)+'</b>，初始对冲比率 Δ = '+delta.toFixed(4)+'。'
+            +'<br><b>风险中性概率 p 的经济含义：它不是「真实概率」，而是「让标的按无风险利率增长」的等价概率。</b>';
+        };
+      })();
+    </script>
+
+    <div class="calc" id="calc-cf" style="margin-top:20px">
+      <h4>国债期货：转换因子与最便宜可交割券（CTD）</h4>
+      <div class="row"><label>期货结算价</label><input class="calc-in" id="c_fut" value="118.72" type="number"></div>
+      <div class="row"><label>债券净价</label><input class="calc-in" id="c_px" value="169" type="number"></div>
+      <div class="row"><label>债券转换因子 CF</label><input class="calc-in" id="c_cf" value="1.3848" type="number" step="0.0001"></div>
+      <div class="row"><label>应计利息</label><input class="calc-in" id="c_ai" value="4.83" type="number" step="0.01"></div>
+      <button class="calc-run">计算发票价格与基差</button>
+      <div class="verdict" id="c_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-cf');
+        box.__run=function(){
+          var fut=+document.getElementById('c_fut').value;
+          var px=+document.getElementById('c_px').value;
+          var cf=+document.getElementById('c_cf').value;
+          var ai=+document.getElementById('c_ai').value;
+          var invoice=fut*cf+ai, basis=px-fut*cf, full=px+ai;
+          document.getElementById('c_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>发票价格 = 期货价 × CF + 应计利息 = '+fut.toFixed(2)+' × '+cf.toFixed(4)+' + '+ai.toFixed(2)+' = <span class="fin">'+invoice.toFixed(2)+'</span></li>'
+            +'<li>基差 = 现券净价 − 期货价 × CF = '+px.toFixed(2)+' − '+(fut*cf).toFixed(2)+' = <span class="fin">'+basis.toFixed(2)+'</span></li>'
+            +'<li>现券全价 = 净价 + 应计利息 = <span class="fin">'+full.toFixed(2)+'</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>基差为 '+basis.toFixed(2)+'（'+ (basis>=0?'正':'负') +'）。'
+            +'<br><b>在多只可交割券中比较：基差最小者 = 最便宜可交割券（CTD），空头交割成本最低。</b>'
+            +'<br>若这是空头持仓，选择交割这只券每百元面值的净收入 = 期货×CF = '+(fut*cf).toFixed(2)+'，对应现券买入成本 '+px.toFixed(2)+'，净差 '+(px-fut*cf).toFixed(2)+'（越小越划算）。';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quick">
+    <h2><span class="sn">4.10</span>核心答案速查</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>考点问题</th><th>核心答案</th></tr></thead>
+        <tbody>
+          <tr><td>YTM 的三大假设</td><td>持有至到期、票息按 y 再投资、利率曲线平坦</td></tr>
+          <tr><td>溢价/折价与 y、c 的关系</td><td>y&lt;c 溢价；y&gt;c 折价；y=c 平价</td></tr>
+          <tr><td>麦考利久期 vs 修正久期</td><td>D* = D<sub>Mac</sub>/(1+y/m)；前者是时间，后者是弹性</td></tr>
+          <tr><td>零息债的久期</td><td>麦考利久期 = 到期期限（只有一笔现金流）</td></tr>
+          <tr><td>票面利率对久期的影响</td><td>票息越高久期越短（现金流越靠前）</td></tr>
+          <tr><td>YTM 对久期的影响</td><td>YTM 越低久期越长（远期现金流权重上升）</td></tr>
+          <tr><td>凸度项前的符号</td><td>恒为 +，故凸度使「涨多跌少」</td></tr>
+          <tr><td>远期利率公式</td><td>(1+f) = (1+s<sub>T</sub>)<sup>T</sup>/(1+s<sub>t</sub>)<sup>t</sup></td></tr>
+          <tr><td>预期理论 vs 流动性偏好</td><td>预期理论 f=E(s)；流动性偏好 f=E(s)+流动性溢价</td></tr>
+          <tr><td>戈登模型</td><td>V₀ = D₁/(r−g)，要求 r&gt;g</td></tr>
+          <tr><td>可持续增长率</td><td>g = ROE × b（b=留存比率）</td></tr>
+          <tr><td>领先 P/E</td><td>P₀/E₁ = d/(r−g)</td></tr>
+          <tr><td>剩余收益 RI</td><td>RI<sub>t</sub> = E<sub>t</sub> − r<sub>e</sub>×B<sub>t−1</sub>；V₀ = B₀ + ΣRI/(1+r)<sup>t</sup></td></tr>
+          <tr><td>P/B 适用行业</td><td>金融、保险、银行（资产即业务）；轻资产行业失效</td></tr>
+          <tr><td>风险中性概率</td><td>p = (1+r−d)/(u−d)（现货）；期货期权 p=(1−d)/(u−d)</td></tr>
+          <tr><td>看涨看跌平价</td><td>C − P = S₀ − K·e<sup>−rT</sup></td></tr>
+          <tr><td>看涨看跌 Delta 关系</td><td>Δ<sub>C</sub> − Δ<sub>P</sub> = 1（看涨 N(d₁)，看跌 −N(−d₁)）</td></tr>
+          <tr><td>唯一同时推高看涨看跌的因素</td><td>波动率 σ（期权收益单边不对称）</td></tr>
+          <tr><td>CTD 的判据</td><td>基差 = 净价 − 期货×CF，最小者即 CTD</td></tr>
+          <tr><td>期货无套利区间</td><td>理论价不是一条线，是一个被交易成本撑开的区间</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="dig">
+    <h2><span class="sn">4.11</span>教材深挖与易错辨析</h2>
+
+    <details class="big">
+      <summary>深挖一：为什么「贴现率」是投资学与精算学的共同母语</summary>
+      <div class="body">
+        <h3>一个贯穿全书的统一视角</h3>
+        <p>把 CH.03 的 CAPM 与本章全部定价公式放在一起看，会发现它们讲的是同一件事：<b>任何资产的价值，都是「现金流 × 贴现因子」的求和</b>。差异只在于：</p>
+        <table>
+          <thead><tr><th></th><th>现金流 CF<sub>t</sub></th><th>贴现率</th><th>贴现因子的「风险观」</th></tr></thead>
+          <tbody>
+            <tr><td>债券</td><td>票息 + 本金（合同约定）</td><td>即期利率 / YTM</td><td>信用风险 + 利率风险</td></tr>
+            <tr><td>股票（DDM）</td><td>股利（分红政策）</td><td>r<sub>e</sub> = CAPM</td><td>β 所衡量的系统风险</td></tr>
+            <tr><td>期权</td><td>max(S−K,0)（非线性）</td><td>无风险利率 r（风险中性）</td><td>通过「复制」把风险对冲掉</td></tr>
+            <tr class="note-td"><td>保险负债</td><td>赔付 - 保费（随机）</td><td>RDR / 准备金贴现率</td><td>发生率 + 退保 + 费用 + 利率</td></tr>
+          </tbody>
+        </table>
+        <h3>一个必须记住的「双层贴现」</h3>
+        <p>保险公司的资产与负债，用的是<b>两套不同的贴现率</b>：<b>资产端</b>用市场利率（投资收益率），<b>负债端</b>在 IFRS17 下用「与现金流特征一致的当前市场利率」、在偿付能力下用监管指定的利率曲线。<b>当资产贴现率下降而负债贴现率未同步下降（或反之），就会产生利差损益。</b>这正是久期缺口模型（4.2 节）在精算语境下的表达。</p>
+        <div class="tip"><b>考试加分：</b>任何「投资学与保险结合」的简答题，都可以用这个「现金流 × 贴现率」框架开头，再展开到资产负债两端，会显得结构极清晰。</div>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖二：为什么「低利率环境」对寿险公司是致命的——用久期法则讲透</summary>
+      <div class="body">
+        <h3>一条久期法则，解释一个行业困局</h3>
+        <p>久期法则第 5 条：<b>YTM 越低，久期越长</b>。这条看似枯燥的规则，其实是整个寿险行业「低利率焦虑」的数学根源。</p>
+        <h3>连锁反应的三步推导</h3>
+        <p><b>第一步 · 负债端久期被动拉长。</b>寿险准备金用低利率贴现时，远期负债（数十年后的满期给付）的现值占比大幅上升，导致<b>负债久期在低利率下变得更长</b>——传统寿险的负债久期可从 10 年拉长到 15 年以上。</p>
+        <p><b>第二步 · 资产端久期追不上。</b>市场上没有足够长的资产去匹配 15 年以上的负债。30 年、50 年国债一票难求，于是出现<b>久期缺口（负债久期 &gt; 资产久期）</b>。</p>
+        <p><b>第三步 · 利率再下一台阶，净资产加速受损。</b>按久期缺口模型 ΔE ≈ −(D<sub>A</sub>−kD<sub>L</sub>)·A·Δy/(1+y)，正缺口 + 利率下行 = 净资产下降。<b>且低利率下 D<sub>L</sub> 更大，同样的 20BP 下行，净资产损失比高利率时代更重——「越降越痛」。</b></p>
+        <div class="formula"><div class="fx">
+          <b>这就是「利差损」的精算-投资双重表达：</b><br>
+          投资视角：再投资收益 &lt; 已承诺的定价利率 → 利差损<br>
+          精算视角：负债久期 &gt; 资产久期 → 利率下行的净资产损失<br>
+          <b>两句话讲的是同一件事。</b>
+        </div></div>
+        <p><b>破局的三个方向（都可从本章导出）：</b>① <b>拉长资产久期</b>（超长期国债、长久期非标、利率互换收固定）；② <b>缩短负债久期</b>（开发期缴短险、分红险降低保证利率刚性）；③ <b>买入利率下限 / 对冲</b>（为浮动收益保底）。</p>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖三：期权定价的「风险中性」到底在说什么——一个常被误解的概念</summary>
+      <div class="body">
+        <h3>最大的误解</h3>
+        <p>「风险中性定价假设投资者不爱风险、用无风险利率贴现」——<b>这句话错了一半。</b>风险中性定价<b>不假设任何人是风险中性的</b>，它只是一个「数学等价技巧」。</p>
+        <h3>正确的理解</h3>
+        <p>B-S 推导的起点是<b>「用标的 + 无风险资产，可以精确复制期权的收益」</b>。一旦能复制，期权就与复制组合<b>必须同价</b>（否则套利）。而复制组合的价值<b>与投资者的风险偏好无关</b>——因为它是无风险的。</p>
+        <p><b>于是得到一个惊人结论：期权价格里不含任何关于「投资者有多厌恶风险」的参数，也不含标的的真实期望收益率 μ。</b>定价只需要 S₀、K、r、σ、T 五个量——<b>μ 消失了</b>。</p>
+        <div class="formula"><div class="fx">
+          <b>风险中性定价 = 「把真实概率 p* 换成 p，使标的不再需要风险补偿，然后照常贴现」</b><br>
+          它不是改变世界，而是改变<b>算账的坐标系</b>——在这个坐标系里，所有资产的期望收益都等于 r。
+        </div></div>
+        <h3>对投资决策的启示</h3>
+        <p><b>启示一 · 期权交易赚的是「定价错误」，不是「方向」。</b>因为 μ 不进定价公式，看对方向 ≠ 期权赚钱；真正赚钱的是「你的 σ 估计比别人准」或「市场把 σ 定错了」。</p>
+        <p><b>启示二 · 隐含波动率 = 市场的 σ 报价。</b>把市场价格反代回 B-S 解出的 σ，就是「隐含波动率」。它比历史波动率更前瞻。<b>隐含波动率偏高 = 市场恐慌、期权贵 = 适合卖期权；偏低 = 适合买期权。</b></p>
+        <p><b>启示三 · 保险公司的「期权负债」也应这样看。</b>分红险保证利率、万能险保底利率，都是公司「卖出的看跌期权」。<b>它们的成本可以用 B-S 框架估算——这就是「保证成本（guarantee cost）」的精算含义。</b></p>
+      </div>
+    </details>
+
+    <div class="hr-soft"></div>
+    <h3>六个高频易错点</h3>
+    <div class="warn"><b>① 修正久期忘记除 (1+y/m)。</b>算出麦考利久期直接当修正久期用——这是最频繁的失分点。</div>
+    <div class="warn"><b>② 凸度项符号搞反。</b>凸度项前是 <b>+</b>，且 (Δy)² 恒正，所以无论涨跌凸度都「加分」。写成分母减号就全错。</div>
+    <div class="warn"><b>③ 远期利率的指数用错。</b>(1+f<sub>t,T</sub>) 的指数是 <b>T−t（贷款期限）</b>，不是 T。</div>
+    <div class="warn"><b>④ 戈登模型用 D₀ 而非 D₁。</b>V₀ = D₁/(r−g)，若题给 D₀ 要先乘 (1+g)。差一个因子就是 12.5% 的误差。</div>
+    <div class="warn"><b>⑤ 看跌 Delta 写成正数。</b>Δ<sub>P</sub> = N(d₁) − 1 &lt; 0 恒为负。记不住就用 Δ<sub>C</sub> − Δ<sub>P</sub> = 1 反推。</div>
+    <div class="warn"><b>⑥ 期货期权的风险中性概率分子误写 1+r。</b>期货期权的 p = (1−d)/(u−d)，分子是 1（期货无成本持有、风险中性下期望不变）。</div>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">4.12</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 面值 100、票面利率 6%、每年付息一次、剩余 3 年、YTM = 8% 的债券，其修正久期最接近（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 2.61</li>
+        <li>B. 2.82</li>
+        <li>C. 2.90</li>
+        <li>D. 3.00</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：A。</b></p>
+          <p class="ans-detail">P₀ = 6/1.08 + 6/1.08² + 106/1.08³ = 5.556 + 5.144 + 84.152 = 94.852</p>
+          <p class="ans-detail">D<sub>Mac</sub> = (1×5.556 + 2×5.144 + 3×84.152)/94.852 = (5.556 + 10.288 + 252.456)/94.852 = 268.30/94.852 = 2.829</p>
+          <p class="ans-detail">D* = 2.829/1.08 = <b>2.619 ≈ 2.61</b> → A</p>
+          <div class="warn"><b>易错：</b>直接选 2.82（B）就是忘了除 1.08；选 3.00（D）是误当成零息债。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 关于「风险中性定价」，下列说法正确的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 风险中性定价假设所有投资者都是风险中性的</li>
+        <li>B. 风险中性概率是投资者对未来的真实概率估计</li>
+        <li>C. 风险中性定价下，期权价格与标的真实期望收益率 μ 无关</li>
+        <li>D. 风险中性定价要求市场无交易成本</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：C。</b></p>
+          <p class="ans-detail">风险中性定价是「复制 + 无套利」的等价数学技巧，<b>不假设任何人风险中性（A 错）</b>；p 是「让标的按无风险利率增长」的等价概率，<b>不是真实概率（B 错）</b>；μ 从定价公式中消失（C 对）；<b>无交易成本是 B-S 复制可行性的技术假设之一，但「风险中性」这个概念本身不依赖它（D 错）</b>。</p>
+          <div class="tip">这道题几乎可以直接命中真题（2023 年有类似概念的考察）。核心就是「风险中性 ≠ 风险中性的人」。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">计算</span>3. 标的现价 100，两期二叉树，u=1.1、d=0.9，单期无风险利率 4%，执行价 100。求：①欧式看涨期权价值；②初始对冲比率 Δ；③验证看涨看跌平价关系（先求看跌）。<span class="pts">10 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <div class="ans-skel"><b>四步</b>：p → 树 → 倒推 → 平价验证</div>
+          <p class="ans-detail"><b>① 风险中性概率</b>：p = (1.04 − 0.9)/(1.1 − 0.9) = 0.14/0.2 = <b>0.7</b></p>
+          <p class="ans-detail"><b>② 标的树</b>：100 → 110/90 → 121 / 99 / 81</p>
+          <p class="ans-detail"><b>③ 到期收益</b>（K=100）：C<sub>uu</sub>=21、C<sub>ud</sub>=0、C<sub>dd</sub>=0</p>
+          <p class="ans-detail">C<sub>u</sub> = (0.7×21 + 0.3×0)/1.04 = 14.7/1.04 = <b>14.135</b>；C<sub>d</sub> = <b>0</b></p>
+          <p class="ans-detail">C₀ = (0.7×14.135 + 0.3×0)/1.04 = 9.895/1.04 = <b>9.514</b></p>
+          <p class="ans-detail"><b>④ 对冲比率</b>：Δ = (C<sub>u</sub> − C<sub>d</sub>)/(110 − 90) = 14.135/20 = <b>0.707</b>（买 1 份期权需买 0.707 份标的）</p>
+          <p class="ans-detail"><b>⑤ 看跌与平价验证</b></p>
+          <p class="ans-detail">P<sub>uu</sub>=0、P<sub>ud</sub>=1、P<sub>dd</sub>=19；P<sub>u</sub>=(0.7×0+0.3×1)/1.04=0.288；P<sub>d</sub>=(0.7×1+0.3×19)/1.04=(0.7+5.7)/1.04=6.154；P₀=(0.7×0.288+0.3×6.154)/1.04=(0.202+1.846)/1.04=<b>1.969</b></p>
+          <p class="ans-detail">平价关系：C₀ − P₀ = 9.514 − 1.969 = <b>7.545</b>；S₀ − K/(1.04)² = 100 − 100/1.0816 = 100 − 92.456 = <b>7.544</b>　✓（约等，四舍五入）</p>
+          <div class="src-note">评分：p 2 分、树与收益 2 分、C₀ 2 分、Δ 2 分、平价验证 2 分。能写出「C₀−P₀ = S₀−K/(1+r)ᵀ」这一等式即得验证分。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>4. 简述相对估值法（P/E、P/B 等）的优缺点，并说明银行与保险公司为什么优先使用 P/B 而非 P/E。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <div class="ans-skel"><b>结构</b>：优点 3 + 缺点 3 + 金融业为何用 P/B</div>
+          <p class="ans-detail"><b>优点：</b>①简单快速、输入少；②反映市场当下定价，适合相对判断；③数据易得、可横向比较。</p>
+          <p class="ans-detail"><b>缺点：</b>①可比公司难找；②无法识别系统性高估/低估；③对会计口径敏感。</p>
+          <p class="ans-detail"><b>金融业优先用 P/B 的三条理由：</b></p>
+          <p class="ans-detail">① <b>资产即业务</b>：银行的「存货」是贷款、保险的「存货」是投资资产，净资产直接对应生息/投资能力，P/B 反映「单位净资产的盈利能力（ROE）」；</p>
+          <p class="ans-detail">② <b>盈利高度周期性且受准备金/拨备影响</b>：银行拨备、保险准备金假设会大幅波动 E，P/E 分母不稳，而 B 相对稳定；</p>
+          <p class="ans-detail">③ <b>监管以资本为核心</b>：银保的偿付能力/资本充足率都以净资产为锚，P/B 与监管逻辑一致。</p>
+          <p class="ans-detail"><b>一句话收尾：</b>P/B &gt; 1 ⟺ 市场认为其长期 ROE &gt; 股权成本 r<sub>e</sub>；这是把 P/B 与剩余收益模型（RI）连起来的金句。</p>
+          <div class="src-note">评分：优点 2 分、缺点 2 分、金融业理由 4 分（每条约 1.5 分）。</div>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="ch4">○ 标记本页已完成</button>
+
+    <div class="pager">
+      <a href="ch3.html">← CH.03 投资学理论</a>
+      <a href="ch5.html">CH.05 资产组合管理 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
