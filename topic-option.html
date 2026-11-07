@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>专题三 期权与希腊字母 · 投资学 · 科目F8</title>
+<meta name="description" content="期权定价、看涨看跌平价、希腊字母体系与动态对冲、期权策略、险资的期权应用——超越考试的期权专题。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html" class="on">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">专题 T.03</div>
+    <h1>期权与希腊字母</h1>
+    <div class="sub">期权的价值来自「不对称」——涨了赚、跌了有限。希腊字母，就是解剖这种不对称的五个切面</div>
+    <div class="meta">
+      <span>承接 CH.04 §4.6–4.7</span>
+      <span>对应真题 2012/2014/2015/2023</span>
+      <span>难度 ★★★★★</span>
+      <span>核心能力：期权定价与风险对冲</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>专题定位：</b>期权是「<b>全科最难也最高频</b>」的考点之一，2012、2015、2023 连续考大题。本专题在 CH.04 基础上，系统梳理<b>希腊字母体系、动态对冲、期权策略</b>，并落到「<b>险资如何用期权做保本、对冲、收益增强</b>」。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s1">期权定价三法回顾</a></li>
+      <li><a href="#s2">希腊字母的完整体系</a></li>
+      <li><a href="#s3">动态对冲：Delta 中性及其缺陷</a></li>
+      <li><a href="#s4">四大期权策略</a></li>
+      <li><a href="#s5">险资的期权应用</a></li>
+      <li><a href="#calc">演算器：B-S 与希腊字母</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="sn">T3.1</span>期权定价三法回顾</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>① 二叉树</b>：p = (1+r−d)/(u−d)，倒推 C₀ = [pC<sub>u</sub>+(1−p)C<sub>d</sub>]/(1+r)<br>
+        <b>② Black-Scholes</b>：C₀ = S₀N(d₁) − Ke<sup>−rT</sup>N(d₂)<br>
+        <b>③ 看涨看跌平价</b>：C − P = S₀ − Ke<sup>−rT</sup>（欧式，无股利）<br><br>
+        <span style="font-size:13px">三法统一于「无套利 + 复制」：二叉树是离散版的 B-S，平价关系是两者的「公理」。</span>
+      </div>
+    </div>
+    <div class="warn"><b>平价关系只对欧式成立。</b>美式期权因可提前行权，只有不等式：S₀ − K ≤ C − P ≤ S₀ − Ke<sup>−rT</sup>。这是经典选择题考点。</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">T3.2</span>希腊字母的完整体系</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>期权价格全微分</b>（理解希腊字母的唯一正确方式）：<br>
+        dC = <b>Δ·dS</b> + <b>½Γ·(dS)²</b> + <b>V·dσ</b> + <b>Θ·dt</b> + <b>ρ·dr</b><br>
+        <span style="font-size:13px">每一项 = 一种风险 × 对那种风险的敞口。管好希腊字母 = 管好期权组合的风险。</span>
+      </div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>希腊字母</th><th>定义</th><th>看涨</th><th>看跌</th><th>含义</th></tr></thead>
+        <tbody>
+          <tr><td>Delta Δ</td><td>∂C/∂S</td><td class="pos">0~1</td><td class="neg">−1~0</td><td>标的敏感度，对冲比率</td></tr>
+          <tr><td>Gamma Γ</td><td>∂²C/∂S²</td><td class="pos">&gt;0</td><td class="pos">&gt;0</td><td>Δ 的变化速度，平值最大</td></tr>
+          <tr><td>Vega V</td><td>∂C/∂σ</td><td class="pos">&gt;0</td><td class="pos">&gt;0</td><td>波动率敏感度，多头=做多波动</td></tr>
+          <tr><td>Theta Θ</td><td>∂C/∂t</td><td class="neg">&lt;0</td><td class="neg">&lt;0</td><td>时间衰减，多头付 Θ</td></tr>
+          <tr class="note-td"><td>Rho ρ</td><td>∂C/∂r</td><td class="pos">&gt;0</td><td class="neg">&lt;0</td><td>利率敏感度，长期期权才重要</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">Delta 管方向、Gamma 管转弯、Vega 管恐慌、Theta 管时光、Rho 管利息</span>」<br>
+      <b>救命四句：</b>① 平值 Γ、V、Θ 最大；② 临近到期 Γ 最大、V 最小；③ 多头 Θ 负、Γ 正、V 正；④ Δ<sub>C</sub> − Δ<sub>P</sub> = 1。
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">T3.3</span>动态对冲：Delta 中性及其缺陷</h2>
+    <p class="lead">期权的核心应用是「<b>对冲</b>」。Delta 中性是最基础的对冲，但它有致命的缺陷——需要频繁调仓，且对 Gamma 与 Vega 敞口无能为力。</p>
+    <div class="formula">
+      <div class="fx">
+        <b>Delta 对冲</b>：卖 1 份看涨，需买 N(d₁) 份标的，使组合 Δ = 0<br><br>
+        <b>Delta-Gamma 对冲</b>：再用另一期权消除 Γ 敞口，减少调仓频率<br><br>
+        <b>Delta-Vega 对冲</b>：再用另一期权消除 V 敞口，对冲波动率风险
+      </div>
+    </div>
+    <div class="warn"><b>Delta 中性的三个局限：</b>① <b>需连续调仓</b>（实际离散，有对冲误差）；② <b>只对冲了一阶</b>（Γ、V 敞口仍在）；③ <b>假设波动率不变</b>（实际 σ 随机，Vega 风险暴露）。<b>这就是为什么期权对冲不是「一劳永逸」，而是「持续管理」。</b></div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">T3.4</span>四大期权策略</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>策略</th><th>构成</th><th>盈利条件</th><th>风险/收益特征</th></tr></thead>
+        <tbody>
+          <tr><td><b>保护性看跌</b></td><td>股票 + 看跌期权</td><td>下跌有保底，上涨不封顶</td><td>成本 = 期权费；有限下行 + 无限上行</td></tr>
+          <tr><td><b>备兑看涨</b></td><td>股票 + 卖出看涨</td><td>横盘/小涨（赚期权费）</td><td>上涨封顶、下跌无保护；增强收益</td></tr>
+          <tr><td><b>跨式/宽跨式</b></td><td>买看涨 + 买看跌（同/不同执行价）</td><td>大幅波动（无论方向）</td><td>做多波动率；最大损失 = 期权费</td></tr>
+          <tr class="note-td"><td><b>蝶式/价差</b></td><td>多腿组合</td><td>小幅波动/区间</td><td>做空波动率；收益有限、风险有限</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><b>一句话判断：</b>「<b>买期权 = 做多波动（付 Θ、收 Γ/V），卖期权 = 做空波动（收 Θ、付 Γ/V）。</b>」看清自己站在波动率的哪一边，是期权交易的第一课。</div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">T3.5</span>险资的期权应用</h2>
+    <div class="prac">
+      <b>应用一 · 保本产品（保护性看跌 / 合成保本）</b>：分红险、投连险的保本，本质是「<b>股票 + 看跌期权</b>」或「<b>债券 + 看涨期权</b>」。用 B-S 框架可精确算出「保本的成本」，即期权费（见 <a href="ch4.html#s6">CH.04 §4.6</a> 变额年金）。<br><br>
+      <b>应用二 · 对冲利率与汇率风险</b>：买利率上限/下限对冲浮动收益，买汇率期权对冲境外投资敞口（2023 年考「外汇对冲策略」）。<br><br>
+      <b>应用三 · 收益增强（备兑看涨）</b>：在长期持有的股票上卖出虚值看涨，<b>赚期权费增厚收益</b>，但代价是上涨封顶——适合「预期横盘」的蓝筹组合。<br><br>
+      <b>应用四 · 波动率管理</b>：隐含波动率偏高时卖期权（收 V 溢价），偏低时买期权（保护）——<b>这是「波动率择时」的险资版本</b>。
+    </div>
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">选择</span>
+      <p>外汇风险的对冲：一段时间后会收到一笔欧元，对冲策略是什么？</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>情景：</b>未来「收到欧元」（欧元多头敞口），担心<b>欧元贬值</b>。</p>
+          <p class="ans-detail"><b>对冲策略：</b>卖出欧元期货/远期，或<b>买入欧元看跌期权</b>（锁定最低汇率，保留欧元升值的收益）。</p>
+          <div class="warn"><b>易错：</b>方向反了。「收到欧元」应<b>卖出欧元</b>（做空欧元对冲），不是买入欧元。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">T3.6</span>演算器</h2>
+    <div class="calc" id="calc-bs">
+      <h4>Black-Scholes 期权定价与 Delta</h4>
+      <div class="row"><label>标的现价 S₀</label><input class="calc-in" id="bs_s" value="100" type="number"></div>
+      <div class="row"><label>执行价 K</label><input class="calc-in" id="bs_k" value="100" type="number"></div>
+      <div class="row"><label>期限 T（年）</label><input class="calc-in" id="bs_t" value="1" type="number" step="0.25"></div>
+      <div class="row"><label>无风险利率 r（%）</label><input class="calc-in" id="bs_r" value="5" type="number" step="0.1"></div>
+      <div class="row"><label>波动率 σ（%）</label><input class="calc-in" id="bs_v" value="20" type="number" step="1"></div>
+      <button class="calc-run">计算看涨看跌价格与 Delta</button>
+      <div class="verdict" id="bs_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-bs');
+        function normcdf(x){var t=1/(1+0.2316419*Math.abs(x));var d=0.3989422804014327*Math.exp(-x*x/2);var p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p}
+        box.__run=function(){
+          var S=+document.getElementById('bs_s').value, K=+document.getElementById('bs_k').value;
+          var T=+document.getElementById('bs_t').value, r=+document.getElementById('bs_r').value/100, v=+document.getElementById('bs_v').value/100;
+          if(S<=0||K<=0||T<=0||v<=0){document.getElementById('bs_out').innerHTML='<span class="calc-hint">参数需大于 0。</span>';return}
+          var d1=(Math.log(S/K)+(r+v*v/2)*T)/(v*Math.sqrt(T)), d2=d1-v*Math.sqrt(T);
+          var C=S*normcdf(d1)-K*Math.exp(-r*T)*normcdf(d2);
+          var P=K*Math.exp(-r*T)*normcdf(-d2)-S*normcdf(-d1);
+          var dC=normcdf(d1), dP=normcdf(d1)-1;
+          document.getElementById('bs_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>d₁ = [ln(S/K)+(r+σ²/2)T]/(σ√T) = <span class="fin">'+d1.toFixed(4)+'</span></li>'
+            +'<li>d₂ = d₁ − σ√T = <span class="fin">'+d2.toFixed(4)+'</span></li>'
+            +'<li>看涨 C = S·N(d₁) − K·e<sup>−rT</sup>·N(d₂) = <span class="fin">'+C.toFixed(3)+'</span></li>'
+            +'<li>看跌 P = K·e<sup>−rT</sup>·N(−d₂) − S·N(−d₁) = <span class="fin">'+P.toFixed(3)+'</span></li>'
+            +'<li>Delta：看涨 <span class="fin">'+dC.toFixed(4)+'</span>，看跌 <span class="fin">'+dP.toFixed(4)+'</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>看涨 '+C.toFixed(3)+'、看跌 '+P.toFixed(3)+'；Δ<sub>C</sub>−Δ<sub>P</sub> = '+dC.toFixed(4)+' − ('+dP.toFixed(4)+') = <b>1.0000 ✓</b>'
+            +'<br><b>验证平价：C−P = '+(C-P).toFixed(3)+'，S−Ke<sup>−rT</sup> = '+(S-K*Math.exp(-r*T)).toFixed(3)+' ✓</b>';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">T3.7</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 关于希腊字母，下列说法不正确的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 平值期权的 Gamma 最大</li>
+        <li>B. 到期日临近时 Vega 减小</li>
+        <li>C. 期权多头的 Theta 为正</li>
+        <li>D. 看跌期权的 Delta 为负</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：C。</b></p>
+          <p class="ans-detail">期权多头（持有期权）的 <b>Theta 为负</b>（时间价值每天衰减，多头付 Θ）。A、B、D 均正确。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 某公司未来将收到一笔欧元，为对冲欧元贬值风险，应（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 买入欧元看涨期权</li>
+        <li>B. 买入欧元看跌期权</li>
+        <li>C. 买入欧元期货</li>
+        <li>D. 卖出欧元看跌期权</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：B。</b></p>
+          <p class="ans-detail">收到欧元 = 欧元多头敞口，担心欧元贬值 → <b>买入欧元看跌期权</b>（锁定最低汇率，保留升值收益），或卖出欧元期货/远期。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">计算</span>3. S₀=100、K=100、T=1、r=5%、σ=20%，求欧式看涨期权价值与看跌期权价值（用 B-S）。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail">d₁ = [ln(1)+(0.05+0.02)/1]/(0.2×1) = (0+0.07)/0.2 = 0.35；d₂ = 0.35 − 0.2 = 0.15</p>
+          <p class="ans-detail">N(0.35) ≈ 0.6368；N(0.15) ≈ 0.5596</p>
+          <p class="ans-detail">C = 100×0.6368 − 100×e<sup>−0.05</sup>×0.5596 = 63.68 − 95.12×0.5596 = 63.68 − 53.23 = <b>10.45</b></p>
+          <p class="ans-detail">P = 100×e<sup>−0.05</sup>×N(−0.15) − 100×N(−0.35) = 95.12×0.4404 − 100×0.3632 = 41.89 − 36.32 = <b>5.57</b></p>
+          <p class="ans-detail">验证平价：C−P = 4.88；S−Ke<sup>−rT</sup> = 100−95.12 = 4.88 ✓</p>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="topic-option">○ 标记本页已完成</button>
+    <div class="pager">
+      <a href="topic-equity.html">← 专题二 权益估值三派</a>
+      <a href="topic-perf.html">专题四 业绩评价与归因 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
