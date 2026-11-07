@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>专题一 利率期限与久期 · 投资学 · 科目F8</title>
+<meta name="description" content="利率期限结构四大理论、即期远期贴现率、久期与凸度的进阶应用、免疫与险资利率风险管理——超越考试的利率专题。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html" class="on">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">专题 T.01</div>
+    <h1>利率期限与久期</h1>
+    <div class="sub">利率是金融资产的「万有引力」——理解利率的结构与敏感性，就理解了固收投资的全部</div>
+    <div class="meta">
+      <span>承接 CH.04 §4.2–4.3</span>
+      <span>对应真题 2012/2015/2017/2023</span>
+      <span>难度 ★★★★</span>
+      <span>核心能力：久期管理与利率对冲</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>专题定位：</b>利率专题是「<b>贯穿全科的暗线</b>」——CH.04 用它定价，CH.05 用它做组合，CH.06 用它管资产负债。本专题在考纲基础上，补上<b>有效久期、关键利率久期、凸度约束</b>等进阶工具，并落到「<b>利率下行周期险资怎么配置</b>」的投资决策。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s1">三种利率的完整关系（含误区）</a></li>
+      <li><a href="#s2">期限结构四大理论 + 实证</a></li>
+      <li><a href="#s3">久期进阶：有效久期与关键利率久期</a></li>
+      <li><a href="#s4">免疫的凸度约束与再平衡</a></li>
+      <li><a href="#s5">险资利率风险管理的四条实战策略</a></li>
+      <li><a href="#s6">利率下行周期的配置决策</a></li>
+      <li><a href="#calc">演算器：即期/远期与骑乘收益</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="sn">T1.1</span>三种利率的完整关系（含误区）</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>即期利率 s<sub>t</sub></b>：今天借出、t 年后还本付息的年化利率（由零息债反推）<br>
+        <b>远期利率 f<sub>t,T</sub></b>：今天锁定、t 时点起 T 时点止的利率（由即期曲线无套利推出）<br>
+        <b>到期收益率 y</b>：使债券全部现金流现值 = 价格的单一贴现率<br><br>
+        <b>核心关系</b>：(1+s<sub>T</sub>)<sup>T</sup> = (1+s<sub>t</sub>)<sup>t</sup>·(1+f<sub>t,T</sub>)<sup>T−t</sup>
+      </div>
+    </div>
+    <div class="warn"><b>三个最常见的误区：</b><br>
+    ① 「YTM 等于即期利率」——错，YTM 是<b>票息加权平均</b>的混合贴现率，只有平坦曲线时才相等；<br>
+    ② 「远期利率 = 未来即期利率的预测」——错，远期利率包含<b>流动性溢价</b>，f ≠ E(s)；<br>
+    ③ 「曲线向上就是市场预期加息」——错，还可能是<b>流动性溢价</b>（这是期限结构四理论的分歧点）。</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">T1.2</span>期限结构四大理论 + 实证</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>理论</th><th>核心</th><th>f 与 E(s) 关系</th><th>能否解释倒挂</th></tr></thead>
+        <tbody>
+          <tr><td>预期理论</td><td>长期利率 = 预期短期利率的几何平均</td><td>f = E(s)</td><td class="pos">能（预期降息）</td></tr>
+          <tr><td>流动性偏好</td><td>长期利率 = 预期 + 流动性溢价</td><td>f &gt; E(s)</td><td class="pos">能（需大幅降息预期）</td></tr>
+          <tr><td>市场分割</td><td>各期限独立市场，供需各自决定</td><td>无关</td><td class="pos">能</td></tr>
+          <tr class="note-td"><td>优先置产</td><td>有期限偏好区间，可被溢价吸引偏离</td><td>f ≈ E(s)+溢价</td><td class="pos">能</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><b>实证结论（答题加分）：</b>① 曲线<b>向上倾斜是常态</b>（约 80% 时间）；② 曲线<b>倒挂是衰退的领先指标</b>（10 年-2 年利差转负后 12–18 个月常现衰退）；③ 流动性偏好理论<b>解释力最强</b>，但<b>预期 + 流动性溢价</b>的混合框架最常用。</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">T1.3</span>久期进阶：有效久期与关键利率久期</h2>
+    <p class="lead">修正久期是「<b>简单但有限</b>」的工具，对含权债、MBS 会失真。进阶工具补上了它的短板。</p>
+
+    <div class="formula">
+      <div class="fx">
+        <b>有效久期（Effective Duration）</b>——适用于含权债，不假设现金流固定<br>
+        D<sub>eff</sub> = (P<sub>−Δy</sub> − P<sub>+Δy</sub>) / (2 × P₀ × Δy)<br>
+        <span style="font-size:13px">用「实际重新定价」而非「固定现金流」算，能捕捉期权对久期的改变（如可赎回债利率下行时有效久期变短）</span><br><br>
+        <b>关键利率久期（Key Rate Duration）</b>——衡量对「某一段」利率的敏感度<br>
+        KRDi = ΔP/P ÷ Δr<sub>i</sub>　（只移动期限结构上的一个点）<br>
+        <span style="font-size:13px">用于「曲线形状风险」：组合对不同期限段的敏感度不同，关键利率久期刻画了这个差异</span>
+      </div>
+      <p class="note"><b>三者分工：</b>修正久期（普通债、平行移动）→ 有效久期（含权债、期权调整）→ 关键利率久期（曲线非平行移动、形状风险）。<b>曲线「平移」用前两者，曲线「变形」（陡峭化/平坦化/扭曲）必须用关键利率久期。</b></p>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">T1.4</span>免疫的凸度约束与再平衡</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>完整免疫（Redington 三条件）</b><br>
+        ① PV 匹配：资产现值 = 负债现值<br>
+        ② 久期匹配：资产久期 = 负债久期<br>
+        ③ <b>凸度约束：资产凸度 &gt; 负债凸度</b><br><br>
+        <span style="font-size:13px">③ 的含义：无论利率涨跌，资产的价值变化都优于负债（涨多跌少），保证利率大幅波动时仍免疫</span>
+      </div>
+    </div>
+    <div class="prac">
+      <b>免疫的「再平衡」难题：</b>免疫是<b>动态的、非一劳永逸的</b>。即使初始匹配，随着①利率变动（久期与凸度都随利率变）、②时间流逝（资产与负债久期的「漂移速度」不同）、③新现金流进入，缺口会重新出现。<b>实务中需定期（季/年）重算缺口并再平衡——这是 ALM 的日常工作。</b>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">T1.5</span>险资利率风险管理的四条实战策略</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>策略</th><th>工具</th><th>作用</th><th>成本/代价</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 拉长资产久期</b></td><td>超长期国债（30/50 年）、长久期非标</td><td>缩小「负债久期 &gt; 资产久期」缺口</td><td>牺牲流动性、收益率倒挂风险</td></tr>
+          <tr><td><b>② 利率互换</b></td><td>收固定付浮动</td><td>把浮动资产「变」成固定，延长有效久期</td><td>对手方风险、需保证金</td></tr>
+          <tr><td><b>③ 买入利率下限</b></td><td>利率下限（Floor）</td><td>为浮动收益买「最低保障」</td><td>期权费</td></tr>
+          <tr class="note-td"><td><b>④ 缩短负债久期</b></td><td>期缴短险、分红险、降低保证利率</td><td>从负债端减少久期压力</td><td>产品吸引力下降、竞争压力</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">资产拉长、互换锁定、下限保底、负债缩期</span>」<br>
+      四条路，<b>资产端三条 + 负债端一条</b>。资产端是「投资部的事」，负债端是「精算部的事」——<b>真正的 ALM 需要两端联动。</b>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">T1.6</span>利率下行周期的配置决策</h2>
+    <p class="lead">这是本专题的「<b>投资决策落点</b>」：利率长期下行时，险资应该怎么做？</p>
+
+    <div class="prac">
+      <b>利率下行的三个资产端后果：</b><br>
+      ① <b>存量债券浮盈</b>（久期越长涨越多，但浮盈不可持续）；<br>
+      ② <b>再投资收益下降</b>（到期债券与新资金只能投更低收益）；<br>
+      ③ <b>负债折现率下降、负债膨胀</b>（对寿险，净资产受损）。<br><br>
+      <b>正确的四步应对：</b><br>
+      <b>① 抢久期</b>：在利率下行前尽量拉长资产久期（锁定当前较高利率）；<br>
+      <b>② 对冲负债</b>：用利率互换/超长债对冲负债久期，防止净资产受损；<br>
+      <b>③ 优化结构</b>：骑乘策略（买入期限略长于持有期的债券赚期限溢价）；<br>
+      <b>④ 管理预期</b>：下调新单定价利率（精算端），避免「高利率承诺 + 低利率投资」的利差损。
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 39</span>
+      <p>五个零息债 + 远期贷款实际利率（完整解法见 <a href="ch4.html#s3">CH.04 §4.3</a>）。</p>
+    </div>
+
+    <div class="tip"><b>一句话收尾：</b>「<b>利率是险资的命脉。利率下行期，比的不是谁赚得多，而是谁锁得早、对得好、亏得少。</b>」</div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">T1.7</span>演算器</h2>
+    <div class="calc" id="calc-fwd">
+      <h4>即期利率反推与远期利率</h4>
+      <div class="row"><label>1 年期即期利率 s₁（%）</label><input class="calc-in" id="f_s1" value="3" type="number" step="0.1"></div>
+      <div class="row"><label>2 年期即期利率 s₂（%）</label><input class="calc-in" id="f_s2" value="3.5" type="number" step="0.1"></div>
+      <div class="row"><label>3 年期即期利率 s₃（%）</label><input class="calc-in" id="f_s3" value="4" type="number" step="0.1"></div>
+      <button class="calc-run">计算远期利率</button>
+      <div class="verdict" id="f_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-fwd');
+        box.__run=function(){
+          var s1=+document.getElementById('f_s1').value/100, s2=+document.getElementById('f_s2').value/100, s3=+document.getElementById('f_s3').value/100;
+          var f12=Math.pow(1+s2,2)/(1+s1)-1;
+          var f23=Math.pow(1+s3,3)/Math.pow(1+s2,2)-1;
+          var f13=Math.sqrt(Math.pow(1+s3,3)/(1+s1))-1;
+          document.getElementById('f_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>f₁,₂ = (1+s₂)²/(1+s₁) − 1 = <span class="fin">'+(f12*100).toFixed(3)+'%</span></li>'
+            +'<li>f₂,₃ = (1+s₃)³/(1+s₂)² − 1 = <span class="fin">'+(f23*100).toFixed(3)+'%</span></li>'
+            +'<li>f₁,₃ = √[(1+s₃)³/(1+s₁)] − 1 = <span class="fin">'+(f13*100).toFixed(3)+'%</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>曲线从 '+ (s1*100).toFixed(1)+'% 升到 '+(s3*100).toFixed(1)+'%，隐含远期利率 '+(f13*100).toFixed(2)+'%。'
+            +'<br><b>若市场预期未来短期利率低于 '+(f13*100).toFixed(2)+'%，则远期利率中包含了流动性溢价（流动性偏好理论）。</b>';
+        };
+      })();
+    </script>
+
+    <div class="calc" id="calc-ride" style="margin-top:20px">
+      <h4>骑乘策略收益（骑乘 vs 持有到期）</h4>
+      <div class="row"><label>当前 n 年期 YTM（%）</label><input class="calc-in" id="r_yn" value="4" type="number" step="0.1"></div>
+      <div class="row"><label>持有 m 年后 (n−m) 年期 YTM（%）</label><input class="calc-in" id="r_ym" value="3.5" type="number" step="0.1"></div>
+      <div class="row"><label>持有期 m（年）</label><input class="calc-in" id="r_m" value="2" type="number" step="0.5"></div>
+      <div class="row"><label>票面利率 c（%）</label><input class="calc-in" id="r_c" value="4" type="number" step="0.1"></div>
+      <button class="calc-run">估算骑乘收益</button>
+      <div class="verdict" id="r_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-ride');
+        box.__run=function(){
+          var yn=+document.getElementById('r_yn').value/100, ym=+document.getElementById('r_ym').value/100;
+          var m=+document.getElementById('r_m').value, c=+document.getElementById('r_c').value/100;
+          if(m<=0){document.getElementById('r_out').innerHTML='<span class="calc-hint">持有期需大于 0。</span>';return}
+          // 简化：债券剩余 n=10 年，面值100，按持有 m 年后的价格近似（用久期近似资本利得）
+          var n=10;
+          // 用久期近似：D* ≈ n 的粗略值；此处用简化骑乘逻辑
+          var capGain=(yn-ym)*m; // 简化：利率下行带来的资本利得 ≈ 久期×Δy，取久期≈m近似演示
+          var carry=c*m;
+          var annual=(capGain+carry)/m*100;
+          document.getElementById('r_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤（简化近似）</b><ol>'
+            +'<li>票息收益（持有 '+m+' 年）= c×m = '+c.toFixed(4)+'×'+m+' = <span class="fin">'+(carry*100).toFixed(2)+'%</span></li>'
+            +'<li>资本利得（曲线骑乘）= 久期×Δy ≈ '+m+'×('+(yn*100).toFixed(1)+'%−'+(ym*100).toFixed(1)+'%) = <span class="fin">'+(capGain*100).toFixed(2)+'%</span></li>'
+            +'<li>年化骑乘收益 ≈ (票息+资本利得)/m = <span class="fin">'+annual.toFixed(2)+'%</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>骑乘策略的收益 = 票息 + 曲线骑乘的资本利得，通常<b>高于「持有到期吃票息」</b>（因为还赚了「利率沿曲线下降」的钱）。'
+            +'<br><b>前提：曲线向上倾斜且保持稳定（不陡峭化）。若曲线大幅上移，资本利得转负，骑乘反而亏。</b>';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">T1.8</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 关于含权债的久期，下列说法正确的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 可赎回债的修正久期在利率下行时反而变长</li>
+        <li>B. 可赎回债应用有效久期而非修正久期</li>
+        <li>C. 可回售债在利率上行时久期变长</li>
+        <li>D. 含权债与普通债的久期计算无区别</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：B。</b></p>
+          <p class="ans-detail">A 错（可赎回债利率下行时，赎回可能性上升，价格被压，<b>有效久期变短</b>）；B 对（含权债现金流不固定，应用有效久期）；C 错（可回售债利率上行时，回售保护使价格抗跌，<b>有效久期变短</b>）；D 错。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 完整免疫需要满足的条件不包括（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 资产现值等于负债现值</li>
+        <li>B. 资产久期等于负债久期</li>
+        <li>C. 资产凸度大于负债凸度</li>
+        <li>D. 资产收益率高于负债成本</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：D。</b></p>
+          <p class="ans-detail">Redington 三条件：PV 匹配、久期匹配、凸度约束。D「收益率高于负债成本」是<b>盈利目标</b>，不是免疫的匹配条件。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>3. 简述「修正久期、有效久期、关键利率久期」三者的区别与适用场景。<span class="pts">6 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail"><b>修正久期</b>：假设现金流固定，衡量对<b>平行移动</b>的敏感度；适用普通债。</p>
+          <p class="ans-detail"><b>有效久期</b>：用「实际重新定价」计算，能捕捉<b>期权效应</b>；适用含权债、MBS。</p>
+          <p class="ans-detail"><b>关键利率久期</b>：只移动曲线上某一点，刻画对<b>曲线形状（非平行移动）</b>的敏感度；适用曲线陡峭化/平坦化风险。</p>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="topic-term">○ 标记本页已完成</button>
+    <div class="pager">
+      <a href="ch6.html">← CH.06 险企投资实务</a>
+      <a href="topic-equity.html">专题二 权益估值三派 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
