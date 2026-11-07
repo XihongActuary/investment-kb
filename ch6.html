@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CH.06 险企投资实务 · 投资学 · 科目F8</title>
+<meta name="description" content="保险资金运用的组织形式、资金运用流程、绩效评估、资产负债管理（ALM）——从投资理论到保险实务的落地。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html" class="on">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">CHAPTER 06</div>
+    <h1>险企投资实务</h1>
+    <div class="sub">把前面五章的理论，装进保险公司的投资流水线——这一章是「从书桌到交易台」的最后一步</div>
+    <div class="meta">
+      <span>考纲权重 10%</span>
+      <span>教材对应 第 27–29 章</span>
+      <span>历年分值 8–15 分</span>
+      <span>建议投入 8–10 小时</span>
+    </div>
+    <div class="wbar">
+      <div class="lab"><span>本章在本科目中的权重</span><span>10 / 100</span></div>
+      <div class="bar"><i style="width:10%"></i></div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>本章定位：</b>这是全科的「收口章」。CH.01 讲了「能投什么（监管）」、CH.02 讲了「有哪些工具」、CH.03–05 讲了「怎么想、怎么算、怎么摆」，本章讲「<b>保险公司作为机构，如何把这套体系运转起来</b>」。内容相对记忆型，但<b>与 CH.01 的监管、CH.05 的组合管理高度联动</b>，答题时务必勾连。
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s0">险资管理的三个特殊约束</a></li>
+      <li><a href="#s1">资金运用的组织形式</a></li>
+      <li><a href="#s2">资金运用流程：五步闭环</a></li>
+      <li><a href="#s3">投资绩效评估：险资的独特视角</a></li>
+      <li><a href="#s4">资产负债管理（ALM）核心</a></li>
+      <li><a href="#s5">与监管、偿付能力的联动</a></li>
+      <li><a href="#s6">宏观经济、长期资金与战术配置</a></li>
+      <li><a href="#calc">演算器：久期缺口与免疫诊断</a></li>
+      <li><a href="#quick">核心答案速查</a></li>
+      <li><a href="#dig">教材深挖与易错辨析</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s0">
+    <h2><span class="sn">6.0</span>险资管理的三个特殊约束</h2>
+    <p class="lead">保险公司投资与公募基金、银行理财的根本区别，来自它的<b>负债</b>。理解这三个约束，就理解了险资所有「看起来保守」的行为。</p>
+
+    <div class="arch">
+      <div class="arch-top">
+        <b>险资的三大约束</b>
+        <div class="meta"><span>安全性</span><span>收益性</span><span>流动性</span></div>
+      </div>
+      <div class="arch-grid g4">
+        <a class="arch-card key" href="#s0"><div class="ac-top"><span class="ac-no">①</span><span class="ac-wt hot">首要</span></div><h4>安全性</h4><p>保险是「先收钱后赔」，资金本质是「对保户的负债」，必须绝对安全</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">②</span><span class="ac-wt">—</span></div><h4>收益性</h4><p>要覆盖定价利率 + 费用，否则利差损；但必须「在安全的前提下」</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">③</span><span class="ac-wt">—</span></div><h4>流动性</h4><p>应对赔款、退保、满期给付的现金需求，必须匹配负债的流动性</p></a>
+        <a class="arch-card spec" href="#s4"><div class="ac-top"><span class="ac-no">④</span><span class="ac-wt">—</span></div><h4>匹配性（久期）</h4><p>资产久期与负债久期匹配，防止利率风险（ALM 的核心）</p></a>
+      </div>
+      <div class="arch-hint"><b>「安全性、收益性、流动性」是保险资金运用的三性原则，其法律渊源是《保险法》第 106 条（见 <a href="ch1.html">CH.01</a>）。</b>考试凡是问「险资运用原则」，先答这三性，再展开「安全性是首要、收益性是目的、流动性是保障」。</div>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">选择 29</span>
+      <p>我国保险资金投资领域（可投范围）。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">按 CH.01 的框架：<b>银行存款、债券、股票、基金、不动产、未上市股权、基础设施、金融产品、境外投资、衍生品（仅对冲）</b>。</p>
+          <p class="ans-detail"><b>负向记忆更高效：</b>不能投的 = 与保险主业无关、风险过高、监管禁止的（如直接投资期货投机、贷款给一般企业等）。</p>
+          <div class="warn"><b>易错：</b>「保险资金可以放贷」——错，保险公司<b>不能直接对企业放贷</b>（那是银行的业务），只能通过债券、金融产品等间接参与。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s1">
+    <h2><span class="sn">6.1</span>资金运用的组织形式</h2>
+    <p class="lead">「钱由谁来管、怎么管」——这是险资投资管理的第一个制度问题。三种模式各有优劣，考试常考「选择依据」。</p>
+
+    <h3>一、三种组织形式</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>模式</th><th>含义</th><th>优点</th><th>缺点</th><th>适用</th></tr></thead>
+        <tbody>
+          <tr><td><b>内部投资部</b></td><td>公司自建投资团队、自有资金自管</td><td>控制力强、信息保密、利润内部化</td><td>人才成本高、规模不足时效率低</td><td>大型险企（国寿、平安、太保）</td></tr>
+          <tr><td><b>委托管理（委外）</b></td><td>委托专业资管机构（含集团内保险资管）</td><td>专业化、规模经济、快速起步</td><td>委托-代理问题、信息不对称、管理费</td><td>中小险企、新设公司</td></tr>
+          <tr class="note-td"><td><b>混合模式</b></td><td>核心资产自管 + 专业化委外</td><td>兼顾控制与专业</td><td>管理复杂度高</td><td><b>大多数中型险企</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 中小保险公司的现实选择：</b>中小险企资金规模不足以支撑全品种自建团队，<b>「核心配置自管（债券、存款）+ 专业领域委外（权益、另类、境外）」</b>是最常见路径。委托管理的关键在于<b>「投资指引（Investment Mandate）」</b>——把 IPS 转化为对委外机构可执行、可考核、可追责的合同条款（含基准、限制、考核期、止损线）。
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">选择 1</span>
+      <p>支持保险资金参控股商业银行的机构。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">该题考的是「<b>保险机构能否投资/参控股商业银行</b>」的政策背景。监管对保险资金投资银行股权持<b>有条件的支持</b>态度，相关文件为《保险公司投资商业银行股权》等规定（呼应 CH.01 的股权投资 79 号文及后续修订）。</p>
+          <p class="ans-detail"><b>答题方向：</b>保险资金参控股商业银行需满足「<b>偿付能力充足、资本实力、公司治理、风险隔离</b>」等条件，目的是实现「<b>产融结合、获取长期稳定回报、延伸保险产业链</b>」。</p>
+          <div class="src-note">回忆版真题选项缺失，以上按「监管原则 + 股权投资逻辑」作答框架，掌握框架即可应对变形。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">6.2</span>资金运用流程：五步闭环</h2>
+    <p class="lead">险资投资不是「选股」，而是一条<b>从负债分析到绩效评估</b>的流水线。每一步都可考、每一步都环环相扣。</p>
+
+    <div class="arch">
+      <div class="arch-top">
+        <b>险资运用的五步闭环</b>
+        <div class="meta"><span>负债分析</span><span>资产配置</span><span>投资执行</span><span>风险监控</span><span>绩效评估</span></div>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>流 程 链</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">①</span><span class="ac-wt hot">起点</span></div><h4>负债分析</h4><p>梳理负债久期、现金流、保证利率 → 确定投资目标与约束</p></a>
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">②</span><span class="ac-wt hot">核心</span></div><h4>战略资产配置</h4><p>基于 ALM 定各类资产的长期基准权重（见 CH.05）</p></a>
+        <a class="arch-card" href="#s2"><div class="ac-top"><span class="ac-no">③</span><span class="ac-wt">—</span></div><h4>投资执行</h4><p>按 SAA 落地为具体证券，含委外与选券</p></a>
+        <a class="arch-card" href="#s2"><div class="ac-top"><span class="ac-no">④</span><span class="ac-wt">—</span></div><h4>风险监控</h4><p>久期缺口、VaR、限额、压力测试（见 CH.05）</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>闭环：绩效评估反馈回资产配置</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card prac" href="#s3"><div class="ac-top"><span class="ac-no">⑤</span><span class="ac-wt done">反馈</span></div><h4>绩效评估</h4><p>投资收益率、配置/选择归因、久期匹配度</p></a>
+        <a class="arch-card prac" href="#s3"><div class="ac-top"><span class="ac-no">⑥</span><span class="ac-wt done">考核</span></div><h4>与负债目标对比</h4><p>是否覆盖定价利率？是否守住偿付能力？</p></a>
+        <a class="arch-card" href="#s2"><div class="ac-top"><span class="ac-no">⑦</span><span class="ac-wt">—</span></div><h4>调整 SAA</h4><p>根据评估结果与负债变化，滚动修订配置</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">⑧</span><span class="ac-wt">—</span></div><h4>回到负债分析</h4><p>负债结构变化（新单、退保）重新触发</p></a>
+      </div>
+      <div class="arch-hint"><b>对比记忆：</b>公募基金的流程是「市场分析 → 选股」，险资的流程是「<b>负债分析 → 资产配置</b>」。<b>起点不同，决定了险资是「负债驱动」，基金是「市场驱动」。</b></div>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">6.3</span>投资绩效评估：险资的独特视角</h2>
+    <p class="lead">险资的绩效评估，不能照搬基金的「收益率排名」。它有<b>三个独特维度</b>，考试与实务都要掌握。</p>
+
+    <h3>一、险资绩效评估的三个维度</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>维度</th><th>指标</th><th>为什么重要</th></tr></thead>
+        <tbody>
+          <tr><td><b>① 绝对收益 vs 负债成本</b></td><td>投资收益率 − 定价利率（利差）</td><td>险资的第一目标是「覆盖负债成本」，不是「跑赢大盘」。<b>哪怕收益率低，只要高于定价利率就是安全</b></td></tr>
+          <tr><td><b>② 风险调整收益</b></td><td>Sharpe、Treynor、α、信息比率</td><td>在同等收益下，风险越小越好（见 CH.05）</td></tr>
+          <tr class="note-td"><td><b>③ 资产负债匹配度</b></td><td>久期缺口、现金流匹配、免疫误差</td><td><b>险资独有维度</b>：即使投资收益高，若久期严重错配，利率一波动净值就崩</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="formula">
+      <div class="fx">
+        <b>险资考核的「双基准」</b><br>
+        基准一：<b>绝对基准</b>（覆盖负债成本：定价利率 + 费用）<br>
+        基准二：<b>相对基准</b>（相对市场指数 / 同业，评价投资能力）<br><br>
+        <span style="font-size:13px">成熟做法：<b>以「绝对基准」为底线（必须覆盖负债成本），以「相对基准」为追求（跑赢同业/市场）</b>。</span>
+      </div>
+      <p class="note"><b>会计视角的补充：</b>险资考核还要区分「<b>会计利润</b>」（当期损益）与「<b>综合收益</b>」（含公允价值变动的浮盈浮亏）。IFRS17 下，资产的分类（FVTPL / FVOCI / AC）会直接影响利润波动，因此考核要「<b>利润 + 综合收益 + 资产负债匹配</b>」三者并重。</p>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 一个「看起来亏了」其实「没亏」的例子：</b>某险企买了 30 年国债锁定 3.5% 收益，一年后利率下行、债券账面浮盈，但按摊余成本法（AC）会计利润只体现 3.5% 的票息；另一家买了权益，当年赚 20% 但波动极大。<b>若只看「投资收益率」，后者完胜；但看「覆盖负债成本 + 久期匹配 + 风险」，前者才是「好投资」。</b>这就是险资绩效评估不能只看收益率的原因。
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">6.4</span>资产负债管理（ALM）核心</h2>
+    <p class="lead">ALM 是险资投资实务的「最高统领」——它把资产端和负债端当作一个整体来管理。这一节是本章的「魂」，也是全科与精算主业连接最紧密的地方。</p>
+
+    <h3>一、ALM 要解决的三个问题</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 久期匹配</b>：使资产久期 = 负债久期，免疫利率风险<br>
+        <b>② 现金流匹配</b>：使每期资产现金流覆盖负债现金流，免疫再投资风险与流动性风险<br>
+        <b>③ 情景与压力测试</b>：模拟利率、市场、退保等极端情景，检验净资产与偿付能力的韧性
+      </div>
+    </div>
+
+    <h3>二、久期缺口模型（承 CH.04、CH.05）</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>净资产变动的久期缺口模型</b><br>
+        ΔE ≈ −[D<sub>A</sub>·A − D<sub>L</sub>·L] × Δy/(1+y)<br>
+        = −(D<sub>A</sub> − k·D<sub>L</sub>) × A × Δy/(1+y)，k = L/A<br><br>
+        <b>判断：</b>D<sub>A</sub> &gt; k·D<sub>L</sub>（正缺口）→ 利率上升净资产受损；<br>
+        D<sub>A</sub> &lt; k·D<sub>L</sub>（负缺口）→ 利率下降净资产受损。<br>
+        <span style="font-size:13px">传统寿险通常 D<sub>L</sub> 很长，呈现「负债久期 &gt; 资产久期」的结构性缺口 → 最怕利率下行</span>
+      </div>
+    </div>
+
+    <div class="mnem">
+      <b>口诀：</b>「<span class="verse">寿险负债长、资产追不上；利率往下走、净值就受伤</span>」<br>
+      一句话记住寿险 ALM 的核心矛盾：<b>「长负债、短资产」→ 利率下行是最大敌人。</b>
+    </div>
+
+    <div class="prac">
+      <b>决策应用 · 险资 ALM 的三条实战策略：</b><br>
+      ① <b>拉长资产久期</b>：超长期国债（30/50 年）、长久期非标、利率互换（收固定付浮动）；<br>
+      ② <b>结构优化</b>：用「杠铃策略」（短端保证流动性 + 长端匹配久期）平衡流动性与匹配度；<br>
+      ③ <b>动态调整</b>：随利率变化与负债结构变化，滚动再平衡（呼应 CH.05 的再平衡）。
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观（业绩来源）+ 跨章</span>
+      <p>保险公司的资产负债管理为何强调「资产与负债久期匹配」？请结合利率风险说明。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <div class="ans-skel"><b>四段</b>：为什么有缺口 → 缺口的后果 → 匹配的作用 → 匹配的局限</div>
+          <p class="ans-detail"><b>① 为什么有缺口：</b>寿险负债久期长（数十年满期给付），市场上缺乏足够长的资产，形成「负债久期 &gt; 资产久期」的结构性缺口。</p>
+          <p class="ans-detail"><b>② 缺口的后果：</b>利率下行时，负债（准备金）现值增幅超过资产增幅，净资产受损（利差损）；利率上行时方向相反。</p>
+          <p class="ans-detail"><b>③ 匹配的作用：</b>使资产价值变动与负债价值变动同向同幅度，利率变动时净资产基本不变（免疫）。</p>
+          <p class="ans-detail"><b>④ 匹配的局限：</b>完整免疫还需「凸度约束」（资产凸度 &gt; 负债凸度）与「现金流匹配」；且负债久期本身随利率变化（凸性），需动态调整。</p>
+          <div class="tip"><b>加分：</b>「久期匹配是<b>一阶免疫</b>，凸度约束是<b>二阶免疫</b>，现金流匹配是<b>终极免疫</b>——三者递进，成本也递升。」</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">6.5</span>与监管、偿付能力的联动</h2>
+    <p class="lead">险资投资不是「公司想怎么投就怎么投」，它同时受到<b>投资比例监管</b>与<b>偿付能力监管</b>双重约束。这一节把 CH.01 的条文「翻译」成投资决策语言。</p>
+
+    <h3>一、双层约束的传导链</h3>
+    <div class="arch">
+      <div class="arch-top">
+        <b>险资投资的双层约束</b>
+        <div class="meta"><span>比例监管</span><span>偿付能力</span></div>
+      </div>
+      <div class="arch-grid g4">
+        <a class="arch-card" href="ch1.html"><div class="ac-top"><span class="ac-no">L1</span><span class="ac-wt">—</span></div><h4>大类比例上限</h4><p>权益 30%、不动产 30%、其他金融 25%、境外 15%</p></a>
+        <a class="arch-card" href="ch1.html"><div class="ac-top"><span class="ac-no">L1</span><span class="ac-wt">—</span></div><h4>集中度限制</h4><p>单一法人 20%、单一股票 5%、单一基金 20%</p></a>
+        <a class="arch-card key" href="#s5"><div class="ac-top"><span class="ac-no">L2</span><span class="ac-wt hot">资本</span></div><h4>风险因子占用资本</h4><p>偿二代下，高风险资产消耗偿付能力充足率</p></a>
+        <a class="arch-card spec" href="ch1.html"><div class="ac-top"><span class="ac-no">L2</span><span class="ac-wt">—</span></div><h4>分级监管（2025 年 12 号文）</h4><p>偿付能力越高，权益上限越高（五档最高 50%）</p></a>
+      </div>
+      <div class="arch-hint"><b>核心逻辑：</b>比例监管是「<b>硬天花板</b>」，偿付能力监管是「<b>软约束 + 资本价格</b>」——<b>你越激进，占用资本越多，偿付能力越紧张，最终限制你的投资能力</b>。所以险资投资是「戴着镣铐跳舞」，SAA 必须在监管框架内求最优。</div>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 偿付能力如何「反过来」约束投资：</b>权益类资产的风险因子（28%–40%）远高于利率债（长期国债可能仅 1%–5%）。<b>同样的 1 亿资金，投权益占用 3000 万资本，投国债只占用 500 万资本。</b>因此偿付能力紧张的公司，即使看好股市也不敢多配权益——<b>这是「资本成本」对投资决策的真实约束，比「比例上限」更敏感。</b>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">6.5+</span>宏观经济、长期资金与战术配置<span class="star s3">★★★</span></h2>
+    <p class="lead">考纲第六部分的三个要求——「<b>宏观经济对资产配置的影响</b>」「<b>结合负债特征与风险偏好的定性/定量分析</b>」「<b>不同环境下 ALM 与战术配置策略</b>」——都在这一节串成一条链。</p>
+
+    <h3>一、宏观经济 → 资产配置的传导链</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>宏观经济变量</b>（增长 GDP、通胀 CPI、利率、汇率）→ <b>政策变量</b>（财政、货币）→ <b>市场变量</b>（利率曲线、风险溢价、估值）→ <b>配置变量</b>（久期、权益仓位、另类比例）
+      </div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>政策工具</th><th>操作</th><th>对利率/市场的影响</th><th>险资配置含义</th></tr></thead>
+        <tbody>
+          <tr><td><b>货币政策</b></td><td>降准降息（宽松）</td><td>利率下行、股债双牛（债先牛、股后牛）</td><td>抢配长久期债 + 适度加权益</td></tr>
+          <tr><td><b>货币政策</b></td><td>加息缩表（紧缩）</td><td>利率上行、股债承压</td><td>缩短久期 + 减权益 + 增现金</td></tr>
+          <tr><td><b>财政政策</b></td><td>扩大支出、减税（积极）</td><td>增长预期回升、长端利率上行</td><td>关注基建/科技等受益板块</td></tr>
+          <tr class="note-td"><td><b>财政政策</b></td><td>增发政府债（供给冲击）</td><td>债券供给增加、长端利率承压</td><td>择机配置「供给释放」后的高票息窗口</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="figure">
+      <img src="img/merrill-clock.png" alt="美林时钟：经济周期与资产轮动" loading="lazy">
+      <figcaption><b>图 6-1　美林时钟（顺时针轮动）：</b>左上<b>复苏</b>（增长↑通胀↓）利好股票 → 右上<b>过热</b>（增长↑通胀↑）利好商品 → 右下<b>滞胀</b>（增长↓通胀↑）利好现金 → 左下<b>衰退</b>（增长↓通胀↓）利好债券。2023 年真题「滞胀下偏向哪个资产」的标准答案就藏在这张图里：<b>现金与短久期、低配权益与长久期</b>。对险资的修正：时钟给出方向，<b>负债久期与监管约束决定你能走多远</b>。</figcaption>
+    </figure>
+
+    <h3>二、结合负债特征与风险偏好的定量分析框架</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>险资资产配置的定量优化目标（负债驱动）：</b><br>
+        <b>目标函数：</b>max 收益，s.t. ①利率风险对冲率 ∈ [50%,150%] ②净投资收益覆盖率 ≥100% ③流动性覆盖率 ≥100% ④大类比例上限 ⑤集中度限制<br><br>
+        <b>定性维度</b>（先定性、后定量）：负债久期、保证利率刚性、退保敏感性、风险偏好、资本实力<br>
+        <b>定量维度</b>（在定性约束下求解）：均值-方差优化、Black-Litterman、情景模拟、压力测试
+      </div>
+      <p class="note"><b>「先定性、后定量」是险资配置与公募基金的关键区别：</b>公募基金是「给定风险预算求最大收益」；险资是「<b>先划定性约束（监管 + 负债 + 风险偏好），再在可行域内求最优</b>」。<b>负债特征与风险偏好是「定性」的输入，均值-方差等模型是「定量」的求解器。</b></p>
+    </div>
+
+    <h3>三、不同经济与资本市场环境下的 ALM 与战术配置策略</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>环境</th><th>利率</th><th>ALM 策略</th><th>战术资产配置（TAA）</th></tr></thead>
+        <tbody>
+          <tr><td><b>低利率 + 资产荒</b>（当前主流）</td><td>低位徘徊</td><td>拉长资产久期、利率互换锁定、发展分红险（降负债刚性）</td><td>增配高股息权益、长久期债、基础设施；减现金</td></tr>
+          <tr><td><b>复苏 + 温和通胀</b></td><td>温和上行</td><td>缩短久期、关注利差</td><td>增配权益（周期/价值）、可转债；减长久期债</td></tr>
+          <tr><td><b>过热 + 高通胀</b></td><td>快速上行</td><td>大幅缩短久期、现金缓冲</td><td>商品、黄金、抗通胀债；低配股债</td></tr>
+          <tr class="note-td"><td><b>滞胀</b></td><td>高 + 增长停滞</td><td>短久期 + 高流动性</td><td>现金、商品、黄金、短债；低配权益与长久期债</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>四、中长期资金入市政策（2025 年，超越考试的行业变量）</h3>
+    <div class="prac" style="border-left:3px solid var(--cinnabar)">
+      <b>《关于推动中长期资金入市工作的实施方案》（2025-01，中央金融办等六部委）：</b>
+      <table style="margin:8px 0">
+        <thead><tr><th>要点</th><th>具体内容</th></tr></thead>
+        <tbody>
+          <tr><td><b>险资增配 A 股</b></td><td>大型国有保险公司从 2025 年起<b>每年新增保费的 30% 用于投资 A 股</b>（含权益类基金）</td></tr>
+          <tr><td><b>长周期考核</b></td><td>国有保险公司经营绩效实行<b>三年以上长周期考核</b>，净资产收益率当年度考核权重不高于 30%、三年到五年周期指标权重不低于 60%</td></tr>
+          <tr><td><b>长期股票投资试点</b></td><td>第二批保险资金长期股票投资试点（规模不低于 1000 亿元），后续逐步扩大</td></tr>
+          <tr class="note-td"><td><b>生态优化</b></td><td>险资可作为战略投资者参与定增、举牌认定与公募同等待遇、扩大互换便利规模</td></tr>
+        </tbody>
+      </table>
+      <b>决策含义：</b>①「<b>每年新增保费 30% 投 A 股</b>」是险资权益配置的<b>结构性长期变量</b>——权益不再是「择时仓位」，而是「持续流入的长期配置」；②「<b>长周期考核</b>」解决了险资「不敢长期持有」的考核短视问题，<b>从制度上鼓励价值投资、长期投资</b>；③这与 2025 年险资「股票占比升至 10.1%、连续 6 季度改善」的实际数据相互印证。
+      <div class="src-note">这条政策把「宏观经济 + 监管导向 + 险资配置」串成一个闭环：低利率逼迫险资找收益 → 政策引导险资入市 → 长周期考核护航长期投资 → 高股息权益成为「覆盖负债成本」的最优解。</div>
+    </div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">6.6</span>演算器</h2>
+
+    <div class="calc" id="calc-alm">
+      <h4>久期缺口诊断与净资产变动</h4>
+      <div class="row"><label>资产规模 A（亿元）</label><input class="calc-in" id="a_a" value="1000" type="number"></div>
+      <div class="row"><label>资产久期 D<sub>A</sub>（年）</label><input class="calc-in" id="a_da" value="8" type="number" step="0.5"></div>
+      <div class="row"><label>负债规模 L（亿元）</label><input class="calc-in" id="a_l" value="900" type="number"></div>
+      <div class="row"><label>负债久期 D<sub>L</sub>（年）</label><input class="calc-in" id="a_dl" value="12" type="number" step="0.5"></div>
+      <div class="row"><label>利率变动 Δy（%，正=上行）</label><input class="calc-in" id="a_dy" value="-0.2" type="number" step="0.05"></div>
+      <button class="calc-run">计算净资产变动与缺口判断</button>
+      <div class="verdict" id="a_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-alm');
+        box.__run=function(){
+          var A=+document.getElementById('a_a').value, da=+document.getElementById('a_da').value;
+          var L=+document.getElementById('a_l').value, dl=+document.getElementById('a_dl').value;
+          var dy=+document.getElementById('a_dy').value/100;
+          if(A<=0){document.getElementById('a_out').innerHTML='<span class="calc-hint">资产规模需大于 0。</span>';return}
+          var k=L/A, E=A-L, gap=da-k*dl;
+          var dA=-da*A*dy, dL=-dl*L*dy, dE=dA-dL;
+          var gapType = gap>0.0001?'正缺口（资产更敏感）':(gap<-0.0001?'负缺口（负债更敏感）':'大致匹配');
+          var trend = gap>0.0001?(dy>0?'利率上行净资产受损':'利率下行净资产受益'):(gap<-0.0001?(dy>0?'利率上行净资产受益':'利率下行净资产受损'):'利率变动影响很小');
+          document.getElementById('a_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>杠杆比率 k = L/A = '+L+'/'+A+' = <span class="fin">'+k.toFixed(4)+'</span></li>'
+            +'<li>净资产 E = A − L = <span class="fin">'+E.toFixed(0)+' 亿元</span></li>'
+            +'<li>久期缺口 = D<sub>A</sub> − k·D<sub>L</sub> = '+da+' − '+k.toFixed(4)+'×'+dl+' = <span class="fin">'+gap.toFixed(3)+'</span> 年（'+gapType+'）</li>'
+            +'<li>ΔA = −D<sub>A</sub>·A·Δy = <span class="fin">'+(dA>=0?'+':'')+dA.toFixed(2)+' 亿元</span></li>'
+            +'<li>ΔL = −D<sub>L</sub>·L·Δy = <span class="fin">'+(dL>=0?'+':'')+dL.toFixed(2)+' 亿元</span></li>'
+            +'<li>ΔE = ΔA − ΔL = <span class="fin">'+(dE>=0?'+':'')+dE.toFixed(2)+' 亿元</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>利率变动 '+ (dy*100).toFixed(2) +'% 时，净资产变动 <b style="color:'+(dE>=0?'#A32D2D':'#1E7A4F')+'">'+ (dE>=0?'+':'')+dE.toFixed(2)+' 亿元</b>，占净资产的 '+(dE/E*100).toFixed(2)+'%。'
+            +'<br><b>'+trend+'。</b>'
+            +'<br>净资产变动率 = 缺口 × 杠杆 × Δy，说明<b>久期缺口越大、杠杆越高，利率风险越被放大</b>。';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quick">
+    <h2><span class="sn">6.7</span>核心答案速查</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>考点问题</th><th>核心答案</th></tr></thead>
+        <tbody>
+          <tr><td>险资运用三原则</td><td>安全性（首要）、收益性（目的）、流动性（保障）</td></tr>
+          <tr><td>三原则的法律渊源</td><td>《保险法》第 106 条</td></tr>
+          <tr><td>组织形式三种</td><td>内部投资部、委托管理（委外）、混合模式</td></tr>
+          <tr><td>中小险企常用模式</td><td>核心自管 + 专业委外的混合模式</td></tr>
+          <tr><td>险资流程起点 vs 基金</td><td>险资「负债分析」起点；基金「市场分析」起点（负债驱动 vs 市场驱动）</td></tr>
+          <tr><td>险资绩效三维度</td><td>绝对收益 vs 负债成本、风险调整收益、资产负债匹配度</td></tr>
+          <tr><td>险资考核双基准</td><td>绝对基准（覆盖负债成本）+ 相对基准（跑赢市场）</td></tr>
+          <tr><td>ALM 三问题</td><td>久期匹配、现金流匹配、情景压力测试</td></tr>
+          <tr><td>久期缺口公式</td><td>ΔE ≈ −(D<sub>A</sub>−kD<sub>L</sub>)·A·Δy/(1+y)</td></tr>
+          <tr><td>传统寿险的结构性缺口</td><td>负债久期 &gt; 资产久期 → 最怕利率下行</td></tr>
+          <tr><td>免疫的递进</td><td>久期匹配（一阶）→ 凸度约束（二阶）→ 现金流匹配（终极）</td></tr>
+          <tr><td>偿二代如何约束投资</td><td>高风险资产占用更多资本 → 压缩偿付能力 → 反向限制投资</td></tr>
+          <tr><td>63 号文分级</td><td>偿付能力越高，权益上限越高（可至 45%）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="dig">
+    <h2><span class="sn">6.8</span>教材深挖与易错辨析</h2>
+
+    <details class="big">
+      <summary>深挖一：「负债驱动投资」与「资产驱动负债」——险资管理的两种哲学</summary>
+      <div class="body">
+        <h3>两个相反的逻辑起点</h3>
+        <table>
+          <thead><tr><th></th><th>负债驱动（LDI，主流）</th><th>资产驱动（逆向，少数）</th></tr></thead>
+          <tbody>
+            <tr><td>逻辑起点</td><td>先看负债（久期、保证、现金流），再配资产</td><td>先看资产机会（收益），再设计负债产品</td></tr>
+            <tr><td>典型做法</td><td>免疫、现金流匹配、超长期国债</td><td>投连险、万能险（负债随资产浮动）</td></tr>
+            <tr class="note-td"><td>风险观</td><td>利率风险是首要敌人</td><td>收益不足是首要风险（风险转嫁给客户）</td></tr>
+          </tbody>
+        </table>
+        <h3>为什么传统寿险必须「负债驱动」</h3>
+        <p>传统寿险（尤其保证利率较高的存量保单）的负债是<b>刚性的</b>：无论投资赚多少，都要按合同支付。此时<b>唯一的正确做法是「先锁定资产去匹配负债」，而不是「先赌资产涨跌」</b>。赌赢了锦上添花，赌输了就是利差损。</p>
+        <div class="tip"><b>考试/实务金句：</b>「<b>保证利率高的产品，本质是公司卖出了看跌期权；卖期权的人必须用资产去对冲，而不是用运气。</b>」</div>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖二：IFRS17 与投资端的深层互动——资产分类如何「反噬」利润</summary>
+      <div class="body">
+        <h3>资产分类决定利润的「波动方式」</h3>
+        <p>IFRS17 下，负债端用「当前利率」计量，波动加大。此时<b>资产端的会计分类（FVTPL / FVOCI / AC）决定了「浮盈浮亏」进不进利润表</b>，进而决定利润的波动性。</p>
+        <table>
+          <thead><tr><th>分类</th><th>公允价值变动去向</th><th>利润波动</th><th>适用资产</th></tr></thead>
+          <tbody>
+            <tr><td><b>AC（摊余成本）</b></td><td>不进利润表</td><td class="pos">低</td><td>持有至到期的债券</td></tr>
+            <tr><td><b>FVOCI（权益）</b></td><td>进其他综合收益</td><td class="pos">低</td><td>长期战略持有的股票</td></tr>
+            <tr class="note-td"><td><b>FVTPL</b></td><td>进当期损益</td><td class="neg">高</td><td>交易性资产</td></tr>
+          </tbody>
+        </table>
+        <h3>与负债端的「会计错配」</h3>
+        <p>若负债用当前利率计量（波动大），而资产用摊余成本（波动小），就会产生<b>会计错配</b>：利率变动时，负债剧烈波动、资产纹丝不动，利润表被负债单边「砸」。<b>为减少错配，公司可能选择「资产端也按公允价值计量」或「重新分类资产」</b>——这就是投资决策被会计准则「反向塑造」的例子。</p>
+        <div class="tip"><b>加分句：</b>「投资组合的会计分类不是技术细节，而是<b>利润管理的一部分</b>。FVTPL 比例越高，利润对市场越敏感，这对险资的『稳健』形象是把双刃剑。」</div>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖三：险资「委外」的委托-代理问题与治理之道</summary>
+      <div class="body">
+        <h3>委托管理为什么会产生问题</h3>
+        <p>委托人（保险公司）追求「覆盖负债成本 + 控制风险」，受托人（资管机构）追求「管理规模 + 短期排名 + 超额业绩」。<b>目标函数不一致，就是委托-代理问题的根源。</b></p>
+        <h3>四个治理手段（考试与实务通用）</h3>
+        <p>① <b>投资指引（Mandate）</b>：把 IPS 细化为可执行的合同——明确基准、可投范围、限制（如个股集中度、久期区间）、止损线；</p>
+        <p>② <b>业绩基准与考核周期</b>：用「绝对 + 相对」双基准，考核周期拉长（3–5 年）避免短视；</p>
+        <p>③ <b>风险限额体系</b>：VaR、久期缺口、集中度、流动性限额，让受托人「不能越界」；</p>
+        <p>④ <b>定期报告与审计</b>：持仓穿透、业绩归因（区分配置/选择）、独立第三方托管。</p>
+        <div class="tip"><b>金句：</b>「<b>好的委外，不是找到一个『厉害的人』，而是设计一套『让厉害的人只能做对的事』的制度。</b>」</div>
+      </div>
+    </details>
+
+    <div class="hr-soft"></div>
+    <h3>四个高频易错点</h3>
+    <div class="warn"><b>① 三性原则顺序搞错。</b>是「安全性、收益性、流动性」，安全性第一，不是「收益性第一」。</div>
+    <div class="warn"><b>② 认为险资可以放贷。</b>保险公司不能直接对企业放贷，只能间接（债券、金融产品）。</div>
+    <div class="warn"><b>③ 久期缺口方向判断反。</b>正缺口（资产更敏感）→ 怕利率<b>上行</b>；负缺口 → 怕利率<b>下行</b>。</div>
+    <div class="warn"><b>④ 免疫只做久期匹配。</b>完整免疫还需凸度约束 + 现金流匹配，否则利率大幅波动时失效。</div>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">6.9</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 保险资金运用的首要原则是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 收益性</li>
+        <li>B. 安全性</li>
+        <li>C. 流动性</li>
+        <li>D. 分散性</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：B。</b></p>
+          <p class="ans-detail">《保险法》第 106 条规定保险资金运用「<b>稳健、安全</b>」，三性原则中<b>安全性是首要</b>（资金本质是保户负债），收益性是目的，流动性是保障。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 某寿险公司资产久期 8 年、负债久期 15 年，下列说法正确的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 利率上行时净资产受益</li>
+        <li>B. 利率下行时净资产受益</li>
+        <li>C. 该公司存在负久期缺口</li>
+        <li>D. 该公司不存在利率风险</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：A。</b></p>
+          <p class="ans-detail">D<sub>A</sub>(8) &lt; k·D<sub>L</sub>(15k)，若 k≈1 则 8&lt;15，为<b>负缺口</b>（负债更敏感）。<b>负缺口 → 利率下行净资产受损、利率上行净资产受益</b>，故 A 对。</p>
+          <div class="warn"><b>易错：</b>「负债久期 &gt; 资产久期」是负缺口，怕利率<b>下行</b>（不是上行）。这正是传统寿险的结构性风险。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>3. 简述保险公司「委托管理（委外）」的优缺点，以及如何通过制度设计防范委托-代理问题。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <div class="ans-skel"><b>结构</b>：优点 + 缺点 + 四个治理手段</div>
+          <p class="ans-detail"><b>优点：</b>专业化、规模经济、快速起步、共享人才与研究资源。</p>
+          <p class="ans-detail"><b>缺点：</b>委托-代理问题（目标不一致）、信息不对称、管理费侵蚀收益、风格漂移风险。</p>
+          <p class="ans-detail"><b>治理手段（四点）：</b>①明确投资指引（Mandate）；②双基准 + 长考核周期（3–5 年）；③风险限额体系（VaR、久期、集中度、流动性）；④持仓穿透、业绩归因、独立托管与审计。</p>
+          <div class="src-note">评分：优点 2 分、缺点 2 分、治理手段 4 分（每点 1 分）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>4. 为什么说「久期匹配」不是完整的资产负债免疫？完整的免疫需要哪些条件？<span class="pts">6 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <div class="ans-detail"><b>为什么久期匹配不完整：</b>久期只是「一阶导数」，只在利率<b>小幅变动</b>时近似成立；利率大幅变动时，还需「凸度」这个二阶修正。</div>
+          <div class="ans-detail"><b>完整免疫（Redington 三条件）：</b></div>
+          <p class="ans-detail">① <b>PV 匹配</b>：资产现值 = 负债现值；② <b>久期匹配</b>：资产久期 = 负债久期；③ <b>凸度约束</b>：资产凸度 &gt; 负债凸度（保证利率任何方向变动资产都占优）。</p>
+          <div class="tip"><b>补充加分：</b>「现金流匹配」是更彻底的免疫——让每期资产现金流精确覆盖负债现金流，同时消除再投资风险与流动性风险，但成本最高。</div>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="ch6">○ 标记本页已完成</button>
+
+    <div class="pager">
+      <a href="ch5.html">← CH.05 资产组合管理</a>
+      <a href="topic-term.html">专题一 利率期限与久期 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
