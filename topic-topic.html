@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>专题六 投资决策工具箱 · 投资学 · 科目F8</title>
+<meta name="description" content="把全库的定价、组合、风险、归因工具串成一套可落地的投资决策流程——超越考试、指导投资决策的综合工具箱。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html" class="on">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">专题 T.06</div>
+    <h1>投资决策工具箱</h1>
+    <div class="sub">把全库的定价、组合、风险、归因工具，串成一套「拿到任何资产都能上手」的决策流程</div>
+    <div class="meta">
+      <span>综合全库</span>
+      <span>决策导向</span>
+      <span>难度 ★★★</span>
+      <span>核心能力：完整的投资决策流程</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>专题定位：</b>本专题是「<b>工具箱的总目录</b>」——把前面五章的定价公式、组合方法、风险度量、业绩归因，按「<b>决策流程</b>」重新组织，配一套可复用的检查清单。<b>这是「超越考试、指导投资决策」的最终落点。</b>
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s1">投资决策的通用五步法</a></li>
+      <li><a href="#s2">定价工具箱（算值多少）</a></li>
+      <li><a href="#s3">组合工具箱（怎么摆）</a></li>
+      <li><a href="#s4">风险工具箱（亏多少）</a></li>
+      <li><a href="#s5">归因工具箱（为什么赚/亏）</a></li>
+      <li><a href="#s6">险资决策检查清单</a></li>
+      <li><a href="#s7">三类常见决策的应对模板</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="sn">T6.1</span>投资决策的通用五步法</h2>
+    <div class="arch">
+      <div class="arch-top">
+        <b>拿到任何资产，先问五句</b>
+        <div class="meta"><span>现金流</span><span>贴现率</span><span>风险</span><span>组合</span><span>归因</span></div>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>五 步 决 策 链</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">①</span><span class="ac-wt hot">起点</span></div><h4>现金流是多少？</h4><p>债券=票息+本金；股票=股利/FCFE/RI；期权=max(S−K,0)</p></a>
+        <a class="arch-card key" href="#s2"><div class="ac-top"><span class="ac-no">②</span><span class="ac-wt hot">核心</span></div><h4>用什么贴现？</h4><p>即期利率 / YTM / CAPM 的 r<sub>e</sub> / 无风险利率</p></a>
+        <a class="arch-card" href="#s4"><div class="ac-top"><span class="ac-no">③</span><span class="ac-wt">—</span></div><h4>风险从哪来？</h4><p>利率（久期）、波动（希腊）、尾部（VaR/CVaR）</p></a>
+        <a class="arch-card" href="#s3"><div class="ac-top"><span class="ac-no">④</span><span class="ac-wt">—</span></div><h4>怎么放进组合？</h4><p>SAA 基准、相关性、分散化、保本</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>闭环：归因反馈</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card prac" href="#s5"><div class="ac-top"><span class="ac-no">⑤</span><span class="ac-wt done">反馈</span></div><h4>赚的是哪部分钱？</h4><p>配置贡献 / 选择贡献 / β / 运气</p></a>
+        <a class="arch-card prac" href="#s6"><div class="ac-top"><span class="ac-no">⑥</span><span class="ac-wt done">检查</span></div><h4>过了监管关吗？</h4><p>比例、集中度、偿付能力、流动性</p></a>
+      </div>
+      <div class="arch-hint"><b>记忆：</b>「<span class="verse">先数钱、再折现、看风险、进组合、查归因、过监管</span>」——六句话，覆盖全库。</div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">T6.2</span>定价工具箱（算值多少）</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>资产</th><th>核心公式</th><th>关键注意</th><th>跳转</th></tr></thead>
+        <tbody>
+          <tr><td>债券</td><td>P = Σ CF/(1+y)<sup>t</sup></td><td>YTM 三假设；折溢价看 y vs c</td><td><a href="ch4.html#s1">CH.04 §4.1</a></td></tr>
+          <tr><td>股票（DDM）</td><td>V₀ = D₁/(r−g)</td><td>g = ROE×b；要求 r&gt;g</td><td><a href="ch4.html#s4">CH.04 §4.4</a></td></tr>
+          <tr><td>股票（RI）</td><td>V₀ = B₀ + ΣRI/(1+r)<sup>t</sup></td><td>不分红也可估；与 EV 同构</td><td><a href="topic-equity.html">T.02</a></td></tr>
+          <tr><td>期权</td><td>C₀ = S₀N(d₁)−Ke<sup>−rT</sup>N(d₂)</td><td>μ 不进公式；平价 C−P=S−PV(K)</td><td><a href="topic-option.html">T.03</a></td></tr>
+          <tr class="note-td"><td>期货</td><td>F₀ = S₀·e<sup>(r−q)T</sup></td><td>无套利区间（成本撑开）</td><td><a href="ch4.html#s8">CH.04 §4.8</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">T6.3</span>组合工具箱（怎么摆）</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>问题</th><th>工具</th><th>核心要点</th><th>跳转</th></tr></thead>
+        <tbody>
+          <tr><td>多少配风险资产</td><td>最优风险组合 y* = [E−r<sub>f</sub>]/Aσ²</td><td>风险厌恶 A 越大配越少</td><td><a href="ch3.html#s1">CH.03 §3.1</a></td></tr>
+          <tr><td>怎么分散</td><td>组合方差 σ<sub>p</sub>²</td><td>ρ 越小越能分散；ρ=−1 可归零</td><td><a href="ch3.html#s2">CH.03 §3.2</a></td></tr>
+          <tr><td>长期怎么配</td><td>SAA（负债驱动）</td><td>决定 90% 收益波动</td><td><a href="ch5.html#s1">CH.05 §5.1</a></td></tr>
+          <tr class="note-td"><td>怎么保本</td><td>CPPI / OBPI</td><td>CPPI 顺势、恒定混合反向</td><td><a href="ch5.html#s5">CH.05 §5.5</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">T6.4</span>风险工具箱（亏多少）</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>风险</th><th>度量</th><th>对冲</th><th>跳转</th></tr></thead>
+        <tbody>
+          <tr><td>利率风险</td><td>久期、凸度</td><td>免疫、利率互换、利率期权</td><td><a href="topic-term.html">T.01</a></td></tr>
+          <tr><td>市场风险</td><td>β、VaR</td><td>股指期货、期权</td><td><a href="ch5.html#s6">CH.05 §5.6</a></td></tr>
+          <tr><td>尾部风险</td><td>CVaR、压力测试</td><td>期权保护、限额</td><td><a href="ch5.html#s6">CH.05 §5.6</a></td></tr>
+          <tr class="note-td"><td>资产负债风险</td><td>久期缺口、流动性匹配率</td><td>LDI、现金流匹配</td><td><a href="topic-alm.html">T.05</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">T6.5</span>归因工具箱（为什么赚/亏）</h2>
+    <div class="formula">
+      <div class="fx">
+        <b>总超额 = 配置贡献 + 选择贡献 + 交互项</b><br>
+        配置贡献 = Σ(w<sub>p</sub>−w<sub>B</sub>)R<sub>B</sub>　选择贡献 = Σw<sub>B</sub>(R<sub>p</sub>−R<sub>B</sub>)<br><br>
+        <b>四大比率</b>：Sharpe（σ）、Treynor（β）、Jensen α、信息比率（跟踪误差）
+      </div>
+    </div>
+    <div class="tip"><b>一句话：</b>「<b>赚了钱先别高兴，用 Brinson 拆开看是配置赚的还是选券赚的，再用风险比率看值不值。</b>」详见 <a href="topic-perf.html">T.04</a>。</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">T6.6</span>险资决策检查清单</h2>
+    <p class="lead">任何一笔险资投资，落地前过一遍这份清单（可直接打印贴在工位）。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>#</th><th>检查项</th><th>通过标准</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>安全性</td><td>资产符合《保险法》106 条及可投范围</td></tr>
+          <tr><td>2</td><td>收益性</td><td>预期收益 ≥ 负债成本 + 费用（利差为正）</td></tr>
+          <tr><td>3</td><td>比例合规</td><td>不超大类比例与集中度上限</td></tr>
+          <tr><td>4</td><td>偿付能力</td><td>资本占用在预算内，充足率不跌破底线</td></tr>
+          <tr><td>5</td><td>久期匹配</td><td>不扩大久期缺口（或已对冲）</td></tr>
+          <tr><td>6</td><td>流动性</td><td>匹配负债的现金需求，流动性匹配率 ≥ 100%</td></tr>
+          <tr class="note-td"><td>7</td><td>会计影响</td><td>明确 FVTPL/FVOCI/AC 分类对利润波动的影响</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="sn">T6.7</span>三类常见决策的应对模板</h2>
+
+    <div class="exam">
+      <span class="yr">场景一</span>
+      <p>「要不要加仓权益？」</p>
+      <details class="answer"><summary>看决策模板</summary>
+        <div class="body">
+          <p class="ans-detail"><b>五步：</b>① 看 ERP（盈利收益率 − 国债收益率）分位；② 看经济周期（美林时钟，复苏期加、滞胀期减）；③ 看偿付能力空间（资本够不够）；④ 看比例上限（是否已接近 30%）；⑤ 看波动对利润的影响（FVTPL 占比）。<b>五步都过关，才加仓。</b></p>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">场景二</span>
+      <p>「利率下行期，债券怎么配？」</p>
+      <details class="answer"><summary>看决策模板</summary>
+        <div class="body">
+          <p class="ans-detail"><b>三步：</b>① 抢久期（拉长资产久期锁定高利率）；② 对冲负债（久期缺口 → 利率互换/超长债）；③ 优化结构（骑乘策略赚期限溢价）。<b>核心是「锁得早、对得好」。</b></p>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">场景三</span>
+      <p>「怎么判断一个投资经理是真本事还是运气？」</p>
+      <details class="answer"><summary>看决策模板</summary>
+        <div class="body">
+          <p class="ans-detail"><b>三步：</b>① 用 Sharpe/Treynor/α 看风险调整收益；② 用 Brinson 归因看超额来源（配置 vs 选择）；③ 看跨周期、扣除费用后的可持续性。<b>单一年份的高收益，概率上很可能是运气。</b></p>
+        </div>
+      </details>
+    </div>
+
+    <div class="tip"><b>本专题收尾：</b>全库至此形成一个闭环——<b>六章打基础、六专题做深化、本工具箱做落地</b>。建议配合 <a href="zhenti.html">真题馆</a> 与 <a href="moni-1.html">模拟卷</a> 检验掌握程度。</div>
+  </section>
+
+  <button class="done-btn" data-id="topic-topic">○ 标记本页已完成</button>
+
+  <div class="pager">
+    <a href="topic-alm.html">← 专题五 ALM 与险资配置</a>
+    <a href="zhenti.html">真题馆（2012–2023）→</a>
+  </div>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
