@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CH.05 资产组合管理 · 投资学 · 科目F8</title>
+<meta name="description" content="战略与战术资产配置、债券与权益组合策略、CPPI保本、VaR与一致性风险测度、业绩评价与Brinson归因——30%权重的组合管理主战场。">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand"><b>投资学 · F8</b><span>中国精算师 · 资产管理</span></div>
+  <nav>
+    <a href="xihong.html">西红精算</a>
+    <a href="index.html">首页 · 总览</a>
+    <a href="about.html">使用说明</a>
+    <div class="grp">六大板块（考纲权重）</div>
+    <a href="ch1.html">CH.01 法律法规<span class="w">5%</span></a>
+    <a href="ch2.html">CH.02 金融市场与工具<span class="w">15%</span></a>
+    <a href="ch3.html">CH.03 投资学理论<span class="w">15%</span></a>
+    <a href="ch4.html">CH.04 资产定价理论<span class="w">25%</span></a>
+    <a href="ch5.html" class="on">CH.05 资产组合管理<span class="w">30%</span></a>
+    <a href="ch6.html">CH.06 险企投资实务<span class="w">10%</span></a>
+    <div class="grp">拓展专题（不止于考纲）</div>
+    <a href="topic-term.html">专题 利率期限与久期</a>
+    <a href="topic-equity.html">专题 权益估值三派</a>
+    <a href="topic-option.html">专题 期权与希腊字母</a>
+    <a href="topic-perf.html">专题 业绩评价与归因</a>
+    <a href="topic-alm.html">专题 ALM 与险资配置</a>
+    <a href="topic-topic.html">专题 投资决策工具箱</a>
+    <div class="grp">真题 / 模拟 / 资料</div>
+    <a href="zhenti.html">真题馆（2012–2023）</a>
+    <a href="moni-1.html">模拟卷一</a>
+    <a href="moni-2.html">模拟卷二</a>
+    <a href="moni-3.html">模拟卷三</a>
+    <a href="references.html">参考资料库</a>
+    <a href="resources.html">课程与资源</a>
+  </nav>
+  <div class="prog-mini">学习进度 <b>0 / 13</b></div>
+</aside>
+
+<main class="main">
+
+  <div class="ch-head">
+    <div class="no">CHAPTER 05</div>
+    <h1>资产组合管理</h1>
+    <div class="sub">定价是「算出一件资产值多少」，组合管理是「把一堆资产摆成一个整体」——这一章决定你能不能赚钱</div>
+    <div class="meta">
+      <span>考纲权重 30%</span>
+      <span>教材对应 第 21–26 章</span>
+      <span>历年分值 35–45 分</span>
+      <span>建议投入 35–40 小时</span>
+    </div>
+    <div class="wbar">
+      <div class="lab"><span>本章在本科目中的权重</span><span>30 / 100</span></div>
+      <div class="bar"><i style="width:30%"></i></div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>本章定位：</b>这是全科<b>权重最高（30%）</b>、也最贴近「投资决策」的一章。CH.03 讲「怎么想」、CH.04 讲「怎么算」，本章讲「<b>怎么干</b>」。五套真题里，业绩评价归因、资产配置、保本策略几乎年年考大题。<b>本章也是「超越考试」的关键——它直接对应保险公司投资部的日常工作流程。</b>
+  </div>
+
+  <div class="toc">
+    <b>本 页 导 览</b>
+    <ol>
+      <li><a href="#s0">组合管理的五个环节</a></li>
+      <li><a href="#s1">战略资产配置（SAA）</a></li>
+      <li><a href="#s2">战术资产配置（TAA）与再平衡</a></li>
+      <li><a href="#s3">债券组合管理：消极与积极策略</a></li>
+      <li><a href="#s4">权益组合管理：被动、主动与风格</a></li>
+      <li><a href="#s5">保本策略：CPPI 与组合保险</a></li>
+      <li><a href="#s6">风险管理：VaR、CVaR 与一致性测度</a></li>
+      <li><a href="#s7">业绩评价：四大比率与 Brinson 归因</a></li>
+      <li><a href="#calc">演算器：VaR / 业绩归因 / RSF</a></li>
+      <li><a href="#quick">核心答案速查</a></li>
+      <li><a href="#dig">教材深挖与易错辨析</a></li>
+      <li><a href="#quiz">自测</a></li>
+    </ol>
+  </div>
+
+  <section id="s0">
+    <h2><span class="sn">5.0</span>组合管理的五个环节</h2>
+    <p class="lead">组合管理不是「选几只股票」，而是一个<b>闭环流程</b>。2015 年选择题第 7 题就问「资产配置时不需要哪个过程」，考的就是这个流程的完整记忆。</p>
+
+    <div class="arch">
+      <div class="arch-top">
+        <b>投资管理的闭环五环节</b>
+        <div class="meta"><span>IPS</span><span>资本预期</span><span>SAA</span><span>执行</span><span>再平衡</span></div>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>环 节 链</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">①</span><span class="ac-wt">起点</span></div><h4>投资政策声明 IPS</h4><p>明确目标、约束、风险容忍度、时间跨度</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">②</span><span class="ac-wt">—</span></div><h4>资本预期</h4><p>预测各资产类别的收益、风险、相关性</p></a>
+        <a class="arch-card key" href="#s1"><div class="ac-top"><span class="ac-no">③</span><span class="ac-wt hot">核心</span></div><h4>战略资产配置 SAA</h4><p>确定长期基准权重（决定 90% 以上的收益波动）</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">④</span><span class="ac-wt">—</span></div><h4>执行与选券</h4><p>按 SAA 落地为具体证券</p></a>
+      </div>
+      <div class="arch-flow"><i>▼</i><span>闭环：监控与再平衡回到 IPS</span></div>
+      <div class="arch-grid g4">
+        <a class="arch-card prac" href="#s2"><div class="ac-top"><span class="ac-no">⑤</span><span class="ac-wt done">监控</span></div><h4>监控与再平衡</h4><p>偏离基准时调回；IPS 变化时重做 SAA</p></a>
+        <a class="arch-card prac" href="#s7"><div class="ac-top"><span class="ac-no">⑥</span><span class="ac-wt done">考核</span></div><h4>业绩评价与归因</h4><p>区分「配置赚的」与「选券赚的」</p></a>
+        <a class="arch-card spec" href="#s6"><div class="ac-top"><span class="ac-no">⑦</span><span class="ac-wt">—</span></div><h4>风险监控</h4><p>VaR、压力测试、限额管理</p></a>
+        <a class="arch-card" href="#s0"><div class="ac-top"><span class="ac-no">⑧</span><span class="ac-wt">—</span></div><h4>回到 IPS 复核</h4><p>目标是否达成？约束是否变化？</p></a>
+      </div>
+      <div class="arch-hint"><b>2015 选 7 的答案：</b>「资产配置不需要<b>风险函数 / 优化过程</b>」这类选项往往是对的——要区分「<b>定基准（SAA，需优化）</b>」与「<b>执行（不需要每次重算优化）</b>」。</div>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">选择 7</span>
+      <p>被保险的资产配置时，不需要哪个过程（选项含：预测、风险态度、风险函数、优化过程、分配资产等）。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">正确区分：<b>需要</b>的过程 = 明确风险态度（IPS）、预测资本预期、按优化结果分配资产。<b>不需要</b>的 = 每次都重跑复杂的<b>风险函数/优化程序</b>（SAA 一旦定好，日常执行只需按权重落地与再平衡，无需重复优化）。</p>
+          <div class="warn"><b>考点本质：</b>「优化」是<b>定 SAA 时</b>的事，不是<b>日常执行时</b>的事。这句答出即可。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="s1">
+    <h2><span class="sn">5.1</span>战略资产配置（SAA）</h2>
+    <p class="lead">SAA 是「长期、静态、决定性的」配置——它回答了「我的钱长期应该摆在哪几个资产类别里、各占多少」。<b>实证研究一致表明：组合收益波动性的 90% 以上由 SAA 决定，选券与择时只贡献一小部分。</b></p>
+
+    <h3>一、SAA 的四个输入与一个输出</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>输入：</b>①各资产类别的<b>期望收益 E(r)</b>　②<b>风险 σ</b>　③<b>相关性 ρ</b>　④投资者的<b>风险容忍度（效用函数 / 负债约束）</b><br>
+        <b>输出：</b>一组<b>长期基准权重</b>（如「权益 20%、固收 70%、另类 10%」）<br><br>
+        <b>方法：</b>均值-方差优化（马科维茨）→ 结合负债特征修正（对险资是「负债驱动」）
+      </div>
+      <p class="note"><b>对保险公司的特殊之处：</b>险资的 SAA <b>不是</b>「最大化夏普比率」那么简单，而是<b>负债驱动</b>——先看负债（久期、现金流、保证利率），再看资产如何匹配。<b>因此险资的 SAA 起点是 ALM，而不是马科维茨。</b>这将在 <a href="ch6.html">CH.06</a> 与 <a href="topic-alm.html">ALM 专题</a>展开。</p>
+    </div>
+
+    <h3>二、SAA 的三种经典模型</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>模型</th><th>核心思想</th><th>优点</th><th>局限</th></tr></thead>
+        <tbody>
+          <tr><td><b>均值-方差模型</b></td><td>最大化期望效用 U = E − ½Aσ²，选有效边界上的最优点</td><td>理论基础最完整</td><td>对输入参数极敏感（<b>垃圾进垃圾出</b>），忽略负债</td></tr>
+          <tr><td><b>Black-Litterman</b></td><td>以市场隐含收益为起点，叠加投资经理的主观观点</td><td>输出稳定、不极端，融合主观判断</td><td>观点置信度需人为设定</td></tr>
+          <tr class="note-td"><td><b>负债驱动（LDI / ALM）</b></td><td>以负债为基准，最小化「资产-负债」缺口的风险</td><td><b>最贴合险资/养老金</b></td><td>需精确的负债现金流模型</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 险资 SAA 的「三大约束」：</b>保险公司定 SAA，除了收益-风险，还必须过三道关——<br>
+      ① <b>监管比例关</b>：权益 ≤30%（或按偿付能力分级放宽到 45%）、不动产 ≤30%、其他金融产品 ≤25%、境外 ≤15%（见 <a href="ch1.html">CH.01</a>）；<br>
+      ② <b>偿付能力关</b>：高风险资产的「风险因子」会消耗偿付能力充足率（偿二代），权益 28%–40%、另类更高；<br>
+      ③ <b>会计利润关</b>：不同资产（公允价值变动 vs 摊余成本）对利润表的影响不同，影响当期利润稳定性。<br>
+      <b>所以险资的 SAA 本质是一个「多目标约束优化」，而不是单一的马科维茨。</b>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sn">5.2</span>战术资产配置（TAA）与再平衡</h2>
+    <p class="lead">SAA 是「长期基准」，TAA 是「短期偏离基准抓机会」。<b>SAA 决定组合的「基因」，TAA 决定组合的「临场发挥」。</b></p>
+
+    <div class="formula">
+      <div class="fx">
+        <b>SAA vs TAA 的对比（一句话版）</b><br>
+        SAA：<b>定中枢</b>——长期、静态、决定 90% 收益波动<br>
+        TAA：<b>做偏离</b>——短期、动态、围绕中枢上下浮动（通常 ±5% ~ ±10%）<br><br>
+        <b>判断 TAA 是否有效的三个问题：</b>①你的预测是否比市场准？②偏离的幅度是否足够产生收益又不会突破风险限额？③偏离多久回正（再平衡成本）？
+      </div>
+    </div>
+
+    <h3>一、三种再平衡策略</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>策略</th><th>做法</th><th>适合场景</th></tr></thead>
+        <tbody>
+          <tr><td><b>定期再平衡</b></td><td>固定周期（月/季/年）调回基准</td><td>交易成本高、市场趋势弱</td></tr>
+          <tr><td><b>阈值再平衡</b></td><td>偏离超阈值（如 5%）才调回</td><td>趋势市场（避免频繁反向操作）</td></tr>
+          <tr class="note-td"><td><b>恒定混合策略</b></td><td>始终维持固定比例 → 涨了卖、跌了买（<b>凹型支付</b>）</td><td>震荡市最优，趋势市受损</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">选择 24</span>
+      <p>购买并持有策略、恒定组合策略、投资组合保险策略（CPPI）的描述——什么情况有利、凹凸型支付模式、适合买卖什么证券。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>三种策略的「支付曲线形状」是本题的核心：</b></p>
+          <table>
+            <thead><tr><th>策略</th><th>做法</th><th>支付模式</th><th>有利市场</th></tr></thead>
+            <tbody>
+              <tr><td><b>购买并持有</b></td><td>买入后不动（不做再平衡）</td><td>线性</td><td>单边上涨（不卖，吃满涨幅）</td></tr>
+              <tr><td><b>恒定组合</b></td><td>涨了卖、跌了买（反向操作）</td><td class="pos"><b>凹型</b></td><td>震荡市（高抛低吸）</td></tr>
+              <tr class="note-td"><td><b>组合保险 CPPI</b></td><td>涨了买、跌了卖（顺势操作）</td><td class="neg"><b>凸型</b></td><td><b>趋势市（下跌时止损，上涨时加仓）</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>一句话记忆：</b>恒定组合是「反向交易」（凹型，靠波动赚钱），CPPI 是「顺势交易」（凸型，靠趋势赚钱）。</p>
+          <div class="warn"><b>易错：</b>把 CPPI 理解成「跌了买」（那是恒定组合）。<b>CPPI 恰恰是「跌了卖」——因为风险资产下跌会侵蚀缓冲垫，必须减仓保底。</b>方向完全相反。</div>
+        </div>
+      </details>
+    </div>
+
+    <figure class="figure">
+      <img src="img/cppi.png" alt="三种策略的支付曲线：CPPI 凸、恒定组合凹" loading="lazy">
+      <figcaption><b>图 5-1　三种策略的支付曲线：</b>购买并持有是直线；<b>恒定组合凹型</b>——单边大涨大跌都跑输（跌了越买亏越多、涨了越卖赚越少），震荡市高抛低吸占优；<b>CPPI 凸型且下跌端有「地板」</b>——跌破缓冲垫即止损减仓，组合价值趋近保本线，上行保留弹性。<b>看形状就能判断策略类型，这是选择题的秒杀技巧。</b></figcaption>
+    </figure>
+
+    <div class="prac">
+      <b>决策应用 · 险资何时用 TAA：</b>险资是长钱，通常<b>以 SAA 为主、TAA 为辅</b>。一个实用的 TAA 触发条件：「<b>当权益的盈利收益率（E/P）减去 10 年国债收益率（即股权风险溢价 ERP）处于历史极值分位时</b>」，才做战术性超配/低配。例如 ERP 高于历史 90% 分位 → 权益相对便宜 → 战术加仓 5 个点。这比「拍脑袋择时」可解释、可回测、可写入投资纪律。
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sn">5.3</span>债券组合管理：消极与积极策略</h2>
+    <p class="lead">债券组合管理的核心矛盾是「<b>免疫利率风险</b>」还是「<b>主动赚利率的钱</b>」。消极策略追求前者，积极策略追求后者。</p>
+
+    <h3>一、消极策略：免疫、指数化、现金流匹配</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 免疫（Immunization）</b>——使资产久期匹配负债久期，利率变动不影响净值<br>
+        条件（Redington）：PV 匹配 + 久期匹配 + 资产凸度 &gt; 负债凸度（见 CH.04 §4.2）<br><br>
+        <b>② 指数化</b>——复制债券指数（因成分债多、流动性差，多用<b>分层抽样</b>而非全复制）<br><br>
+        <b>③ 现金流匹配（Dedication）</b>——让每期资产现金流恰好覆盖负债现金流，最彻底但成本最高
+      </div>
+      <p class="note"><b>三者的递进关系：</b>免疫（只匹配久期，允许现金流错配）→ 指数化（匹配市场，追求跟踪误差最小）→ 现金流匹配（每期现金流精确对应，成本最高）。<b>考试问「区别」时，答出「免疫只看久期、现金流匹配看每期现金流」即可得分。</b></p>
+    </div>
+
+    <h3>二、积极策略：赚利率与利差的钱</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>策略</th><th>操作</th><th>赚什么钱</th><th>前提条件</th></tr></thead>
+        <tbody>
+          <tr><td><b>利率预期</b></td><td>预期利率下降 → 拉长久期（买长期债）</td><td>资本利得</td><td>预测比市场准</td></tr>
+          <tr><td><b>骑乘收益率曲线</b></td><td>买入期限长于持有期的债券，靠「沿曲线滚下」赚取期限溢价</td><td>期限溢价 + 曲线变平坦</td><td>曲线向上倾斜且稳定</td></tr>
+          <tr><td><b>利差交易</b></td><td>低买高卖信用利差（信用债 vs 国债）</td><td>信用利差收窄</td><td>信用研究能力</td></tr>
+          <tr class="note-td"><td><b>互换（Swap）</b></td><td>替代互换、利差互换、税收互换、收益率提升互换</td><td>定价错误 / 相对价值</td><td>能识别被错误定价的券</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2017</span><span class="yr">大题 6</span>
+      <p>债券的积极组合管理方法。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail">按「<b>两种预测维度</b>」作答最清晰：</p>
+          <p class="ans-detail"><b>维度一 · 预测利率（久期管理）</b>：预期利率下降 → 拉长久期（增加对利率的敏感度）；预期上升 → 缩短久期。</p>
+          <p class="ans-detail"><b>维度二 · 预测利差与相对价值（不赌利率方向）</b>：①<b>骑乘</b>（沿曲线滚动赚期限溢价）；②<b>利差交易</b>（信用债相对国债）；③<b>四种互换</b>（替代互换、利差互换、税收互换、收益率提升互换）；④<b>蝶式/杠铃策略</b>（调整久期分布形状，不改变总久期）。</p>
+          <div class="tip"><b>加分句：</b>「积极管理的收益来源只有两个：<b>①对利率方向的正确预测，②对相对价值（利差）的正确识别。</b>前者是择时，后者是选券。成熟的债券投资机构更多靠后者。」</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 40</span>
+      <p>一个基金面临各种不同债券（给出期限、修正久期、利率变动幅度）。①分析哪种债券合适；②给出两种策略，求不同策略下债券市场价值变化的百分比。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-skel"><b>核心：</b>用 ΔP/P ≈ −D*×Δy 算每种债券的价格变动，再判断「哪种更合适」取决于对利率方向的看法。</p>
+          <p class="ans-detail"><b>（1）选券判断</b>：若预期利率<b>下降</b>，选<b>修正久期最大</b>的债券（涨得最多）；若预期<b>上升</b>，选久期最小（跌得最少）或做空久期。</p>
+          <p class="ans-detail"><b>（2）价值变动百分比</b>：直接套 ΔP/P = −D* × Δy。注意 Δy 要带符号（下降为负）。</p>
+          <div class="warn"><b>易错：</b>「利率下降 20BP」对应 Δy = −0.0020，ΔP/P = −D*×(−0.0020) = +D*×0.0020（涨）。符号搞反是最高频错误。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2012</span><span class="yr">大题 41</span>
+      <p>M 公司养老金固定给付计划，给出三种衍生策略（利率期权 2'、国债期权 2'、国债期货 2'）</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>三种策略的对冲逻辑（都是对冲养老金负债的利率风险）：</b></p>
+          <table>
+            <thead><tr><th>策略</th><th>工具</th><th>作用</th><th>要点</th></tr></thead>
+            <tbody>
+              <tr><td>利率期权</td><td>利率上限/下限/互换期权</td><td>为利率波动买「保险」，保留上行收益</td><td>成本 = 期权费；保留期权价值（Vega）</td></tr>
+              <tr><td>国债期权</td><td>国债看跌/看涨期权</td><td>对冲债券价格波动（利率反向）</td><td>用看跌期权保底，涨了不损失</td></tr>
+              <tr class="note-td"><td>国债期货</td><td>国债期货</td><td>线性对冲，锁定价格</td><td><b>成本最低但放弃收益</b>；用「久期匹配」定对冲数量</td></tr>
+            </tbody>
+          </table>
+          <div class="tip"><b>一句话归纳：</b>「<b>期货是线性对冲（便宜但锁死），期权是非线性对冲（有成本但保留上行）。</b>」养老金若担心「利率下行导致负债折现率下降、负债膨胀」，应用国债期货或利率互换<b>拉长资产久期</b>；若担心「利率上行导致资产贬值」，应用国债看跌期权<b>保底</b>。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>③ 案例分析：或有免疫（Contingent Immunization，博迪 16.4.3）</h3>
+    <p class="lead">这是「<b>固定收益组合构建策略与管理</b>」的经典案例——把消极免疫与积极管理<b>融合</b>的一种混合策略，由利伯维茨（Liebowitz）与温伯格（Weinberger）1982 年提出。</p>
+    <div class="formula">
+      <div class="fx">
+        <b>或有免疫的核心思想：</b>设一个「<b>触发点</b>」，组合价值高于触发点时积极管理，跌破触发点时立刻转为免疫。<br><br>
+        <b>触发点 = 最低可接受终值 / (1 + r)<sup>T</sup></b><br>
+        <span style="font-size:13px">（r 为当前市场利率，T 为剩余期限；这个规模如果现在免疫，到期能无风险地滚到最低可接受终值）</span>
+      </div>
+    </div>
+    <div class="exam">
+      <span class="yr">案例</span><span class="yr hot">博迪 16 章</span>
+      <p>某机构管理者持有资产组合现值 1000 万美元，现行利率 10%，剩余期限 2 年。若现在免疫，2 年后可得 1210 万美元；但管理者愿意承担一定风险，只要求「最终价值不低于 1100 万美元」。问：①触发点是多少？②初始可承受多大的风险损失（安全垫）？③策略如何执行？</p>
+      <details class="answer"><summary>看完整解答</summary>
+        <div class="body">
+          <p class="ans-detail"><b>① 触发点</b> = 最低可接受终值/(1+r)<sup>T</sup> = 1100万/(1.10)² = <b>909 万美元</b></p>
+          <p class="ans-detail">含义：只要组合价值不低于 909 万，就还有「翻盘」到 1100 万的可能；一旦跌破 909 万，立即免疫。</p>
+          <p class="ans-detail"><b>② 安全垫</b> = 1000 万 − 909 万 = <b>91 万美元</b>。这就是管理者可以「赌」的资本——最多亏掉这 91 万。</p>
+          <p class="ans-detail"><b>③ 执行策略</b>：开始积极管理（拉长久期、骑乘、利差交易）。<b>组合价值 &gt; 909 万 → 继续积极；跌至 909 万 → 立即免疫</b>（锁定 10% 复利，确保 2 年后拿到 1100 万）。</p>
+          <div class="warn"><b>三个要点：</b>① 触发点<b>随利率与时间动态变化</b>（利率上升 → 触发点上移，安全垫收窄）；② 本质是「<b>用安全垫买一份积极的期权</b>」——下行保护是刚性的（免疫兜底），上行收益是开放的（积极管理）；③ 与 CPPI（<a href="#s5">§5.5</a>）异曲同工，但<b>或有免疫是「跌破触发点才转免疫」，CPPI 是「连续按乘数调仓」</b>——前者是「开关式」，后者是「连续式」。</div>
+          <div class="src-note">评分：触发点 3 分、安全垫 2 分、执行逻辑 3 分。这是「积极-消极混合策略」的代表，考纲第五部分（三）「案例分析」的高频母题。</div>
+        </div>
+      </details>
+    </div>
+    <div class="prac">
+      <b>对险资的启示：</b>或有免疫给险资一个「<b>既想搏超额、又要保底线</b>」的量化工具。<b>对应到保险经营，就是「保证利率 + 分红」的产品结构</b>——保证利率部分用免疫（资产端锁死），分红部分用积极管理（搏超额）。<b>「底线思维 + 进取空间」是险资债券组合管理的灵魂。</b>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sn">5.4</span>权益组合管理：被动、主动与风格</h2>
+    <p class="lead">权益组合的核心问题是：<b>市场是否有效？</b>有效 → 被动指数化；无效 → 主动选股。这个判断直接决定了整个权益策略的起点（呼应 CH.03 的 EMH）。</p>
+
+    <h3>一、被动 vs 主动</h3>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>维度</th><th>被动（指数化）</th><th>主动管理</th></tr></thead>
+        <tbody>
+          <tr><td>理念</td><td>市场有效，无法持续战胜</td><td>市场存在可捕捉的无效/异象</td></tr>
+          <tr><td>目标</td><td>跟踪指数，误差最小</td><td>跑赢基准，产生正 α</td></tr>
+          <tr><td>成本</td><td>低（管理费 0.1%–0.5%）</td><td>高（1%–2% + 业绩提成）</td></tr>
+          <tr><td>跟踪方法</td><td>全复制 / 抽样 / 优化</td><td>基本面 / 量化 / 择时</td></tr>
+          <tr class="note-td"><td>适用</td><td>大盘蓝筹、发达市场（更有效）</td><td>小盘、新兴市场、专业领域（更无效）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>二、风格：价值 vs 成长，规模因子</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>价值股</b>：低 P/B、低 P/E、高股息率——被市场低估的「便宜」股票<br>
+        <b>成长股</b>：高增长、高 P/E、低分红——市场预期高增长的股票<br><br>
+        <b>Fama-French 三因子</b>：R − r<sub>f</sub> = α + β(R<sub>M</sub>−r<sub>f</sub>) + s·SMB + h·HML<br>
+        <span style="font-size:13px">SMB = 小盘 − 大盘（规模因子）；HML = 高账面市值比 − 低（价值因子）</span>
+      </div>
+      <p class="note"><b>风格轮动的实务含义：</b>价值与成长并非「谁更好」，而是<b>在不同宏观环境与利率环境下轮动</b>。利率上行期成长股承压（远期现金流折现受损大），价值股相对抗跌；利率下行期成长股占优。这对险资的权益风格配置有直接指导意义。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2017</span><span class="yr">大题 5</span>
+      <p>成长股票和价值股票、市场有效性、消极组合。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>这条线把三件事串起来：</b></p>
+          <p class="ans-detail">① <b>价值与成长的定义</b>（低 P/B、高股息 vs 高增长、高 P/E）；</p>
+          <p class="ans-detail">② <b>市场有效性与二者的关系</b>：价值溢价（HML 因子）若长期存在，是对 EMH 的挑战之一（或解释为「价值股的额外风险补偿」）；</p>
+          <p class="ans-detail">③ <b>消极组合的适用</b>：若相信市场（半强式）有效，则应采用<b>消极（指数化）</b>组合，追求 β 而非 α，因为主动管理的 α 在扣除成本后大概率转负。</p>
+          <div class="tip"><b>答题金句：</b>「市场有效性是消极投资的充分条件，但不是必要条件——即使市场不完全有效，只要主动管理的 α 不足以覆盖成本，消极投资仍是最优选择。」</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 41</span>
+      <p>海外投资分析材料。①指出材料中对指数化投资和积极性投资的有利方面；②具体哪个策略合适，指出原因。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>（1）两类投资各自的有利方面</b></p>
+          <table>
+            <thead><tr><th>策略</th><th>有利方面</th></tr></thead>
+            <tbody>
+              <tr><td>指数化</td><td>成本低、分散化好、避免「客场作战」的信息劣势、长期复利稳定</td></tr>
+              <tr class="note-td"><td>积极</td><td>海外市场可能更无效（尤其新兴市场）、存在可捕捉的定价错误、专业能力可产生 α</td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>（2）选哪个、为什么</b></p>
+          <p class="ans-detail">标准答案逻辑：<b>取决于目标市场的有效性与自身研究能力。</b>对<b>发达市场（美股、欧债）</b>，市场高度有效、且我方无信息优势 → <b>指数化为主</b>；对<b>新兴市场或特定行业</b>，无效性更强、专业研究可产生 α → <b>积极管理</b>。<b>结论通常是「核心（发达市场）用指数 + 卫星（新兴/另类）用主动」的核心-卫星结构。</b></p>
+          <div class="src-note">这题的「核心-卫星（core-satellite）」结构是高分关键词，务必点出。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>③ 案例分析：险资权益组合的「高股息 + 长期持有」构建</h3>
+    <p class="lead">考纲第五部分（四）「权益组合构建策略与管理以及案例分析」。险资的权益组合构建，与公募基金有本质区别——它追求的是「<b>稳定股息 + 低波动 + 低资本占用</b>」。</p>
+    <div class="formula">
+      <div class="fx">
+        <b>险资权益组合的三步构建法：</b><br>
+        ① <b>定风格</b>：以「高股息、低波动、稳定 ROE」为核心（银行、公用事业、能源、优质消费），兼顾「科技成长」做卫星<br>
+        ② <b>定结构</b>：核心（高股息蓝筹 60%–70%）+ 卫星（成长/主题 20%–30%）+ 缓冲（可转债/红利低波 ETF 10%）<br>
+        ③ <b>定约束</b>：单一股票 ≤5%、FVOCI 分类平滑利润、分红再投资
+      </div>
+    </div>
+    <div class="exam">
+      <span class="yr">案例</span><span class="yr hot">高股息策略</span>
+      <p>某寿险公司在 10 年国债收益率 1.85% 的低利率环境下，要构建一个「能覆盖 3.5% 负债成本」的权益组合。请说明「高股息策略」如何实现这一目标，并给出配置逻辑。</p>
+      <details class="answer"><summary>看完整解答</summary>
+        <div class="body">
+          <p class="ans-detail"><b>核心逻辑：用「股息率 + 股息增长」替代「债券票息」覆盖负债成本。</b></p>
+          <p class="ans-detail"><b>① 选股标准：</b>股息率 &gt; 3.5%（如银行、煤炭、公用事业、高速、电信），且股息<b>可持续</b>（分红率稳定、现金流充沛、ROE 稳定在 12% 以上）。</p>
+          <p class="ans-detail"><b>② 收益结构：</b>总收益 = <b>股息率（当期现金流，匹配负债）+ 股息增长（对抗通胀）+ 估值重估（可选）</b>。其中前两项是「确定性的、可覆盖负债成本的」，第三项是「锦上添花」。</p>
+          <p class="ans-detail"><b>③ 会计处理：</b>将高股息股票分类为 <b>FVOCI</b>——股息进当期损益（贡献稳定利润），股价波动进其他综合收益（不扰动利润表），实现「<b>拿股息、稳利润、缓波动</b>」。</p>
+          <p class="ans-detail"><b>④ 监管红利：</b>《保险公司资产负债管理办法》（2026）要求「净投资收益覆盖率 ≥100%」，高股息资产（股息 = 净投资收益）恰好是<b>提升净投资收益覆盖率</b>的最优工具；且偿二代下「长期持有权益」可享受<b>风险因子优惠</b>。</p>
+          <div class="warn"><b>风险提示：</b>高股息 ≠ 无风险。需警惕「<b>股息陷阱</b>」——高股息率可能是「股价跌出来的」或「不可持续的特别分红」。<b>判断股息可持续性，看「自由现金流覆盖率」而非「当期股息率」。</b></div>
+          <div class="src-note">这是「超越考试」的核心案例，直连 2025–2026 年险资真实配置趋势（险资 2025 年股票配置占比升至 10.1%，高股息是主攻方向）。</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>④ 进阶：Treynor-Black 积极组合管理模型（博迪第 27 章）</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>Treynor-Black 模型</b>：把「被动市场组合」与「主动组合」按最优比例混合。<br><br>
+        <b>核心思想：</b>对每个被分析证券，用「<b>评估比率（Appraisal Ratio）= α<sub>i</sub> / σ²(e<sub>i</sub>)</b>」衡量其「单位非系统风险带来的 α」，据此确定主动组合的权重。<br><br>
+        <b>主动组合权重</b>：w<sub>i</sub> ∝ α<sub>i</sub> / σ²(e<sub>i</sub>)　（α 越高、非系统风险越小，权重越大）<br>
+        <b>最优风险预算</b>：主动组合的配置比例 ∝ [α<sub>A</sub>/σ²(e<sub>A</sub>)] ÷ [E(r<sub>M</sub>)−r<sub>f</sub>]/σ<sub>M</sub>²
+      </div>
+      <p class="note"><b>为什么重要：</b>它回答了「<b>如果我有选股能力，应该投多少给主动、多少给被动</b>」——答案取决于「α 的质量」（α 越高、越确定，主动越多）。<b>这从理论上证明了「没有可靠 α 时，被动才是最优」，呼应 CH.03 的 EMH。</b></p>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sn">5.5</span>保本策略：CPPI 与组合保险</h2>
+    <p class="lead">保本策略回答一个实际问题：「<b>如何保证本金安全，又不错过上涨机会？</b>」这是保险公司（投连险、分红险、万能险）、养老金、结构性产品都要面对的问题。</p>
+
+    <h3>一、两种保本方法</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 静态组合保险（OBPI，期权复制）</b>：债券 + 看涨期权<br>
+        保本额现值 PV(K) 买零息债，剩余部分买看涨期权（或股票 + 看跌期权）<br>
+        → 由平价关系，两者等价；成本 = 期权费<br><br>
+        <b>② 动态组合保险（CPPI，恒定比例）</b>：<br>
+        <b>缓冲垫（Cushion）= 组合价值 − 保本额现值</b><br>
+        <b>风险资产投资额 E = m × Cushion</b>（m 为乘数，通常 2~6）<br>
+        <b>剩余买无风险资产</b> → 随市场动态调整，越涨越买风险资产、越跌越卖
+      </div>
+      <p class="note"><b>CPPI 的凸型支付（呼应 5.2 节）：</b>市场上涨 → 组合增值 → 缓冲垫变大 → 风险资产投资额 E 变大 → 进一步上涨时收益更多（<b>越涨越买</b>）。市场下跌 → 缓冲垫缩水 → 减仓风险资产 → 保底。<b>这是「跌了卖」，与恒定混合的「跌了买」相反。</b></p>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2015</span><span class="yr">大题 35</span>
+      <p>资产管理公司代理客户管理 1 亿美元资产，承诺投资收益率下限为 0%（保本）。股票组合标准差 25%、国债利率 5%。①承诺保本应收取多少管理费（看跌期权价值）？②多少钱买股票、多少钱买国债？③未来一天损失达某值（给标准正态分布函数值）。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>本质：保本 = 国债（锁定下限）+ 看涨期权（参与上涨），而看涨成本可用 B-S 估算。</b></div>
+          <p class="ans-detail"><b>（1）保本的管理费 = 看涨期权的价值</b></p>
+          <p class="ans-detail">1 亿美元保本 → 先买国债锁定 1 亿的现值：国债 = 1 亿/(1.05)<sup>T</sup>。<br>
+          剩余资金全部买「股票的看涨期权」（执行价 = 保本额）。<b>这份看涨期权的价值，就是客户应付的「保本费用」</b>——它等于 B-S 公式的 C₀（执行价 K = 保本额、期限 T、σ = 25%、r = 5%、S₀ = 当前指数）。</p>
+          <p class="ans-detail"><b>（2）股票与国债的分配（OBPI 视角）</b></p>
+          <p class="ans-detail">国债 = PV(保本额) = 1 亿/(1.05)<sup>T</sup>；股票（或等价风险敞口）= 1 亿 − 国债。<br>
+          若用「股票 + 看跌期权」视角：全买股票（1 亿），同时买 1 亿名义的看跌期权（执行价 = 保本额）。两种表述由平价关系等价。</p>
+          <p class="ans-detail"><b>（3）一天的 VaR（给正态分布分位点）</b></p>
+          <p class="ans-detail">股票日波动率 = 25% / √252 ≈ 1.575%。<br>
+          组合中股票部分价值 V 的 1 日 VaR = V × σ<sub>日</sub> × z<sub>α</sub>（z<sub>α</sub> 为标准正态分位点，如 95% 对应 1.645、99% 对应 2.326）。<br>
+          <b>VaR = V × 1.575% × z<sub>α</sub></b>，代入题目给的分位点即可。</p>
+          <div class="formula"><div class="fx">
+            <b>保本产品定价的统一框架</b>：<br>
+            保费 = <b>PV(保本额) + 看涨期权费</b>　（OBPI）<br>
+            = 股票现价 + 看跌期权费　（等价表述）<br>
+            = 账户价值 × [1 − m] 中的缓冲垫逻辑　（CPPI 动态近似）
+          </div></div>
+          <div class="src-note">评分：保本费（期权价值）4 分、分配 2 分、VaR 4 分。跨章关联：与 CH.04 §4.6 的「变额年金最低保证」同构。</div>
+          <div class="warn"><b>易错：</b>VaR 计算忘了把年化波动率换算成日波动率（÷√252）；或忘了乘组合中股票的实际金额（不是总资产）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · CPPI 的致命缺陷（「越跌越卖」的螺旋）：</b>CPPI 在<b>连续下跌 + 高乘数</b>时，会陷入「下跌 → 减仓 → 再下跌 → 再减仓」的螺旋，若市场急跌，可能<b>来不及减仓就击穿保本线（monetization risk）</b>——这就是 1987 年股灾组合保险失灵的原因。<b>对险资的启示：保本产品要么用真实期权对冲（OBPI，成本高但确定），要么 CPPI 设置保守乘数（m ≤ 3）并留安全边际。</b>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sn">5.6</span>风险管理：VaR、CVaR 与一致性测度</h2>
+    <p class="lead">组合管理的另一半是「控制下行」。这一节回答「<b>我最多会亏多少？</b>」——这是监管、董事会、客户都会问的第一个问题。</p>
+
+    <h3>一、VaR 与 CVaR</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>VaR（在险价值）</b>：在给定置信水平 α 下，未来一定时期内可能的最大损失<br>
+        VaR<sub>α</sub> = 使得 P(损失 ≤ VaR) = α 的阈值<br><br>
+        <b>参数法（正态假设）</b>：VaR<sub>α</sub> = −(μ − z<sub>α</sub>·σ) × V ≈ z<sub>α</sub>·σ·V<br>
+        <span style="font-size:13px">z<sub>95%</sub> = 1.645，z<sub>99%</sub> = 2.326</span><br><br>
+        <b>CVaR / ES（条件在险价值 / 期望损失）</b>：<br>
+        CVaR<sub>α</sub> = E[损失 | 损失 &gt; VaR<sub>α</sub>]　（<b>超过 VaR 的那部分损失的期望</b>）
+      </div>
+      <p class="note"><b>VaR 的三个算法：</b>①<b>历史模拟法</b>（用历史收益分布直接取分位点，不需假设）；②<b>参数法</b>（假设正态，快但不准）；③<b>蒙特卡洛</b>（模拟，最灵活最慢）。考试问「三法对比」时按「假设 / 速度 / 准确性」三个维度答。</p>
+    </div>
+
+    <h3>二、一致性风险测度（Coherent Risk Measure）</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>四个公理</b>：①<b>单调性</b>　②<b>次可加性</b>（ρ(X+Y) ≤ ρ(X)+ρ(Y)，风险不能因合并而放大）<br>
+        ③<b>正齐次性</b>（ρ(λX) = λρ(X)）　④<b>平移不变性</b>（ρ(X+c) = ρ(X) − c）<br><br>
+        <b>结论：CVaR 满足全部四公理（一致）；VaR 不满足次可加性（非一致）。</b>
+      </div>
+      <p class="note"><b>2014 年客观题 19 考「一致性风险测度」：</b>核心考点就是「<b>VaR 不满足次可加性，CVaR 满足</b>」。因为两个组合合并后，VaR 可能大于各自 VaR 之和（肥尾、非线性时），这违背「分散化不增加风险」的直觉；而 CVaR 是条件期望，天然满足次可加。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">客观 18、19</span>
+      <p>在险价值 VaR；一致性风险测度。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>VaR 的定义与三个算法</b>（历史模拟 / 参数法 / 蒙特卡洛）。</p>
+          <p class="ans-detail"><b>一致性风险测度的四公理</b>：单调性、次可加性、正齐次性、平移不变性。</p>
+          <p class="ans-detail"><b>核心结论：</b>VaR <b>不是</b>一致性测度（不满足次可加性），CVaR（ES）<b>是</b>。所以监管在「偿二代 / 巴塞尔」中越来越倾向用 CVaR。</p>
+          <div class="tip"><b>保险关联加分：</b>「VaR 回答『在 α 置信度下最多亏多少』，但<b>不回答『一旦超过这个值会亏多少』</b>——而后者恰恰是保险资金最关心的（尾部风险）。所以险资风险报告应同时披露 VaR 与 CVaR。」</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="prac">
+      <b>实务延伸 · 压力测试为什么比 VaR 更重要：</b>VaR 是「正常市场」的风险度量，而险资最怕的是「极端市场」（2008 年式危机）。<b>压力测试（stress testing）</b>设定极端情景（利率+300BP、股市−40%、汇率−10%），直接计算净资产与偿付能力的变化。<b>监管（偿二代）明确要求险企做压力测试——这是「超越考试」的实操知识。</b>
+    </div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="sn">5.7</span>业绩评价：四大比率与 Brinson 归因</h2>
+    <p class="lead">组合管得好不好，不能只看「赚了多少」，要看「<b>承担了多少风险赚的</b>」以及「<b>赚的是配置的钱还是选券的钱</b>」。这是本章与真题结合最密的一节。</p>
+
+    <h3>一、四大风险调整绩效比率</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>① 夏普比率（Sharpe）</b>：S<sub>p</sub> = [E(r<sub>p</sub>) − r<sub>f</sub>] / σ<sub>p</sub>　（分母：<b>总风险</b>）<br>
+        <b>② 特雷诺比率（Treynor）</b>：T<sub>p</sub> = [E(r<sub>p</sub>) − r<sub>f</sub>] / β<sub>p</sub>　（分母：<b>系统风险</b>）<br>
+        <b>③ 詹森 α（Jensen）</b>：α<sub>p</sub> = E(r<sub>p</sub>) − [r<sub>f</sub> + β<sub>p</sub>(E(r<sub>M</sub>) − r<sub>f</sub>)]　（超额收益）<br>
+        <b>④ 信息比率（Information Ratio）</b>：IR = α<sub>p</sub> / σ(α<sub>p</sub>) = 主动收益 / 跟踪误差<br>
+        <span style="font-size:13px">IR 衡量「相对基准的主动管理能力」，σ(α) 是主动收益的波动（跟踪误差）</span>
+      </div>
+      <p class="note"><b>关键辨析：</b>Sharpe 用 σ（总风险），Treynor 用 β（系统风险）。<b>若组合是「全部资产」用 Sharpe，若组合是「大组合中的一个部分」用 Treynor。</b>这也是 2015 年大题 37「两个排名不一致」的标准答案。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 37</span>
+      <p>两家公司的投资收益与风险、市场数据给出。①分别求两家的夏普比率和特雷诺测度；②两种指标排名不一致，解释原因。</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-detail"><b>（1）计算</b>：S = (R − r<sub>f</sub>)/σ，T = (R − r<sub>f</sub>)/β。直接套。</p>
+          <p class="ans-detail"><b>（2）排名不一致的原因（标准答案三点）</b></p>
+          <table>
+            <thead><tr><th>原因</th><th>机制</th></tr></thead>
+            <tbody>
+              <tr><td><b>总风险 ≠ 系统风险</b></td><td>Sharpe 用 σ（含非系统风险），Treynor 用 β（只含系统风险）。若组合<b>高度集中、非系统风险大</b>，σ 大而 β 相对小 → Sharpe 低、Treynor 高，排名背离</td></tr>
+              <tr><td><b>是否已充分分散</b></td><td>Treynor 假设组合已分散（非系统风险可被消除），未分散的组合用 Treynor 会高估</td></tr>
+              <tr class="note-td"><td><b>评价目的</b></td><td>若组合是投资者的「全部资产」用 Sharpe；若是「组合的一部分」用 Treynor。二者回答不同的问题，排名自然可能不同</td></tr>
+            </tbody>
+          </table>
+          <div class="src-note">评分：两个比率各 2 分、原因 3 分（每点 1 分）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2014</span><span class="yr">主观 8</span>
+      <p>投资组合业绩来源分析。</p>
+      <details class="answer"><summary>看答案要点</summary>
+        <div class="body">
+          <p class="ans-detail"><b>业绩的三个来源（这是「业绩归因」的骨架）：</b></p>
+          <p class="ans-detail">① <b>资产配置（SAA/TAA）</b>：超配/低配某类资产带来的收益；</p>
+          <p class="ans-detail">② <b>证券选择</b>：在每类资产内部，选对证券带来的收益；</p>
+          <p class="ans-detail">③ <b>市场整体（β）</b>：基准本身涨跌带来的被动收益。<b>前两者是「主动收益」，第三者是「被动收益」。</b></p>
+          <div class="tip"><b>加分句：</b>「Brinson 归因把总超额收益拆成『配置贡献 + 选择贡献 + 交互项』。绝大多数实证表明，<b>长期来看配置贡献远大于选择贡献</b>——这再次印证 SAA 的核心地位。」</div>
+        </div>
+      </details>
+    </div>
+
+    <h3>二、Brinson 业绩归因模型</h3>
+    <div class="formula">
+      <div class="fx">
+        <b>总超额收益</b> R<sub>p</sub> − R<sub>B</sub> 的分解：<br>
+        = <b>Σ w<sub>Bi</sub>(R<sub>pi</sub> − R<sub>Bi</sub>)</b>　　（<b>选择贡献</b>：基准权重 × 类内超额）<br>
+        + <b>Σ (w<sub>pi</sub> − w<sub>Bi</sub>)R<sub>Bi</sub></b>　　（<b>配置贡献</b>：权重偏离 × 基准收益）<br>
+        + <b>Σ (w<sub>pi</sub> − w<sub>Bi</sub>)(R<sub>pi</sub> − R<sub>Bi</sub>)</b>　（<b>交互项</b>，通常并入选择或单列）<br><br>
+        <span style="font-size:13px">w 为资产类别权重，R 为收益率；下标 p = 组合，B = 基准</span>
+      </div>
+      <p class="note"><b>口诀：</b>「<span class="verse">选择贡献 = 基准权重配类内超额；配置贡献 = 权重偏离配基准收益</span>」。两个乘积搞清楚「谁固定、谁偏离」，就不会错。</p>
+    </div>
+
+    <div class="exam">
+      <span class="yr">2015</span><span class="yr">大题 34</span>
+      <p>给出几个国家的证券收益率、权重、某基准的收益率、权重。①计算整体业绩水平的贡献；②资产配置的贡献；③证券选择的贡献，并验证两者相加 = 总贡献。</p>
+      <details class="answer"><summary>看完整解题框架</summary>
+        <div class="body">
+          <div class="ans-skel"><b>Brinson 三步</b>：①总超额 ②配置贡献 ③选择贡献，验证 ②+③=①</div>
+          <p class="ans-detail"><b>（1）总超额收益</b>：R<sub>p</sub> − R<sub>B</sub> = Σw<sub>pi</sub>R<sub>pi</sub> − Σw<sub>Bi</sub>R<sub>Bi</sub></p>
+          <p class="ans-detail"><b>（2）配置贡献</b>：Σ (w<sub>pi</sub> − w<sub>Bi</sub>) × R<sub>Bi</sub>（<b>用基准收益</b>衡量「配置偏了多少钱」）</p>
+          <p class="ans-detail"><b>（3）选择贡献</b>：Σ w<sub>Bi</sub> × (R<sub>pi</sub> − R<sub>Bi</sub>)（<b>用基准权重</b>衡量「选券多赚了多少」）</p>
+          <p class="ans-detail"><b>（4）验证</b>：配置 + 选择 + 交互项 = 总超额。若题目要求「两者相加 = 总贡献」，则把交互项并入选择贡献（或题目设计成交互项为 0）。</p>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>国家/资产</th><th>组合权重 w<sub>p</sub></th><th>基准权重 w<sub>B</sub></th><th>组合收益 R<sub>p</sub></th><th>基准收益 R<sub>B</sub></th><th>配置贡献</th><th>选择贡献</th></tr></thead>
+            <tbody>
+              <tr><td>（示例行）</td><td>0.50</td><td>0.40</td><td>12%</td><td>10%</td><td>(0.50−0.40)×10%=1.0%</td><td>0.40×(12%−10%)=0.8%</td></tr>
+            </tbody>
+          </table></div>
+          <div class="warn"><b>易错：</b>配置贡献用 <b>R<sub>Bi</sub>（基准收益）</b>，选择贡献用 <b>w<sub>Bi</sub>（基准权重）</b>——两个「基准」不能反。反了就是「交互项」而不是「纯配置/纯选择」。</div>
+          <div class="src-note">评分：总超额 2 分、配置 3 分、选择 3 分、验证 2 分。跨章关联：详见 <a href="topic-perf.html">T.04 业绩评价与归因</a>。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算（业绩归因）</span>
+      <p>给出两个组合资产的期望回报。①求整个组合的超额收益率；②对每类资产分别分析资产配置和证券选择能力；③如果资产配置中增加权益类投资，现在大概处于什么经济周期？</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-detail"><b>（1）（2）同 Brinson 三步</b>（见上）。</p>
+          <p class="ans-detail"><b>（3）经济周期与资产配置（这是「超越考试」的宏观判断）</b></p>
+          <table>
+            <thead><tr><th>经济周期</th><th>特征</th><th>利好资产</th><th>权益配置倾向</th></tr></thead>
+            <tbody>
+              <tr><td><b>衰退</b></td><td>增长放缓、通胀下行</td><td>债券（利率下行）、防御性股票</td><td class="neg">低配权益</td></tr>
+              <tr><td><b>复苏</b></td><td>增长回升、通胀低位</td><td><b>权益（尤其周期/小盘）</b></td><td class="pos"><b>增配权益</b></td></tr>
+              <tr><td><b>过热</b></td><td>增长高、通胀上行</td><td>商品、价值股、抗通胀资产</td><td>中性偏防御</td></tr>
+              <tr class="note-td"><td><b>滞胀</b></td><td>增长停滞 + 高通胀</td><td>现金、商品、黄金、<b>短久期债券</b></td><td class="neg"><b>低配权益</b></td></tr>
+            </tbody>
+          </table>
+          <p class="ans-detail"><b>「增加权益配置」→ 大概率处于「复苏期」</b>（增长回升、企业盈利改善、估值修复）。答题时结合「美林时钟」逻辑即可。</p>
+          <div class="tip"><b>美林时钟四象限</b>是这类题的标准框架：衰退（债券）、复苏（股票）、过热（商品）、滞胀（现金）。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="exam">
+      <span class="yr hot">2023</span><span class="yr">计算 8</span>
+      <p>①计算一组资产标准差（三个标的：固收、权益、其他）；②该资产负债风险特征，从风险、成本收益、久期流动性方面评价；③若经济进入滞胀，固收和权益的走势如何？应偏向哪个资产？</p>
+      <details class="answer"><summary>看解题框架</summary>
+        <div class="body">
+          <p class="ans-detail"><b>（1）组合标准差</b>：σ<sub>p</sub>² = Σw<sub>i</sub>²σ<sub>i</sub>² + 2Σ<sub>i&lt;j</sub>w<sub>i</sub>w<sub>j</sub>ρ<sub>ij</sub>σ<sub>i</sub>σ<sub>j</sub>（三资产 3 项方差 + 3 项协方差，见 CH.03 §3.2）。</p>
+          <p class="ans-detail"><b>（2）资产负债风险特征评价（四维）</b></p>
+          <p class="ans-detail">① <b>风险</b>：权益占比决定 σ 上限，固收决定利率风险，另类决定流动性风险；② <b>成本收益</b>：权益高收益高波动，固收低收益稳，另类流动性溢价；③ <b>久期</b>：固收久期 vs 负债久期的缺口；④ <b>流动性</b>：另类流动性差，需匹配负债的流动性需求。</p>
+          <p class="ans-detail"><b>（3）滞胀下的走势与选择</b></p>
+          <p class="ans-detail">滞胀 = 增长停滞 + 高通胀 → <b>固收：名义利率上行、价格下跌（利空），尤其长久期</b>；<b>权益：盈利受滞、估值受高利率压制（利空）</b>。<br>
+          应偏向：<b>短久期固收 + 现金 + 抗通胀资产（商品/黄金/通胀挂钩债）</b>，<b>低配长久期债与权益</b>。</p>
+          <div class="src-note">这题是「投资学 + 宏观」的典型结合，美林时钟 + 久期 + 流动性三维度都要答到。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="calc">
+    <h2><span class="sn">5.8</span>演算器</h2>
+
+    <div class="calc" id="calc-var">
+      <h4>VaR 与 CVaR（参数法，正态假设）</h4>
+      <div class="row"><label>组合市值 V（万元）</label><input class="calc-in" id="v_v" value="10000" type="number"></div>
+      <div class="row"><label>年化收益 μ（%）</label><input class="calc-in" id="v_mu" value="8" type="number" step="0.1"></div>
+      <div class="row"><label>年化波动率 σ（%）</label><input class="calc-in" id="v_s" value="25" type="number" step="0.1"></div>
+      <div class="row"><label>持有期（天）</label><input class="calc-in" id="v_d" value="10" type="number"></div>
+      <div class="row"><label>置信水平（%）</label><input class="calc-in" id="v_a" value="95" type="number" step="1"></div>
+      <button class="calc-run">计算 VaR 与 CVaR</button>
+      <div class="verdict" id="v_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-var');
+        var zs={90:1.2816,95:1.6449,99:2.3263};
+        box.__run=function(){
+          var V=+document.getElementById('v_v').value;
+          var mu=+document.getElementById('v_mu').value/100;
+          var s=+document.getElementById('v_s').value/100;
+          var d=+document.getElementById('v_d').value;
+          var a=+document.getElementById('v_a').value;
+          var z=zs[a]||1.6449;
+          var sT=s*Math.sqrt(d/252), muT=mu*(d/252);
+          var VaR=(z*sT-muT)*V;
+          var pdf=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
+          var ES=(muT<1e-9?(sT*pdf/(1-a/100)):(sT*pdf/(1-a/100)-muT))*V;
+          document.getElementById('v_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>'+d+' 天波动率 = σ×√('+d+'/252) = '+s.toFixed(4)+'×'+Math.sqrt(d/252).toFixed(4)+' = <span class="fin">'+(sT*100).toFixed(3)+'%</span></li>'
+            +'<li>'+d+' 天期望收益 = μ×'+d+'/252 = <span class="fin">'+(muT*100).toFixed(3)+'%</span></li>'
+            +'<li>'+a+'% 置信度的 z 值 = <span class="fin">'+z.toFixed(4)+'</span></li>'
+            +'<li>VaR = (z·σ<sub>T</sub> − μ<sub>T</sub>)×V = <span class="fin">'+VaR.toFixed(1)+' 万元</span></li>'
+            +'<li>CVaR（期望损失）= σ<sub>T</sub>·φ(z)/(1−α) − μ<sub>T</sub> = <span class="fin">'+ES.toFixed(1)+' 万元</span></li>'
+            +'</ol></div>'
+            +'<b>结论：</b>在 '+a+'% 置信水平下，'+d+' 天内最大损失不超过 <b style="color:#A32D2D">'+VaR.toFixed(1)+' 万元</b>；'
+            +'而一旦突破该阈值，平均损失约 <b style="color:#A32D2D">'+ES.toFixed(1)+' 万元</b>（CVaR，尾部风险）。'
+            +'<br><b>CVaR 恒 ≥ VaR——它回答的是「最坏的那 '+(100-a)+'% 情况里平均有多糟」，这是险资真正关心的尾部风险。</b>';
+        };
+      })();
+    </script>
+
+    <div class="calc" id="calc-brin" style="margin-top:20px">
+      <h4>Brinson 业绩归因（两类资产示例）</h4>
+      <div class="row"><label>组合权重 w<sub>p1</sub> / w<sub>p2</sub></label><input class="calc-in" id="br_wp" value="0.60 0.40"></div>
+      <div class="row"><label>基准权重 w<sub>B1</sub> / w<sub>B2</sub></label><input class="calc-in" id="br_wb" value="0.50 0.50"></div>
+      <div class="row"><label>组合收益 R<sub>p1</sub>% / R<sub>p2</sub>%</label><input class="calc-in" id="br_rp" value="12 6"></div>
+      <div class="row"><label>基准收益 R<sub>B1</sub>% / R<sub>B2</sub>%</label><input class="calc-in" id="br_rb" value="10 5"></div>
+      <button class="calc-run">计算归因分解</button>
+      <div class="verdict" id="br_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-brin');
+        box.__run=function(){
+          function p(v){return v.trim().split(/\s+/).map(Number)}
+          var wp=p(document.getElementById('br_wp').value), wb=p(document.getElementById('br_wb').value);
+          var rp=p(document.getElementById('br_rp').value).map(function(x){return x/100}), rb=p(document.getElementById('br_rb').value).map(function(x){return x/100});
+          if(wp.length!==2||wb.length!==2||rp.length!==2||rb.length!==2){document.getElementById('br_out').innerHTML='<span class="calc-hint">请输入两个用空格分隔的数字。</span>';return}
+          var Rp=wp[0]*rp[0]+wp[1]*rp[1], Rb=wb[0]*rb[0]+wb[1]*rb[1];
+          var total=Rp-Rb;
+          var alloc=(wp[0]-wb[0])*rb[0]+(wp[1]-wb[1])*rb[1];
+          var select=wb[0]*(rp[0]-rb[0])+wb[1]*(rp[1]-rb[1]);
+          var inter=(wp[0]-wb[0])*(rp[0]-rb[0])+(wp[1]-wb[1])*(rp[1]-rb[1]);
+          document.getElementById('br_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>组合收益 R<sub>p</sub> = Σw<sub>p</sub>R<sub>p</sub> = <span class="fin">'+(Rp*100).toFixed(2)+'%</span>；基准 R<sub>B</sub> = <span class="fin">'+(Rb*100).toFixed(2)+'%</span></li>'
+            +'<li>总超额 = R<sub>p</sub> − R<sub>B</sub> = <span class="fin">'+(total*100).toFixed(2)+'%</span></li>'
+            +'<li>配置贡献 = Σ(w<sub>p</sub>−w<sub>B</sub>)R<sub>B</sub> = <span class="fin">'+(alloc*100).toFixed(2)+'%</span></li>'
+            +'<li>选择贡献 = Σw<sub>B</sub>(R<sub>p</sub>−R<sub>B</sub>) = <span class="fin">'+(select*100).toFixed(2)+'%</span></li>'
+            +'<li>交互项 = Σ(w<sub>p</sub>−w<sub>B</sub>)(R<sub>p</sub>−R<sub>B</sub>) = <span class="fin">'+(inter*100).toFixed(2)+'%</span></li>'
+            +'<li>验证：配置 + 选择 + 交互 = '+(alloc*100).toFixed(2)+'+'+(select*100).toFixed(2)+'+'+(inter*100).toFixed(2)+' = <span class="fin">'+((alloc+select+inter)*100).toFixed(2)+'%</span> = 总超额 ✓</li>'
+            +'</ol></div>'
+            +'<b>结论：</b>主动收益 '+ (total*100).toFixed(2) +'% 中，<b>配置贡献 '+(alloc*100).toFixed(2)+'%</b>、<b>选择贡献 '+(select*100).toFixed(2)+'%</b>。'
+            +(Math.abs(alloc)>=Math.abs(select)?'<br><b>配置贡献更大——再次印证「SAA 决定组合命运」。</b>':'<br><b>选择贡献更大——说明选券能力是主要超额来源。</b>');
+        };
+      })();
+    </script>
+
+    <div class="calc" id="calc-rsf" style="margin-top:20px">
+      <h4>Roy's Safety-First（安全第一准则）</h4>
+      <div class="row"><label>组合期望收益 E(r)（%）</label><input class="calc-in" id="r_e" value="8" type="number" step="0.1"></div>
+      <div class="row"><label>组合标准差 σ（%）</label><input class="calc-in" id="r_s" value="15" type="number" step="0.1"></div>
+      <div class="row"><label>最低可接受收益 R<sub>L</sub>（%）</label><input class="calc-in" id="r_l" value="0" type="number" step="0.1"></div>
+      <button class="calc-run">计算安全第一比率 SFRatio</button>
+      <div class="verdict" id="r_out"></div>
+    </div>
+    <script>
+      (function(){
+        var box=document.getElementById('calc-rsf');
+        box.__run=function(){
+          var e=+document.getElementById('r_e').value/100, s=+document.getElementById('r_s').value/100, l=+document.getElementById('r_l').value/100;
+          if(s<=0){document.getElementById('r_out').innerHTML='<span class="calc-hint">标准差需大于 0。</span>';return}
+          var sf=(e-l)/s;
+          document.getElementById('r_out').innerHTML=
+            '<div class="calc-steps"><b>计算步骤</b><ol>'
+            +'<li>SFRatio = [E(r) − R<sub>L</sub>] / σ = ('+(e*100).toFixed(1)+'% − '+(l*100).toFixed(1)+'%) / '+(s*100).toFixed(1)+'% = <span class="fin">'+sf.toFixed(3)+'</span></li>'
+            +'<li>含义：收益低于 R<sub>L</sub> 的距离 = '+sf.toFixed(3)+' 个标准差</li>'
+            +'</ol></div>'
+            +'<b>结论：</b>在多个组合中选择 <b>SFRatio 最大</b>的那个（收益跌破 R<sub>L</sub> 的概率最小）。'
+            +'<br><b>这是「保本」目标下的最优准则——与 2012 秋第 42 题（马先生退休规划）完全对应。</b>';
+        };
+      })();
+    </script>
+  </section>
+
+  <section id="quick">
+    <h2><span class="sn">5.9</span>核心答案速查</h2>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>考点问题</th><th>核心答案</th></tr></thead>
+        <tbody>
+          <tr><td>组合收益波动由谁决定</td><td>SAA 决定 90% 以上，选券与择时贡献很小</td></tr>
+          <tr><td>SAA vs TAA</td><td>SAA 定长期中枢；TAA 短期偏离（±5%~10%）</td></tr>
+          <tr><td>免疫三条件</td><td>PV 匹配 + 久期匹配 + 资产凸度 &gt; 负债凸度</td></tr>
+          <tr><td>现金流匹配 vs 免疫</td><td>免疫只看久期；现金流匹配每期现金流精确对应</td></tr>
+          <tr><td>债券积极策略两来源</td><td>预测利率方向（久期）+ 识别相对价值（利差）</td></tr>
+          <tr><td>骑乘策略</td><td>买入期限长于持有期，沿曲线滚动赚期限溢价</td></tr>
+          <tr><td>恒定混合 vs CPPI 支付形状</td><td>恒定混合凹型（反向交易）；CPPI 凸型（顺势交易）</td></tr>
+          <tr><td>CPPI 公式</td><td>缓冲垫 = 组合 − 保本额现值；风险资产 = m × 缓冲垫</td></tr>
+          <tr><td>保本产品定价</td><td>PV(保本额) + 看涨期权费（OBPI 视角）</td></tr>
+          <tr><td>VaR 三个算法</td><td>历史模拟、参数法、蒙特卡洛</td></tr>
+          <tr><td>VaR 是否一致测度</td><td>否（不满足次可加性）；CVaR 是</td></tr>
+          <tr><td>Sharpe vs Treynor 分母</td><td>Sharpe 用 σ（总风险）；Treynor 用 β（系统风险）</td></tr>
+          <tr><td>信息比率</td><td>IR = 主动收益 / 跟踪误差</td></tr>
+          <tr><td>Brinson 配置贡献</td><td>Σ(w<sub>p</sub>−w<sub>B</sub>)×R<sub>B</sub>（用基准收益）</td></tr>
+          <tr><td>Brinson 选择贡献</td><td>Σw<sub>B</sub>×(R<sub>p</sub>−R<sub>B</sub>)（用基准权重）</td></tr>
+          <tr><td>Roy's Safety-First</td><td>SFRatio = [E(r)−R<sub>L</sub>]/σ，选最大者</td></tr>
+          <tr><td>美林时钟四象限</td><td>衰退债券、复苏股票、过热商品、滞胀现金</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="dig">
+    <h2><span class="sn">5.10</span>教材深挖与易错辨析</h2>
+
+    <details class="big">
+      <summary>深挖一：为什么「SAA 决定 90% 收益」这句话对险资尤其成立</summary>
+      <div class="body">
+        <h3>经典实证结论</h3>
+        <p>Brinson、Hood、Beebower（1986）与后来的研究都指向同一个结论：<b>组合收益的横截面差异，绝大部分（约 90%）由资产配置（SAA）解释，选券与择时只贡献约 10%。</b></p>
+        <h3>对保险资金的「三重放大」</h3>
+        <p><b>放大一 · 负债约束把 SAA 锁得更死。</b>险资的 SAA 由 ALM 决定，不是想调就能调。一旦锁定「权益 20%」，择时空间天然被挤压到很小。</p>
+        <p><b>放大二 · 长钱属性使「择时」更难且更没必要。</b>公募基金还能靠短期择时搏排名，险资的考核周期是 5–10 年，短期的 β 波动会被时间熨平。<b>对长钱而言，SAA 正确远比任何一次择时重要。</b></p>
+        <p><b>放大三 · 规模决定「选券」的边际收益递减。</b>万亿级资金无法像小基金一样靠个股 α 提升整体收益——<b>α 会被规模摊薄</b>。因此超大型险资的收益天花板，本质上由 SAA 框定。</p>
+        <div class="tip"><b>考试/实务金句：</b>「<b>对保险资金，SAA 是战略、TAA 是战术、选券是技巧。战略对了，战术和技巧才有意义。</b>」</div>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖二：VaR 与「偿二代」的关系——风险度量的监管落地</summary>
+      <div class="body">
+        <h3>从 VaR 到「最低资本」</h3>
+        <p>VaR 是「在险价值」，偿二代要求保险公司为各类风险计提<b>最低资本</b>。二者的逻辑同源：<b>都是「给风险留出足够的缓冲」。</b></p>
+        <p>偿二代的「市场风险最低资本」本质上是一个 <b>99.5% 置信度、一年期</b>的风险度量（对应欧盟 Solvency II 的 99.5% VaR）。这比巴塞尔银行监管的 99% 更保守，因为<b>保险负债的期限更长、尾部更厚</b>。</p>
+        <h3>为什么监管越来越倾向 CVaR / 情景</h3>
+        <p>① <b>VaR 看不到尾部</b>：99.5% VaR 告诉你「99.5% 情况下损失不超过 X」，但不告诉你「剩下 0.5% 会多惨」；</p>
+        <p>② <b>次可加性失效</b>：VaR 不满足次可加性，导致「分别计量各子组合风险再相加」会低估整体风险，监管框架难以自洽；</p>
+        <p>③ <b>情景法更直观</b>：压力测试（如「利率+200BP + 股市−30%」）直接给出净资产变化，董事会与监管都能读懂。</p>
+        <div class="formula"><div class="fx">
+          <b>一条主线：</b>VaR（一阶风险）→ CVaR（尾部风险）→ 压力测试（情景风险）→ 最低资本（监管资本）<br>
+          <b>从左到右，越来越「面向尾部」、越来越「面向极端」。</b>
+        </div></div>
+        <div class="tip"><b>加分句：</b>「VaR 衡量『正常情况下的风险』，压力测试衡量『极端情况下的生存能力』。对保险公司，后者才是生死线。」</div>
+      </div>
+    </details>
+
+    <details class="big">
+      <summary>深挖三：CPPI、OBPI 与保险产品的「保本」到底差在哪</summary>
+      <div class="body">
+        <h3>三种保本的实现路径</h3>
+        <table>
+          <thead><tr><th>方法</th><th>工具</th><th>成本</th><th>确定性</th><th>缺点</th></tr></thead>
+          <tbody>
+            <tr><td><b>OBPI</b></td><td>真实期权（买看跌/看涨）</td><td>期权费（明确）</td><td class="pos">高（合同锁定）</td><td>成本高、长期期权流动性差</td></tr>
+            <tr><td><b>CPPI</b></td><td>动态调仓（复制期权）</td><td>交易成本 + 缺口风险</td><td class="neg">中（依赖连续调仓）</td><td>急跌可能击穿保本线</td></tr>
+            <tr class="note-td"><td><b>保险公司保证</b></td><td>资产端收益 + 准备金缓冲</td><td>利差 + 资本占用</td><td>高（法律承诺）</td><td>需匹配资产、占用资本</td></tr>
+          </tbody>
+        </table>
+        <h3>本质区别（答题金句）</h3>
+        <p>OBPI 与 CPPI 是<b>「投资组合层面」</b>的保本，靠的是「资产结构」；保险公司的保证利率是<b>「负债层面」</b>的保本，靠的是「合同承诺 + 监管资本 + 准备金」。<b>前者风险自担、成本显性；后者风险由公司整体信用背书、成本隐性（利差损 + 资本占用）。</b></p>
+        <p>这也解释了为什么监管对「承诺保证收益的产品」要求更高资本——<b>因为保证收益 = 卖出看跌期权，而期权需要资本金来「接得住」。</b></p>
+      </div>
+    </details>
+
+    <div class="hr-soft"></div>
+    <h3>五个高频易错点</h3>
+    <div class="warn"><b>① CPPI 的方向记反。</b>CPPI 是「涨了买、跌了卖」（顺势），恒定混合才是「涨了卖、跌了买」（反向）。</div>
+    <div class="warn"><b>② Brinson 两个「基准」用反。</b>配置贡献用基准收益 R<sub>B</sub>，选择贡献用基准权重 w<sub>B</sub>。</div>
+    <div class="warn"><b>③ VaR 忘了换算期限。</b>年化 σ 要用 √(T/252) 换算到持有期。</div>
+    <div class="warn"><b>④ 混淆 VaR 的置信水平。</b>95% VaR 是「损失不超过该值的概率为 95%」，不是「损失恰好这么多」。</div>
+    <div class="warn"><b>⑤ 免疫只做了久期匹配就以为完成。</b>还缺「凸度约束」——资产凸度必须大于负债凸度，否则利率大幅变动时免疫失效。</div>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="sn">5.11</span>自测</h2>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>1. 关于组合保险策略 CPPI，下列说法正确的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 市场上涨时应减少风险资产头寸</li>
+        <li>B. 市场下跌时应增加风险资产头寸</li>
+        <li>C. CPPI 的支付曲线是凹型的</li>
+        <li>D. CPPI 中风险资产投资额 = 乘数 × 缓冲垫</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：D。</b></p>
+          <p class="ans-detail">A 错（上涨应<b>增加</b>头寸，因缓冲垫变大）；B 错（下跌应<b>减少</b>头寸保底）；C 错（CPPI 是<b>凸型</b>）；D 对（E = m × Cushion）。</p>
+          <div class="warn"><b>易错：</b>CPPI 与恒定混合方向相反，务必记牢「CPPI 顺势、恒定混合反向」。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">单选</span>2. 下列风险测度中，满足一致性风险测度全部四个公理的是（　）。<span class="pts">2 分</span></div>
+      <ul class="opts">
+        <li>A. 方差</li>
+        <li>B. VaR</li>
+        <li>C. CVaR（ES）</li>
+        <li>D. 标准差</li>
+      </ul>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p><b>答案：C。</b></p>
+          <p class="ans-detail">CVaR 满足单调性、次可加性、正齐次性、平移不变性。VaR 不满足<b>次可加性</b>；方差/标准差不满足<b>单调性与平移不变性</b>。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">计算</span>3. 某基金与基准的数据：基金配置股票 60%、债券 40%；基准配置股票 50%、债券 50%；股票基准收益 10%、基金股票收益 12%；债券基准收益 5%、基金债券收益 6%。用 Brinson 模型分解：①总超额收益；②配置贡献；③选择贡献（交互项并入选择）。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <p class="ans-detail">R<sub>p</sub> = 0.6×12% + 0.4×6% = 9.6%；R<sub>B</sub> = 0.5×10% + 0.5×5% = 7.5%</p>
+          <p class="ans-detail"><b>① 总超额 = 9.6% − 7.5% = 2.1%</b></p>
+          <p class="ans-detail"><b>② 配置贡献</b> = (0.6−0.5)×10% + (0.4−0.5)×5% = 1.0% − 0.5% = <b>0.5%</b></p>
+          <p class="ans-detail"><b>③ 选择贡献</b> = 0.5×(12%−10%) + 0.5×(6%−5%) = 1.0% + 0.5% = <b>1.5%</b></p>
+          <p class="ans-detail">交互项 = (0.6−0.5)(12%−10%) + (0.4−0.5)(6%−5%) = 0.2% − 0.1% = <b>0.1%</b></p>
+          <p class="ans-detail">验证：0.5% + 1.5% + 0.1% = <b>2.1%</b> = 总超额 ✓</p>
+          <div class="src-note">评分：总超额 2 分、配置 2 分、选择 2 分、交互与验证 2 分。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="q-item">
+      <div class="q"><span class="tag">简答</span>4. 某寿险公司负债久期 15 年、资产久期 8 年。请说明该公司面临什么风险，并给出至少三种改善方案及其原理。<span class="pts">8 分</span></div>
+      <details class="answer"><summary>看答案与解析</summary>
+        <div class="body">
+          <div class="ans-skel"><b>结构</b>：风险诊断 → 三种方案</div>
+          <p class="ans-detail"><b>诊断：</b>负债久期 15 &gt; 资产久期 8，存在<b>正久期缺口</b>。利率<b>下行</b>时，负债增加额超过资产增加额，净资产受损（利差损风险）。</p>
+          <p class="ans-detail"><b>方案一 · 拉长资产久期</b>：配置超长期国债、长久期非标、利率互换（收固定付浮动）。原理：提升 D<sub>A</sub> 缩小缺口。</p>
+          <p class="ans-detail"><b>方案二 · 缩短负债久期</b>：发展期缴短险、降低保证利率刚性、开发分红险（浮动负债）。原理：降低 D<sub>L</sub>。</p>
+          <p class="ans-detail"><b>方案三 · 利率对冲工具</b>：买入利率下限（为浮动资产保底）、国债期货对冲、利率互换。原理：直接用衍生品对冲利率风险。</p>
+          <div class="tip"><b>加分：</b>指出「同时满足 PV 匹配、久期匹配、凸度约束（资产凸度 &gt; 负债凸度）」才是完整免疫。</div>
+        </div>
+      </details>
+    </div>
+
+    <button class="done-btn" data-id="ch5">○ 标记本页已完成</button>
+
+    <div class="pager">
+      <a href="ch4.html">← CH.04 资产定价理论</a>
+      <a href="ch6.html">CH.06 险企投资实务 →</a>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    投资学 · 科目 F8 知识库 ｜ 西红精算<br>
+    计算示例中的数值经复核，若有疑问请在知识星球反馈。
+  </footer>
+
+</main>
+<script src="js/kb.js"></script>
+</body>
+</html>
