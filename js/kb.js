@@ -86,4 +86,29 @@
       });
     });
   });
+  /* ---------- ⑥ 小屏抽屉导航 ----------
+     ≤900px 时固定侧栏收起为抽屉，由顶部导航条唤出。
+     topbar / mask 由脚本注入，各页面无需手写 HTML。 */
+  var side=document.querySelector('.side');
+  if(side){
+    var brandEl=side.querySelector('.brand b');
+    var title=(brandEl?brandEl.textContent:'知识库');
+    var topbar=document.createElement('div');
+    topbar.className='topbar';
+    topbar.innerHTML='<button class="nav-toggle" aria-label="打开导航">☰</button><b>'+title+'</b>';
+    document.body.appendChild(topbar);
+    var mask=document.createElement('div');
+    mask.className='side-mask';
+    document.body.appendChild(mask);
+    function closeDrawer(){side.classList.remove('open');mask.classList.remove('show')}
+    topbar.querySelector('.nav-toggle').addEventListener('click',function(){
+      side.classList.add('open');mask.classList.add('show');
+    });
+    mask.addEventListener('click',closeDrawer);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer()});
+    /* 点击侧栏内链接后自动收起抽屉 */
+    side.querySelectorAll('nav a').forEach(function(a){
+      a.addEventListener('click',function(){if(window.innerWidth<=900)closeDrawer()});
+    });
+  }
 })();
