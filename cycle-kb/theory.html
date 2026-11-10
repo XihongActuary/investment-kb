@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 七种周期理论 · 四季投资周期地图</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topnav">
+  <a class="brand" href="index.html"><b>四季</b><span>投资周期地图</span></a>
+  <nav>
+    <a href="index.html"><i>00</i>四季与资产</a>
+    <a href="theory.html" class="on"><i>01</i>七种周期理论</a>
+    <a href="locator.html"><i>02</i>周期定位器</a>
+    <a href="structure.html"><i>03</i>国家·人口·信贷·行业</a>
+    <a href="allocation.html"><i>04</i>四类资产地图</a>
+    <a href="playbook.html"><i>05</i>投资纪律</a>
+    <a href="refs.html"><i>06</i>参考资料</a>
+  </nav>
+</header>
+
+<div class="main"><div class="wrap">
+
+<header class="hero">
+  <div class="kicker">01 · THEORY</div>
+  <h1>七种周期理论，以及它们的边界</h1>
+  <p class="lead">「经济周期」不是一个东西，而是<strong>五六条不同长度、不同驱动、不同可靠度的波叠加在一起</strong>。把它们混为一谈，就会得出「周期要来了」这种听上去很对、但没法下手的结论。</p>
+  <div class="meta">
+    <span class="pill">基钦 3–4 年</span>
+    <span class="pill">朱格拉 7–10 年</span>
+    <span class="pill">库兹涅茨 15–25 年</span>
+    <span class="pill">康波 50–60 年</span>
+    <span class="pill">美林时钟 四象限</span>
+    <span class="pill">达利欧 债务大周期</span>
+    <span class="pill">明斯基 金融不稳定</span>
+  </div>
+</header>
+
+<div class="story">
+  <div class="st">🪑 长凳时刻 · 先别背名词，去村里住一个夏天</div>
+  <p>教科书里的「周期」有七八个名字，村口种了四十年地的老农一个都不知道。但他知道三件事：<strong>菜价隔两三年总会贵一轮</strong>（那年大家跟风种，第二年卖不动）；<strong>镇上的饭馆大约十年换一茬老板</strong>（生意好时一窝蜂开店，两三年后集体关门）；<strong>村里人一辈子大约盖一次大房</strong>，盖房那几年，全家的余钱和力气都压在上面。</p>
+  <p>菜价是<strong>库存周期</strong>，饭馆是<strong>设备投资周期</strong>，盖房是<strong>建筑周期</strong>——周期理论不是发明了这些波动，只是给农民早就懂的节奏起了学名，再补上了数据。老农还懂最重要的一条：<strong>几个节奏撞在一起的那年最难熬，也最值得提前囤粮。</strong>这一页讲的所有理论，说到底都在回答一个问题：现在，是哪几个节奏撞在一起的时候？</p>
+</div>
+
+<section>
+  <h2><span class="n">1.1</span>叠加，不是单选</h2>
+  <p>所有周期理论的第一课，是承认<strong>短波套在长波里</strong>。你看到的一次「衰退」，可能是短库存周期的下行，也可能正好撞上长债务周期的去杠杆——两者叠加就是 2008 年，只有前者就是 2019 年。</p>
+
+  <div class="fig">
+    <div class="ft">不同长度的周期如何叠加</div>
+    <div class="fs">示意：五条波分别代表库存、设备、建筑、长波与债务超级周期，粗线为合成后的「体感温度」</div>
+    <canvas id="c-nest" style="height:330px"></canvas>
+    <div class="legend">
+      <span><i class="ln" style="background:#bb8a1f"></i>库存 (≈3.5年)</span>
+      <span><i class="ln" style="background:#4a7c59"></i>设备 (≈9年)</span>
+      <span><i class="ln" style="background:#3f5f7a"></i>建筑 (≈18年)</span>
+      <span><i class="ln" style="background:#534ab7"></i>长波 (≈55年)</span>
+      <span><i class="ln" style="background:#b53d2e"></i>合成</span>
+    </div>
+    <div class="src">说明：本图为<strong>机制示意</strong>，由不同周期的正弦波叠加生成，不代表任何真实经济数据。目的在于说明「同一时点的读数，是多个频率叠加的结果」——这也是为什么单看一个指标很容易误判。</div>
+  </div>
+
+  <div class="box ins">
+    <span class="t">关键推论</span>
+    <p>如果你只用一种周期做判断，你会在<strong>大部分时间里是对的、在关键的转折点上错得最惨</strong>。因为转折点往往正是「长波转向 + 短波见顶」同时发生的地方。多周期交叉验证的价值，不在于更准，而在于<strong>减少极端错误</strong>。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.2</span>八种理论总表</h2>
+  <p class="sub">下面这张表是整页的索引。注意最后一列「实证强度」——这是我给的主观评级，依据是公开文献中样本外检验的表现，不是理论名气。</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>理论</th><th>提出者 / 文献</th><th>核心驱动</th><th class="c">长度</th><th>可观测指标</th><th class="c">实证强度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>库存周期</b><br><span class="en">Kitchin Cycle</span></td>
+          <td>Joseph Kitchin, 1923</td>
+          <td>企业补库/去库的蛛网式错配</td>
+          <td class="c">3–4 年</td>
+          <td>产成品库存同比、PPI、营收增速</td>
+          <td class="c"><span class="bt g">强</span></td>
+        </tr>
+        <tr>
+          <td><b>设备投资周期</b><br><span class="en">Juglar Cycle</span></td>
+          <td>Clément Juglar, 1862</td>
+          <td>资本开支的羊群行为与产能时滞</td>
+          <td class="c">7–10 年</td>
+          <td>制造业固投、设备购置、产能利用率</td>
+          <td class="c"><span class="bt y">中</span></td>
+        </tr>
+        <tr>
+          <td><b>建筑/房地产周期</b><br><span class="en">Kuznets Cycle</span></td>
+          <td>Simon Kuznets, 1930</td>
+          <td>人口迁移、城镇化、住房存量缺口</td>
+          <td class="c">15–25 年</td>
+          <td>新开工、销售面积、房价收入比</td>
+          <td class="c"><span class="bt g">强</span></td>
+        </tr>
+        <tr>
+          <td><b>长波 / 技术革命</b><br><span class="en">Kondratieff Wave</span></td>
+          <td>N. Kondratieff, 1925；熊彼特、佩蕾丝发展</td>
+          <td>通用技术的扩散与资本存量重估</td>
+          <td class="c">50–60 年</td>
+          <td>全要素生产率、主导产业占比</td>
+          <td class="c"><span class="bt r">弱</span></td>
+        </tr>
+        <tr>
+          <td><b>投资时钟</b><br><span class="en">Investment Clock</span></td>
+          <td>Merrill Lynch, 2004（Trevor Greetham）</td>
+          <td>增长与通胀两维组合决定资产轮动</td>
+          <td class="c">约 3–5 年一圈</td>
+          <td>产出缺口、CPI、政策利率</td>
+          <td class="c"><span class="bt y">中</span></td>
+        </tr>
+        <tr>
+          <td><b>债务大周期</b><br><span class="en">Big Debt Cycle</span></td>
+          <td>Ray Dalio, 2018</td>
+          <td>债务增速长期超过收入增速 → 去杠杆</td>
+          <td class="c">短 5–8 年<br>长 50–75 年</td>
+          <td>债务/GDP、偿债额/收入、利率</td>
+          <td class="c"><span class="bt g">中强</span></td>
+        </tr>
+        <tr>
+          <td><b>金融周期</b><br><span class="en">Financial Cycle</span></td>
+          <td>Borio &amp; Drehmann (BIS), 2009</td>
+          <td>信贷与房地产价格自我强化</td>
+          <td class="c">15–20 年</td>
+          <td>信贷/GDP 缺口、房价缺口</td>
+          <td class="c"><span class="bt g">强</span></td>
+        </tr>
+        <tr>
+          <td><b>金融不稳定假说</b><br><span class="en">Minsky Moment</span></td>
+          <td>Hyman Minsky, 1986</td>
+          <td>融资结构从对冲→投机→庞氏演化</td>
+          <td class="c">不定</td>
+          <td>融资结构、杠杆率、期限错配</td>
+          <td class="c"><span class="bt y">定性强</span></td>
+        </tr>
+      </tbody>
+      <caption>「实证强度」为编者主观评级：强＝有较多样本外验证与稳定领先性；中＝历史上有效但近年漂移；弱＝事后可解释、事前难预测。</caption>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.3</span>短波：库存与设备</h2>
+
+  <div class="analogy"><span class="at">一句话类比</span><span>库存周期像<strong>菜贩子进货</strong>：看今天白菜好卖就多进一车，可全街的菜贩子都这么想，明天白菜堆成山——错不在谁笨，而在「大家看得见的是同一件事」。</span></div>
+  <h3>库存周期：唯一你能每年用一次的周期</h3>
+  <p>1923 年，英国经济学家约瑟夫·基钦在分析英美两国的银行清算与物价数据时，发现了一个约 40 个月（3 年出头）的规律性波动。机制很朴素：<strong>企业根据当前价格决定产量，但产能和订单有时滞</strong>，于是集体过量生产 → 库存堆积 → 降价去库 → 又集体减产 → 供给不足 → 再涨价。这就是经济学里典型的「蛛网模型」。</p>
+  <p>它被分成四段，判读的关键是<strong>「价」和「量」的组合</strong>：</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th class="c">阶段</th><th>价格（PPI）</th><th>库存</th><th>含义</th><th>资产倾向</th></tr></thead>
+      <tbody>
+        <tr><td class="c"><b>被动去库</b></td><td><span class="bt g">↑ 涨</span></td><td>↓ 降</td><td>需求先回暖，企业还没反应过来——<b>最好的买点</b></td><td>股票（早周期）</td></tr>
+        <tr><td class="c"><b>主动补库</b></td><td><span class="bt g">↑ 涨</span></td><td>↑ 升</td><td>量价齐升，盈利兑现</td><td>股票、商品</td></tr>
+        <tr><td class="c"><b>被动补库</b></td><td><span class="bt r">↓ 跌</span></td><td>↑ 升</td><td>需求转弱但生产惯性——<b>最危险的时点</b></td><td>减仓、转债</td></tr>
+        <tr><td class="c"><b>主动去库</b></td><td><span class="bt r">↓ 跌</span></td><td>↓ 降</td><td>量价齐跌，最难受但接近出清</td><td>债券、现金</td></tr>
+      </tbody>
+      <caption>库存周期四象限。「被动补库」是盈利与估值双杀的高发区，也是多数人亏钱的阶段。</caption>
+    </table>
+  </div>
+
+  <div class="analogy"><span class="at">一句话类比</span><span>设备周期像<strong>镇上开饭馆</strong>：头一年三家赚钱，第二年三十家开张，第四年三十家一起打折求生。从「决定开店」到「端出第一碗面」要大半年——这段时滞，就是每一轮过剩的种子。</span></div>
+  <h3>设备周期：为什么「产能」总是慢半拍</h3>
+  <p>朱格拉在 1862 年观察到危机大约每 9–10 年重演一次，后来被归因于<strong>固定资产投资的集体节奏</strong>：需求好转 → 大家同时扩产 → 2–3 年后产能集中投产 → 供给过剩 → 价格战 → 停止投资 → 产能出清。这个周期的残酷之处在于，<strong>决策与投产之间的时滞</strong>让每一轮繁荣都自带下一轮的过剩。</p>
+  <p>今天的观察指标是：制造业固定资产投资增速、设备工器具购置增速、以及产能利用率。当产能利用率高企而投资增速仍在高位时，通常意味着离下一轮过剩不远。</p>
+
+  <div class="box note">
+    <span class="t">对中国的特别提醒</span>
+    <p>中国的设备周期被<strong>政策与产业政策显著扰动</strong>。2016–2017 的供给侧改革、2020 的出口替代、2023 年以来的新质生产力投资，都让传统的 9 年节奏变形。对 A 股，用「制造业投资 + 产能利用率」判断中周期，比套用朱格拉年限更可靠。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.4</span>长波：康德拉季耶夫与它的争议</h2>
+  <div class="analogy"><span class="at">一句话类比</span><span>库存是<strong>天气</strong>，设备是<strong>季节</strong>，康波则是<strong>气候纪元</strong>：从「马车时代」走到「汽车时代」，不取决于任何一场雨，而一个人的一生大约只赶上其中一两段。</span></div>
+  <p>1925 年，苏联经济学家康德拉季耶夫在研究了英、法、美百余年物价与利率数据后，提出存在 50–60 年的长周期。熊彼特后来给出了最有力的解释：<strong>长波的驱动力是通用技术的集群式创新</strong>——蒸汽机、铁路、电气、汽车、信息技术，每一次都彻底重构了资本存量与生产组织方式。</p>
+
+  <div class="tl">
+    <div class="wave">
+      <div class="yr"><b>1780s–1840s</b>约 60 年</div>
+      <div class="ct"><h5>第一波：蒸汽机与棉纺织 <span class="tag">英国主导</span></h5><p>工厂制度确立，机械化替代手工。繁荣期约 1790–1815，随后是 1820s 的萧条与 1837 年恐慌。</p></div>
+    </div>
+    <div class="wave">
+      <div class="yr"><b>1840s–1890s</b>约 50 年</div>
+      <div class="ct"><h5>第二波：铁路与钢铁 <span class="tag">英→美、德</span></h5><p>铁路把市场连成一片，重工业崛起。1873 年全球性萧条（Long Depression）是这一波的清算期。</p></div>
+    </div>
+    <div class="wave">
+      <div class="yr"><b>1890s–1940s</b>约 50 年</div>
+      <div class="ct"><h5>第三波：电气、化工、内燃机 <span class="tag">美国接棒</span></h5><p>流水线与大规模生产。1929 大萧条是这一波最深的清算，也直接催生了凯恩斯主义与监管框架。</p></div>
+    </div>
+    <div class="wave">
+      <div class="yr"><b>1940s–1990s</b>约 50 年</div>
+      <div class="ct"><h5>第四波：汽车、石化、家电 <span class="tag">战后黄金期</span></h5><p>1950–1973 是资本主义史上最快增长期；1973、1979 两次石油危机是长波的滞胀顶。</p></div>
+    </div>
+    <div class="wave">
+      <div class="yr"><b>1990s–2020s</b>约 35 年</div>
+      <div class="ct"><h5>第五波：信息技术与互联网 <span class="tag">全球化</span></h5><p>PC—互联网—移动互联网三级扩散。2000 年互联网泡沫、2008 年金融危机是两次清算。周金涛曾判断 2019 年前后为第五波萧条的底部区域。</p></div>
+    </div>
+    <div class="wave now">
+      <div class="yr"><b>2020s–</b>进行中</div>
+      <div class="ct"><h5>第六波：智能技术（AI / 机器人 / 新能源 / 生物） <span class="tag">爆发期？</span></h5><p>按佩蕾丝的「技术革命五阶段」（爆发—狂热—崩溃—协同—成熟），当前更像<strong>「爆发期」向「狂热期」过渡</strong>：资本开支剧增、基础设施先行、盈利模式尚未定型。</p></div>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="t">必须承认的缺陷</span>
+    <p>康波理论有三个硬伤：<strong>①样本只有 4–5 个周期</strong>，任何统计检验都缺乏自由度；<strong>②事后划分极其优美，事前预测极其困难</strong>——同一张图上，不同研究者对不同年代的起点终点常有数年分歧；<strong>③缺乏可反驳的机制</strong>，使得它更接近历史叙事而非可检验的科学假说。</p>
+    <p style="margin-top:8px">所以：<strong>用康波理解「我们处在技术扩散的哪个阶段」，不要用康波判断「明年涨还是跌」</strong>。前者有价值，后者是占星术。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.5</span>美林投资时钟：最流行，也最容易被误用</h2>
+  <div class="analogy"><span class="at">一句话类比</span><span>美林时钟像一份<strong>换季穿衣指南</strong>：春夏秋冬各配一套衣服，逻辑谁都能懂。麻烦的是它假设「四季按顺序来」，而中国这地方，昨天穿短袖、今天要棉袄。</span></div>
+  <p>2004 年 11 月，美林证券（Merrill Lynch）发布了一篇名为《The Investment Clock》的策略报告，作者是当时的美林首席投资策略师 Trevor Greetham。它用<strong>产出缺口</strong>（增长）与<strong>通胀</strong>两个维度，把经济切成四个象限，并给出资产轮动顺序：</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th class="c">象限</th><th>增长</th><th>通胀</th><th>最优资产</th><th>次优</th><th>最差</th><th>典型政策</th></tr></thead>
+      <tbody>
+        <tr><td class="c"><b>复苏</b> Reflation</td><td><span class="bt g">↑</span></td><td><span class="bt g">↓</span></td><td><b>股票</b></td><td>信用债</td><td>现金</td><td>宽松、降息末期</td></tr>
+        <tr><td class="c"><b>过热</b> Overheat</td><td><span class="bt g">↑</span></td><td><span class="bt r">↑</span></td><td><b>商品</b></td><td>股票（价值）</td><td>债券</td><td>加息</td></tr>
+        <tr><td class="c"><b>滞胀</b> Stagflation</td><td><span class="bt r">↓</span></td><td><span class="bt r">↑</span></td><td><b>现金</b></td><td>商品、黄金</td><td>股票</td><td>两难、紧缩</td></tr>
+        <tr><td class="c"><b>衰退</b> Recession</td><td><span class="bt r">↓</span></td><td><span class="bt g">↓</span></td><td><b>债券</b></td><td>现金</td><td>商品</td><td>降息、财政刺激</td></tr>
+      </tbody>
+      <caption>美林投资时钟四象限。原始报告覆盖 1973–2004 年的美国数据，四阶段的资产排序在英国、日本市场也得到部分验证。</caption>
+    </table>
+  </div>
+
+  <h3>为什么在中国「时钟变电风扇」</h3>
+  <p>2010 年代，A 股投资者给美林时钟起了个绰号叫「电风扇」——因为象限切换太快，等你看清是复苏，已经过热了。原因有三：</p>
+  <ol>
+    <li><strong>政策驱动强于内生周期。</strong>中国的信用扩张由政策主导（社融脉冲），一次稳增长可以在两个季度内把「衰退」拽成「复苏」，时钟被外部力量反复拨动。</li>
+    <li><strong>房地产是隐藏的第三维。</strong>地产同时影响增长（投资）与通胀（租金、建材），单用两维无法刻画。</li>
+    <li><strong>通胀指标失真。</strong>中国 CPI 的食品权重高、PPI 受全球大宗影响大，两者经常指向不同方向，导致「象限」判定困难。</li>
+  </ol>
+  <p>实践上的修正办法：<strong>用「社融脉冲 + PPI + 地产销售」三维代替原始的「产出缺口 + CPI」两维</strong>。这也是本站定位器里专门设置「信贷脉冲」滑块的原因。</p>
+</section>
+
+<section>
+  <h2><span class="n">1.6</span>达利欧：债务大周期与世界秩序</h2>
+  <div class="analogy"><span class="at">一句话类比</span><span>债务大周期像<strong>一家人的账本</strong>：收入涨得慢、借钱涨得快，前期日子越过越好，直到某个月发现——工资还没到手，已经先被还款日排满了。国家只是把这张账本放大了一万倍。</span></div>
+  <p>瑞·达利欧（Ray Dalio）在《原则：应对变化中的世界秩序》（<span class="en">The Changing World Order</span>, 2021）与《债务危机》（<span class="en">Big Debt Crises</span>, 2018）中，把周期分成两层：</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>短期债务周期（5–8 年）</h4>
+      <p style="font-size:13.5px;color:var(--ink-2)">由央行利率调节驱动。信贷扩张 → 支出与收入上升 → 通胀上行 → 央行加息 → 信贷收缩 → 衰退 → 降息 → 再扩张。<strong>关键限制：利率有零下限</strong>。一旦降到 0 附近还不起作用，短期周期就撞上长期周期的墙。</p>
+    </div>
+    <div class="card">
+      <h4>长期债务周期（50–75 年）</h4>
+      <p style="font-size:13.5px;color:var(--ink-2)">债务增速长期超过收入增速，累积到不可持续。此时货币政策失效，只能靠<strong>四种方式去杠杆</strong>：债务减记、财政紧缩、财富转移（加税）、印钞（债务货币化）。前两者通缩、后两者通胀，<strong>「漂亮去杠杆」= 四者平衡</strong>。</p>
+    </div>
+  </div>
+
+  <h3>长债务周期的六个阶段</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="c">阶段</th><th>特征</th><th>资产含义</th></tr></thead>
+      <tbody>
+        <tr><td class="c">① 早期</td><td>债务低、增长好、利率温和，债务用于生产性投资</td><td>股债双牛，杠杆有利</td></tr>
+        <tr><td class="c">② 泡沫</td><td>债务增速持续快于收入，资产价格靠杠杆推升，新买家涌入</td><td>股票/房产大涨，波动加大</td></tr>
+        <tr><td class="c">③ 顶部</td><td>偿债支出挤压消费，央行加息，资产价格见顶</td><td>现金流资产跑赢，杠杆资产杀跌</td></tr>
+        <tr><td class="c">④ 去杠杆</td><td>紧缩—违约—失业的自我强化，政策触及零利率</td><td>现金为王、长债先牛后熊</td></tr>
+        <tr><td class="c">⑤ 正常化</td><td>债务重组 + 货币化完成，杠杆率回落至可持续水平</td><td>股票提前 6–12 个月见底</td></tr>
+        <tr><td class="c">⑥ 新周期</td><td>新货币秩序、新主导产业、新储备货币</td><td>长期配置的起点</td></tr>
+      </tbody>
+      <caption>达利欧的六阶段划分（简化）。历史上完整的长期债务周期约 12 个，荷兰、英国、美国各经历了一次霸权交替。</caption>
+    </table>
+  </div>
+
+  <h3>帝国兴衰的八个可观测指标</h3>
+  <p>达利欧用一个<strong>八要素框架</strong>衡量国家实力，这套指标的价值在于「可观测、可比较」：</p>
+  <div class="grid g4">
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">① 教育</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">受教育年限、PISA、工程师供给</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">② 创新与技术</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">研发强度、专利、论文、独角兽</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">③ 成本竞争力</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">单位劳动力成本、生产率</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">④ 军事实力</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">军费、投送能力、同盟</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">⑤ 贸易</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">出口份额、经常账户</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">⑥ 经济产出</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">GDP 份额、人均 GDP</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">⑦ 资本市场</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">市值、外资持有、金融中心地位</p></div>
+    <div class="card" style="padding:14px 16px"><b style="font-size:13.5px">⑧ 储备货币</b><p style="font-size:12.5px;color:var(--ink-3);margin:4px 0 0">央行外汇储备占比、结算份额</p></div>
+  </div>
+
+  <div class="box q">
+    「帝国的衰落很少因为一次外部打击，而是因为内部：债务过重、贫富分化、教育下滑、内部冲突加剧。外部挑战者往往只是压垮骆驼的最后一根稻草。」
+    <span class="src">— 达利欧《原则：应对变化中的世界秩序》核心论点（转述）</span>
+  </div>
+
+  <div class="box model">
+    <span class="t">客观地看：这套框架的问题</span>
+    <p>达利欧的八要素是<strong>事后拟合能力极强、事前预警能力有限</strong>的典型。批评者指出的问题包括：指标权重靠主观赋值、帝国「生命周期」的长度高度可变、以及「美国正在衰落」的结论已连续被预测了数十年而尚未兑现。使用时的正确姿势：<strong>把它当作一张检查表，而不是一张时间表。</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.7</span>明斯基与金融周期：为什么危机总在「最安全」的时候孕育</h2>
+  <div class="analogy"><span class="at">一句话类比</span><span>明斯基时刻像<strong>酒桌上的敬酒</strong>：第一杯是为了助兴，第十杯是为了面子，最后那杯不是为了任何目的——只是因为前面九杯都喝了。危机不需要坏消息，只需要「大家都还好着」再久一点。</span></div>
+  <p>海曼·明斯基（Hyman Minsky）的核心洞见一句话：<strong>「稳定本身孕育不稳定」</strong>（Stability is destabilizing）。长期没有危机，会让人不断提高杠杆、缩短安全垫，直到系统变得脆弱。他按融资结构把经济主体分成三类：</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>融资类型</th><th>现金流特征</th><th>典型主体</th><th>系统状态</th></tr></thead>
+      <tbody>
+        <tr><td><b>对冲融资</b> Hedge</td><td>经营现金流可覆盖本金 + 利息</td><td>稳健企业、自住购房者</td><td><span class="bt g">健康</span></td></tr>
+        <tr><td><b>投机融资</b> Speculative</td><td>只够付息，本金需靠再融资</td><td>滚动开发的地产商、长久期项目</td><td><span class="bt y">脆弱</span></td></tr>
+        <tr><td><b>庞氏融资</b> Ponzi</td><td>利息都不够，靠资产升值或新借款</td><td>高杠杆炒作、经营性现金流为负的扩张</td><td><span class="bt r">危险</span></td></tr>
+      </tbody>
+      <caption>明斯基的融资结构分类。危机的触发点不是「坏消息」，而是资产价格停止上涨的那一刻——因为庞氏单位必须靠涨价活着。</caption>
+    </table>
+  </div>
+
+  <p>国际清算银行（BIS）的 Claudio Borio 与 Mathias Drehmann 在 2009 年之后把这一思想量化，提出<strong>「金融周期」</strong>：用<strong>信贷/GDP 缺口</strong>与<strong>房地产价格缺口</strong>两个指标刻画，长度约 15–20 年，是传统商业周期的两倍。BIS 的实证结论是：<strong>金融周期比通胀更能预测金融危机</strong>，信贷/GDP 缺口超过 10 个百分点是重要的预警阈值。</p>
+
+  <div class="box ins">
+    <span class="t">这条理论对普通投资者最有用的一点</span>
+    <p>危机不是「黑天鹅」，而是「灰犀牛」——它的种子在繁荣期就种下了，而且当时看起来一切都很合理。所以判断风险的位置，要看<strong>杠杆增速</strong>而不是<strong>杠杆水平</strong>：一个杠杆率 250% 但增速为零的经济体，比一个杠杆率 120% 但三年翻倍的经济体安全得多。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">1.8</span>自问自答：三个最常被问到的问题</h2>
+  <p class="sub">这三问几乎每次讲周期都会被问到，答案本身就说明了理论的边界在哪。</p>
+
+  <div class="qa">
+    <div class="q">既然有七八种周期，我该用哪一个？</div>
+    <p class="a">用「三把尺子」：<strong>库存周期</strong>管一到两年的仓位调整；<strong>设备与建筑周期</strong>管三到十年的行业选择；<strong>债务与人口</strong>管十年以上的风险敞口。分不清的时候，先问自己这笔钱的期限有多长——用短尺量长事，和用长尺量短事，都会错。</p>
+  </div>
+
+  <div class="qa">
+    <div class="q">为什么专家们对「现在是什么阶段」永远吵不出结果？</div>
+    <p class="a">因为<strong>周期不是刻度，而是叙事</strong>。同一组数据，通胀高可以是「过热」，也可以是「滞胀」——差别在于你相信增长还在不在。这不是专家水平不够，而是理论本身留了空档。所以聪明做法是：<strong>不争论阶段名称，只争论「哪几个指标在往哪走」</strong>，指标是不会吵架的。</p>
+  </div>
+
+  <div class="qa">
+    <div class="q">如果周期判断错了，会不会比不判断更糟？</div>
+    <p class="a">会，而且这是最常见的情况。所以判断必须配两样东西：<strong>①幅度约束</strong>（一次调仓不超过总仓位的 5–10 个百分点）；<strong>②证伪条件</strong>（写下「什么数据出现，我就承认错了」）。没有这两样，周期就从工具变成了信念，而信念在市场上是最贵的商品。</p>
+  </div>
+
+  <h2><span class="n">1.9</span>使用这些理论的六条纪律</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h4>① 先定位，再预测</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">用指标确定「现在在哪」（可验证），再谈「可能去哪」（概率性）。不要反过来。</p>
+    </div>
+    <div class="card">
+      <h4>② 至少两个周期共振才行动</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">短周期向上 + 长周期向下 = 反弹，不是反转。共振信号的可靠性远高于单一信号。</p>
+    </div>
+    <div class="card">
+      <h4>③ 不要在周期上做精确到月的判断</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">周期的「相位」判断误差通常以季度计。任何声称「明年 3 月见顶」的周期分析，都应默认打折。</p>
+    </div>
+    <div class="card">
+      <h4>④ 记住幸存者偏差</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">你读到的成功周期判断，是大量失败判断中幸存下来的那几个。系统性地记录自己的判断，比多读一本书有用。</p>
+    </div>
+    <div class="card">
+      <h4>⑤ 理论的价值是「排除法」</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">周期理论最确定的作用，是告诉你<strong>什么情况下不该做什么</strong>：滞胀期不要加久期，过热末段不要加杠杆。</p>
+    </div>
+    <div class="card">
+      <h4>⑥ 不要混淆「周期」与「趋势」</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">人口老龄化是趋势（单向），库存是周期（往复）。用周期思维应对趋势，会一直等不到回归。</p>
+    </div>
+  </div>
+</section>
+
+<div class="sum3">
+  <div class="st">这一页记住三句话就够了</div>
+  <p><b>一、</b>周期是叠加的，不是单选的：判断季节之前，先看有几条波在同向走。</p>
+  <p><b>二、</b>越长的周期越像气候、越短越像天气；短周期用来调仓位，长周期用来定结构，别拿错尺子。</p>
+  <p><b>三、</b>理论的价值是「排除法」——它最能确定的，是告诉你什么情况下不该做什么。</p>
+</div>
+
+<div class="nxt">
+  <a href="index.html"><span>上一页 · 00</span><b>← 四季与资产</b></a>
+  <a href="locator.html" class="r2"><span>下一页 · 02</span><b>周期定位器 →</b></a>
+</div>
+
+<footer>
+  <b>四季 · 投资周期地图</b>　｜　01 七种周期理论<br>
+  理论出处详见<a href="refs.html">参考资料</a>。本页为方法论整理，不构成投资建议。
+</footer>
+
+</div></div>
+
+<script src="js/charts.js"></script>
+<script>
+(function(){
+  // 周期叠加示意图（纯合成，用于说明机制）
+  var years = [];
+  for (var y = 1990; y <= 2035; y++) years.push(String(y));
+  var n = years.length;
+  function wave(period, amp, phase) {
+    var a = [];
+    for (var i = 0; i < n; i++) a.push(amp * Math.sin(2 * Math.PI * (i / period) + phase));
+    return a;
+  }
+  var w1 = wave(3.5, 0.55, 0.4);
+  var w2 = wave(9,   0.85, 1.1);
+  var w3 = wave(18,  1.25, 2.2);
+  var w4 = wave(55,  1.55, 3.0);
+  var sum = [];
+  for (var i = 0; i < n; i++) sum.push(w1[i] + w2[i] + w3[i] + w4[i]);
+
+  Chart.line(document.getElementById('c-nest'), {
+    labels: years,
+    xTicks: 9,
+    yMin: -4.2, yMax: 4.2,
+    yFmt: function(v){ return v.toFixed(0); },
+    hlines: [{ y: 0, label: '景气荣枯线', color: '#8a8b7e' }],
+    series: [
+      { name: '库存', color: '#bb8a1f', data: w1, lw: 1.1, dash: [] },
+      { name: '设备', color: '#4a7c59', data: w2, lw: 1.1 },
+      { name: '建筑', color: '#3f5f7a', data: w3, lw: 1.1 },
+      { name: '长波', color: '#534ab7', data: w4, lw: 1.6, dash: [6,4] },
+      { name: '合成', color: '#b53d2e', data: sum, lw: 2.6, area: true }
+    ]
+  });
+})();
+</script>
+</body>
+</html>

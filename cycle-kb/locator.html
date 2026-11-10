@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 周期定位器 · 四季投资周期地图</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topnav">
+  <a class="brand" href="index.html"><b>四季</b><span>投资周期地图</span></a>
+  <nav>
+    <a href="index.html"><i>00</i>四季与资产</a>
+    <a href="theory.html"><i>01</i>七种周期理论</a>
+    <a href="locator.html" class="on"><i>02</i>周期定位器</a>
+    <a href="structure.html"><i>03</i>国家·人口·信贷·行业</a>
+    <a href="allocation.html"><i>04</i>四类资产地图</a>
+    <a href="playbook.html"><i>05</i>投资纪律</a>
+    <a href="refs.html"><i>06</i>参考资料</a>
+  </nav>
+</header>
+
+<div class="main"><div class="wrap">
+
+<header class="hero">
+  <div class="kicker">02 · LOCATOR</div>
+  <h1>周期定位器：把「感觉」换成坐标</h1>
+  <p class="lead">七个有经济含义的参数，两个输出：<strong>你在哪个象限</strong>、<strong>哪类资产的相对赔率更好</strong>。模型口径完全公开，你可以改参数、改预设、也可以不同意我的权重——但至少大家在同一张桌子上讨论。</p>
+  <div class="meta">
+    <span class="pill s">增长 × 通胀 → 象限</span>
+    <span class="pill">信贷脉冲 → 阶段细分</span>
+    <span class="pill a">实际利率 → 黄金与债券</span>
+    <span class="pill">股债性价比 → 股票</span>
+    <span class="pill n">含 6 个历史情景</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">2.1</span>怎么用（三步）</h2>
+  <div class="grid g3">
+    <div class="card"><h4>① 选主体</h4><p style="font-size:13.5px;color:var(--ink-2);margin:0">你要判断的是<strong>哪一类货币/哪一国资产</strong>。先点「美国 2026-11」或「中国 2026-11」预设，再按你的判断调整。</p></div>
+    <div class="card"><h4>② 改参数</h4><p style="font-size:13.5px;color:var(--ink-2);margin:0">七个滑块都是<strong>有量纲的真实经济变量</strong>，不是抽象打分。每个下面都写了当前值来源，方便你替换成最新数据。</p></div>
+    <div class="card"><h4>③ 看排序，不看点位</h4><p style="font-size:13.5px;color:var(--ink-2);margin:0">输出的是<strong>相对强弱排序</strong>与<strong>风险清单</strong>，不是买卖信号。它回答「该往哪个方向偏」，不回答「明天涨跌」。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2.2</span>参数面板</h2>
+
+  <div class="presets" id="presets"></div>
+
+  <div class="panel">
+    <div class="grid g2" style="gap:6px 28px">
+      <div class="ctrl">
+        <div class="lab"><b>① 产出缺口</b><span class="val" id="v-gap"></span></div>
+        <input type="range" id="gap" min="-5" max="5" step="0.1" value="1.6">
+        <div class="hint">实际增速 − 潜在增速（百分点）。正＝经济过热于产能，负＝低于潜在。</div>
+      </div>
+      <div class="ctrl">
+        <div class="lab"><b>② CPI 同比</b><span class="val" id="v-cpi"></span></div>
+        <input type="range" id="cpi" min="-2" max="10" step="0.1" value="3.7">
+        <div class="hint">通胀水平本身隐含方向：高于 2% 视为通胀上行压力，低于则视为下行。</div>
+      </div>
+      <div class="ctrl">
+        <div class="lab"><b>③ 信贷脉冲</b><span class="val" id="v-credit"></span></div>
+        <input type="range" id="credit" min="-6" max="6" step="0.1" value="0.5">
+        <div class="hint">新增信贷/GDP 的同比变化（百分点）。负值＝信用收缩，是短周期最重要的领先变量。</div>
+      </div>
+      <div class="ctrl">
+        <div class="lab"><b>④ 10 年期国债收益率</b><span class="val" id="v-y"></span></div>
+        <input type="range" id="y" min="0" max="8" step="0.01" value="4.84">
+        <div class="hint">本币无风险利率。决定现金的机会成本与债券的票息起点。</div>
+      </div>
+      <div class="ctrl">
+        <div class="lab"><b>⑤ 股债性价比分位</b><span class="val" id="v-erp"></span></div>
+        <input type="range" id="erp" min="0" max="100" step="1" value="78">
+        <div class="hint">0＝股票相对债券极便宜，100＝极贵。用 ERP（1/PE − 10Y 收益率）的历史分位近似。</div>
+      </div>
+      <div class="ctrl">
+        <div class="lab"><b>⑥ 政策取向</b><span class="val" id="v-pol"></span></div>
+        <input type="range" id="pol" min="-2" max="2" step="0.1" value="-1.5">
+        <div class="hint">−2＝强紧缩（加息/紧信用），+2＝强宽松（降息/宽信用/财政扩张）。</div>
+      </div>
+      <div class="ctrl" style="grid-column:1/-1">
+        <div class="lab"><b>⑦ 全球实际利率（美国 10Y − CPI）</b><span class="val" id="v-realG"></span></div>
+        <input type="range" id="realG" min="-4" max="6" step="0.05" value="1.14">
+        <div class="hint">黄金的定价锚是全球美元实际利率，与本币利率无关。分析中国资产时，这一项仍按美国口径填写。</div>
+      </div>
+    </div>
+
+    <div class="out">
+      <div>
+        <div class="verdict" id="verdict">
+          <div class="conf" id="conf"></div>
+          <div class="season" id="season">夏 · 过热</div>
+          <div class="sub2" id="stage"></div>
+          <div class="desc" id="vdesc"></div>
+        </div>
+        <div class="risks">
+          <h4 style="margin:16px 0 6px">当前最大的三个风险</h4>
+          <ul id="risks" style="margin-left:18px"></ul>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin:0 0 10px">资产相对得分（0–100，越高赔率越好）</h4>
+        <div class="sbars" id="sbars"></div>
+        <h4 style="margin:20px 0 6px">模型权重（相对强度归一，单类上限 35%）</h4>
+        <div class="sbars" id="wbars"></div>
+        <p class="sub" style="margin-top:10px">权重是「相对强弱」的机械归一结果，<strong>不是配置建议</strong>。真实配置还要考虑你的负债、久期、流动性需求与风险预算。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fig" style="margin-top:22px">
+    <div class="ft">象限位置</div>
+    <div class="fs">横轴＝通胀动能，纵轴＝增长动能；灰点为历史情景所在位置</div>
+    <canvas id="c-quad" style="height:380px"></canvas>
+    <div class="src">点位由滑块参数实时计算。<strong>灰点为预设情景</strong>：2026 美国、2026 中国、2007Q3 美国、2019Q1 中国、1973 美国石油危机。可以看到同一个「过热」象限里，1973 与 2026 的政策约束完全不同。</div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2.3</span>实况对照：这些参数现在是多少</h2>
+  <p class="sub">下表是 2026-11-10 的取值与依据。你可以随数据更新自行修改滑块——<strong>这张表本身就是一个人工更新的「宏观仪表盘」</strong>。</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>参数</th><th class="c">美国</th><th class="c">中国</th><th>取值依据（2026-11-10）</th></tr></thead>
+      <tbody>
+        <tr><td>产出缺口</td><td class="c num">+1.6</td><td class="c num">−0.2</td><td>美国 Q3 GDP 年化 3.4%，潜在增速估算约 1.8%；中国前三季度 4.6%，潜在约 4.8%（估算）</td></tr>
+        <tr><td>CPI 同比</td><td class="c num">3.7%</td><td class="c num">0.9%</td><td>美国 9 月 PCE 同比 3.6%、核心 3.1%；中国前三季度 CPI +0.9%、PPI +2.3%</td></tr>
+        <tr><td>信贷脉冲</td><td class="c num">+0.5</td><td class="c num">−1.5</td><td>美国信贷温和扩张；中国 Q3 末各项贷款余额同比仅 4.8%，信用扩张明显偏弱</td></tr>
+        <tr><td>10Y 国债</td><td class="c num">4.84%</td><td class="c num">1.59%</td><td>美债 11/5 收盘 4.84%；中债 10Y 11/9 报 1.59%（11/5 破 1.60% 创本轮新低）</td></tr>
+        <tr><td>股债性价比分位</td><td class="c num">78</td><td class="c num">35</td><td>美国股债性价比处历史偏贵区间（估算）；沪深300 PE(TTM) 13.5 倍（10 年分位约 69%）、PB 1.34（分位约 20%）、股息率 2.8–3.1%、ERP 6.12%（分位 24%）</td></tr>
+        <tr><td>政策取向</td><td class="c num">−1.5</td><td class="c num">+1.5</td><td>美联储 10/28 维持 3.75–4.00%，2 票主张加息，12 月加息概率约七至八成；中国政策利率「换锚」、资金面宽松、财政增量政策</td></tr>
+        <tr><td>全球实际利率</td><td class="c num">+1.14%</td><td class="c num">+1.14%</td><td>美国 10Y 4.84% − CPI 3.7%。这是黄金最重要的单一变量</td></tr>
+      </tbody>
+      <caption>数据来源：美联储 FOMC（2026-10-28）、美国 BEA/BLS、国家统计局（2026-10-19）、中债登（2026-11-09）、中国人民银行（2026Q3 贷款投向报告）、南方基金/国信证券估值数据（2026-11-05）。产出缺口与分位数为编者估算。</caption>
+    </table>
+  </div>
+
+  <div class="box ins">
+    <span class="t">读出来的结论</span>
+    <p>美国：<strong>增长强、通胀高、政策紧、估值贵、现金有真实回报</strong>——典型的「夏末」。中国：<strong>增长略低于潜在、通胀温和、信用收缩、利率极低、股票相对债券便宜</strong>——典型的「早春」，但缺一个催化：信贷脉冲还没转正。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2.4</span>模型口径（可审计）</h2>
+  <p>我把公式全部写出来，就是为了让它<strong>可以被反对</strong>。任何不能被你检验的模型，都不该影响你的钱。</p>
+
+  <details open>
+    <summary>变量与派生量</summary>
+    <div class="dc">
+      <div class="formula">g = clamp(产出缺口 × 1.4, −3, +3)          // 增长动能
+p = clamp((CPI − 2) × 0.9, −3, +3)         // 通胀动能（2% 为中枢）
+real  = 10Y − CPI                          // 本币实际利率
+m = 政策取向 (−2 … +2)
+c = 信贷脉冲 (−6 … +6)
+e = 股债性价比分位 (0 … 100，越高越贵)
+realG = 全球实际利率 (美国 10Y − CPI)</div>
+      <p style="margin-top:10px">所有得分最终都 <code>clamp(0, 100)</code>。50 为中性。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>五类资产的打分公式</summary>
+    <div class="dc">
+      <div class="formula">股票 = 50 + 9g − 7p + 4c + 2.5m + 0.45(50 − e) − 3·max(0, real − 2)
+债券 = 50 − 11g − 8p + 3c + 3.2(real − 2)
+黄金 = 50 − 8(realG − 0.8) + 2.5p + 3·max(0, −g) + 5
+商品 = 50 + 8g + 10p − 2.5c − 2·max(0, real − 2.5)
+现金 = 45 + 6(10Y − 2) − 4.5g + 2p</div>
+      <p style="margin-top:10px"><b>为什么这样设：</b></p>
+      <ul style="font-size:13px;margin-left:18px">
+        <li><b>股票</b>：增长正向、通胀负向（估值杀）、信贷正向（盈利与流动性）、政策正向、估值负向（均值回归）、实际利率过高负向（贴现率）。</li>
+        <li><b>债券</b>：增长与通胀都是负向（利率上行＝价格下跌），信贷扩张正向（央行需收紧对冲），<strong>实际利率偏离中枢正向</strong>——起点实际利率越高，未来资本利得空间越大（均值回归）。</li>
+        <li><b>黄金</b>：核心是<strong>全球实际利率</strong>，负实际利率是其最强的历史驱动力（1970s、2000s、2020s 三次大牛市均如此）；通胀上行与增长下行各加一点「滞胀溢价」；+5 为 2022 年以来央行购金的结构性常量。</li>
+        <li><b>商品</b>：增长与通胀双正向——这是唯一在「过热」象限拿高分的资产；实际利率过高时融资成本压制库存需求。</li>
+        <li><b>现金</b>：只看名义短端利率与增长（增长差时现金是避风港）。<strong>这一项的绝对值在中美之间差异极大</strong>——4% 的现金和 1.2% 的现金不是同一种资产。</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>模型权重如何归一</summary>
+    <div class="dc">
+      <p>把每个得分减去 25 的「地板」（低于 25 视为无配置价值），归一化为百分比，再对单类施加 <strong>35% 上限</strong>并把超出部分按比例分配给其余资产（迭代两次）。这样避免在极端情景下押注单一资产。</p>
+    </div>
+  </details>
+
+  <div class="box model">
+    <span class="t">我不打算隐藏的模型缺陷</span>
+    <p><strong>① 线性假设。</strong>真实世界有阈值、有非线性（如债务到某一水平后利率失效），线性打分会在极端处失真。<strong>② 系数是我设定的</strong>，没有做严格的样本外拟合；改变系数会改变排序。<strong>③ 时点模糊。</strong>模型给的是「未来 6–12 个月的相对赔率」，不是精确期限。<strong>④ 忽略估值均值回归的时间。</strong>便宜可以更便宜很久。</p>
+    <p style="margin-top:8px">用法建议：<strong>只把它的排序当参考，把它的变化方向当信号</strong>（比如信贷脉冲从 −1.5 转正，比绝对数值更有意义）。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2.5</span>历史情景：模型当时会说什么</h2>
+  <p class="sub">把参数拨回历史时点，看模型的排序是否与后来的实际结果一致。这是检验任何框架的唯一诚实方式。</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>情景</th><th>模型最优</th><th>模型最差</th><th>后来实际发生</th><th class="c">是否对路</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>1973 美国</b><br><span class="en">石油危机</span></td>
+          <td>商品、黄金、现金</td><td>债券、股票</td>
+          <td>1973–74 标普 −40%+，债券实际回报深度为负，原油涨约 3 倍，黄金从 65 涨到 180 美元</td>
+          <td class="c"><span class="bt g">对</span></td>
+        </tr>
+        <tr>
+          <td><b>2007Q3 美国</b><br><span class="en">危机前夜</span></td>
+          <td>现金、债券</td><td>股票、商品</td>
+          <td>2008 标普 −38%，商品在 2008H2 崩塌，美债大涨（10Y 从 4.5% 降至 2.1%）</td>
+          <td class="c"><span class="bt g">对</span></td>
+        </tr>
+        <tr>
+          <td><b>2019Q1 中国</b><br><span class="en">宽信用起点</span></td>
+          <td>股票、商品</td><td>现金</td>
+          <td>2019 沪深300 全年 +36%，2019–2021 核心资产大牛市</td>
+          <td class="c"><span class="bt g">对</span></td>
+        </tr>
+        <tr>
+          <td><b>2022 全球</b><br><span class="en">加息抗通胀</span></td>
+          <td>现金、商品</td><td>债券、成长股</td>
+          <td>2022 全球股债双杀，60/40 组合史上最差年份之一，美元现金 4%+ 完胜</td>
+          <td class="c"><span class="bt g">对</span></td>
+        </tr>
+        <tr>
+          <td><b>2011 中国</b><br><span class="en">高通胀紧信用</span></td>
+          <td>现金、商品</td><td>股票</td>
+          <td>2011 A 股 −22%，CPI 一度 6.5%，债市下半年反而走牛</td>
+          <td class="c"><span class="bt y">部分对</span></td>
+        </tr>
+      </tbody>
+      <caption>「是否对路」为编者判断。注意：这些情景是<strong>事后选取</strong>的，存在选择偏差——真正考验框架的是 2015、2018、2023 这类「信号模糊」的年份，那里模型表现平平。</caption>
+    </table>
+  </div>
+
+  <div class="box warn">
+    <span class="t">请务必读完这一段</span>
+    <p>上面五个情景都是我挑的，它们恰好都是「季节鲜明」的年份。在季节模糊的年份（如 2015 中国、2018 全球、2023–2024 中国），这套框架给出的排序<strong>经常是错的或者无用的</strong>。真实使用中，你要接受大概 <strong>六成对、四成错</strong>的现实，并靠仓位管理而不是靠判断精度活下来。</p>
+  </div>
+</section>
+
+<div class="nxt">
+  <a href="theory.html"><span>上一页 · 01</span><b>← 七种周期理论</b></a>
+  <a href="structure.html" class="r2"><span>下一页 · 03</span><b>国家·人口·信贷·行业 →</b></a>
+</div>
+
+<footer>
+  <b>四季 · 投资周期地图</b>　｜　02 周期定位器<br>
+  模型为方法论演示，参数与权重由编者设定，不构成投资建议。
+</footer>
+
+</div></div>
+
+<script src="js/charts.js"></script>
+<script>
+(function () {
+  var ids = ['gap', 'cpi', 'credit', 'y', 'erp', 'pol', 'realG'];
+  var el = {};
+  ids.forEach(function (k) { el[k] = document.getElementById(k); });
+
+  var PRESETS = [
+    { k: '美国 · 2026-11', v: { gap: 1.6, cpi: 3.7, credit: 0.5, y: 4.84, erp: 78, pol: -1.5, realG: 1.14 } },
+    { k: '中国 · 2026-11', v: { gap: -0.2, cpi: 0.9, credit: -1.5, y: 1.59, erp: 35, pol: 1.5, realG: 1.14 } },
+    { k: '美国 · 2007Q3', v: { gap: -0.6, cpi: 2.8, credit: -2.5, y: 4.5, erp: 80, pol: 0, realG: 1.7 } },
+    { k: '中国 · 2019Q1', v: { gap: -0.5, cpi: 1.5, credit: 1.8, y: 3.1, erp: 15, pol: 2, realG: 1.0 } },
+    { k: '美国 · 1973', v: { gap: 0.8, cpi: 8.0, credit: 0.5, y: 7.0, erp: 60, pol: -1, realG: -1.0 } },
+    { k: '美国 · 2022', v: { gap: 1.0, cpi: 8.0, credit: -1.0, y: 3.5, erp: 82, pol: -2, realG: -3.0 } }
+  ];
+
+  // 预设按钮
+  var pbox = document.getElementById('presets');
+  PRESETS.forEach(function (p, i) {
+    var b = document.createElement('button');
+    b.textContent = p.k;
+    b.addEventListener('click', function () {
+      apply(p.v);
+      Array.prototype.forEach.call(pbox.children, function (c) { c.classList.remove('on'); });
+      b.classList.add('on');
+    });
+    if (i === 0) b.classList.add('on');
+    pbox.appendChild(b);
+  });
+  var rb = document.createElement('button');
+  rb.textContent = '↺ 重置为美国 2026-11';
+  rb.addEventListener('click', function () { apply(PRESETS[0].v); pbox.children[0].click(); });
+  pbox.appendChild(rb);
+
+  function apply(v) {
+    ids.forEach(function (k) { if (v[k] !== undefined) el[k].value = v[k]; });
+    render(false);
+  }
+
+  var SEASON = {
+    spring: { name: '春 · 复苏', color: '#4a7c59', bg: '#e9f0e7', bd: '#bcd0bf',
+      desc: '增长在潜在之上、通胀仍低于中枢——这是赔率最好的季节，但也是最容易被怀疑的季节（因为坏消息还在）。历史经验：股票 > 信用债 > 商品 > 现金，长债最差。' },
+    summer: { name: '夏 · 过热', color: '#b53d2e', bg: '#fbe9e6', bd: '#e6bdb5',
+      desc: '增长强、通胀高、政策开始收紧。商品是唯一还在加速的资产；股票的盈利还在但估值开始被杀；长久期债券是明确的输家。这个季节最大的错觉是「经济这么好，股票怎么会跌」。' },
+    autumn: { name: '秋 · 滞胀', color: '#bb8a1f', bg: '#faf2de', bd: '#e3cb96',
+      desc: '增长下行而通胀不下——政策的死结：松了通胀更高，紧了增长更差。历史上这个象限的股票实际回报最差，现金与短债是唯一确定性，黄金在负实际利率时表现最好。' },
+    winter: { name: '冬 · 衰退', color: '#3f5f7a', bg: '#e6eef4', bd: '#b8cad8',
+      desc: '增长与通胀双降，央行开始降息。这是债券最确定的季节——久期越长越赚；股票往往提前 6–12 个月见底，等到数据确认衰退时，最好的买点通常已经过去。' }
+  };
+
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+
+  function model(v) {
+    var g = clamp(v.gap * 1.4, -3, 3);
+    var p = clamp((v.cpi - 2) * 0.9, -3, 3);
+    var real = v.y - v.cpi;
+    var m = v.pol, c = v.credit, e = v.erp;
+    var S = 50 + 9 * g - 7 * p + 4 * c + 2.5 * m + 0.45 * (50 - e) - 3 * Math.max(0, real - 2);
+    var B = 50 - 11 * g - 8 * p + 3 * c + 3.2 * (real - 2);
+    var G = 50 - 8 * (v.realG - 0.8) + 2.5 * p + 3 * Math.max(0, -g) + 5;
+    var M = 50 + 8 * g + 10 * p - 2.5 * c - 2 * Math.max(0, real - 2.5);
+    var C = 45 + 6 * (v.y - 2) - 4.5 * g + 2 * p;
+    return {
+      g: g, p: p, real: real,
+      scores: [
+        { k: '股票', v: clamp(S, 0, 100), color: '#4a7c59' },
+        { k: '债券', v: clamp(B, 0, 100), color: '#3f5f7a' },
+        { k: '黄金', v: clamp(G, 0, 100), color: '#bb8a1f' },
+        { k: '商品', v: clamp(M, 0, 100), color: '#b53d2e' },
+        { k: '现金', v: clamp(C, 0, 100), color: '#8a8b7e' }
+      ]
+    };
+  }
+
+  function weights(scores) {
+    var raw = scores.map(function (s) { return Math.max(0, s.v - 25); });
+    var sum = raw.reduce(function (a, b) { return a + b; }, 0);
+    if (sum <= 0) return scores.map(function () { return 20; });
+    var w = raw.map(function (x) { return x / sum * 100; });
+    for (var it = 0; it < 2; it++) {
+      var excess = 0, free = 0;
+      w.forEach(function (x) { if (x > 35) excess += x - 35; });
+      if (excess <= 0) break;
+      w = w.map(function (x) { return x > 35 ? 35 : x; });
+      w.forEach(function (x) { if (x < 35) free += x; });
+      w = w.map(function (x) { return x < 35 ? x + excess * (x / free) : x; });
+    }
+    return w;
+  }
+
+  function season(m) {
+    if (m.g >= 0 && m.p < 0) return 'spring';
+    if (m.g >= 0 && m.p >= 0) return 'summer';
+    if (m.g < 0 && m.p >= 0) return 'autumn';
+    return 'winter';
+  }
+
+  function risks(v, m, sc) {
+    var out = [];
+    var S = sc[0].v, B = sc[1].v, G = sc[2].v, M = sc[3].v, C = sc[4].v;
+    if (B < 30 && m.real > 0.5) out.push('<b>长久期债券</b>：实际利率处于 ' + m.real.toFixed(2) + '%，且增长通胀仍在上行，加息尾部风险会直接打在久期上。');
+    if (v.erp > 70) out.push('<b>股票估值</b>：股债性价比处于 ' + v.erp + ' 分位（偏贵），对「利率不降」和「盈利不及预期」同时敏感——这是双杀的必要条件。');
+    if (v.erp < 30) out.push('<b>便宜的陷阱</b>：股债性价比仅 ' + v.erp + ' 分位，但便宜可以更便宜；缺的是催化剂（信用转宽 / 盈利拐点），不是估值。');
+    if (v.credit < -1) out.push('<b>信用收缩</b>：信贷脉冲 ' + v.credit.toFixed(1) + '，低资质主体的再融资风险上升，信用下沉的性价比正在恶化。');
+    if (m.g < 0 && m.p > 0) out.push('<b>政策两难</b>：滞胀象限里，任何宽松都会被通胀惩罚、任何紧缩都会被增长惩罚，不要指望政策救市。');
+    if (v.realG < 0) out.push('<b>货币购买力</b>：全球实际利率 ' + v.realG.toFixed(2) + '%，负实际利率利好黄金，但也意味着现金在持续贬值。');
+    if (v.realG > 2.5) out.push('<b>黄金的机会成本</b>：全球实际利率 ' + v.realG.toFixed(2) + '%，持有无息资产成本很高，金价上行需要「降息」或「信用担忧」来打开空间。');
+    if (S > 70) out.push('<b>拥挤度</b>：股票得分偏高，注意这通常伴随仓位拥挤与波动放大。');
+    if (C > 70) out.push('<b>机会成本</b>：现金得分很高，说明等待几乎免费——但现金永远不会给你意外的惊喜。');
+    if (!out.length) out.push('当前没有极端读数——这通常意味着「不需要做大的调整」，按既定配置再平衡即可。');
+    return out.slice(0, 3);
+  }
+
+  var chart = null;
+  function render(redraw) {
+    var v = {};
+    ids.forEach(function (k) { v[k] = parseFloat(el[k].value); });
+
+    // 数值显示
+    document.getElementById('v-gap').textContent = (v.gap > 0 ? '+' : '') + v.gap.toFixed(1) + ' pp';
+    document.getElementById('v-cpi').textContent = v.cpi.toFixed(1) + ' %';
+    document.getElementById('v-credit').textContent = (v.credit > 0 ? '+' : '') + v.credit.toFixed(1) + ' pp';
+    document.getElementById('v-y').textContent = v.y.toFixed(2) + ' %';
+    document.getElementById('v-erp').textContent = v.erp + ' 分位';
+    document.getElementById('v-pol').textContent = (v.pol > 0 ? '+' : '') + v.pol.toFixed(1);
+    document.getElementById('v-realG').textContent = v.realG.toFixed(2) + ' %';
+
+    var m = model(v);
+    var key = season(m);
+    var ss = SEASON[key];
+
+    var vd = document.getElementById('verdict');
+    vd.style.background = ss.bg; vd.style.borderColor = ss.bd; vd.style.color = ss.color;
+    document.getElementById('season').textContent = ss.name;
+    document.getElementById('vdesc').textContent = ss.desc;
+
+    // 阶段与置信度
+    var stage = [];
+    if (v.credit > 1) stage.push('信用扩张中，属季节早段');
+    else if (v.credit < -1) stage.push('信用收缩中，属季节末段');
+    else stage.push('信用中性，季节中段');
+    if (v.pol > 1) stage.push('政策强宽松');
+    else if (v.pol < -1) stage.push('政策强紧缩');
+    document.getElementById('stage').textContent = stage.join(' · ');
+
+    var amb = Math.min(Math.abs(m.g), Math.abs(m.p));
+    var conf = amb > 1.8 ? '信号清晰' : amb > 0.9 ? '信号中等' : '换季期 · 判定不稳';
+    document.getElementById('conf').textContent = conf;
+
+    // 得分条
+    var sb = document.getElementById('sbars');
+    sb.innerHTML = m.scores.map(function (s) {
+      return '<div class="sbar"><span>' + s.k + '</span><div class="tr"><i style="width:' + s.v.toFixed(1) +
+        '%;background:' + s.color + '"></i></div><span class="vn">' + s.v.toFixed(0) + '</span></div>';
+    }).join('');
+
+    var ws = weights(m.scores);
+    var wb = document.getElementById('wbars');
+    wb.innerHTML = m.scores.map(function (s, i) {
+      return '<div class="sbar"><span>' + s.k + '</span><div class="tr"><i style="width:' + ws[i].toFixed(1) +
+        '%;background:' + s.color + ';opacity:.78"></i></div><span class="vn">' + ws[i].toFixed(0) + '%</span></div>';
+    }).join('');
+
+    document.getElementById('risks').innerHTML = risks(v, m, m.scores).map(function (t) {
+      return '<li>' + t + '</li>';
+    }).join('');
+
+    // 象限图
+    var pts = PRESETS.map(function (p) {
+      var mm = model(p.v);
+      return { x: mm.p, y: mm.g, label: p.k.replace(' · ', '·').replace(' 2026-11', '') };
+    });
+    var cfg = {
+      x: m.p, y: m.g, range: 3, color: ss.color,
+      label: ss.name.replace(' · ', ' ') + '（' + m.g.toFixed(1) + ', ' + m.p.toFixed(1) + '）'
+    };
+    if (redraw === false) {
+      // 首次
+    }
+    var cv = document.getElementById('c-quad');
+    if (!chart) {
+      cfg.points = pts;
+      Chart.quad(cv, cfg);
+      chart = cv;
+    } else {
+      cfg.points = pts;
+      Chart.quad(cv, cfg);
+    }
+  }
+
+  ids.forEach(function (k) { el[k].addEventListener('input', function () { render(); }); });
+  render();
+})();
+</script>
+</body>
+</html>

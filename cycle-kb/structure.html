@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 国家·人口·信贷·行业 · 四季投资周期地图</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topnav">
+  <a class="brand" href="index.html"><b>四季</b><span>投资周期地图</span></a>
+  <nav>
+    <a href="index.html"><i>00</i>四季与资产</a>
+    <a href="theory.html"><i>01</i>七种周期理论</a>
+    <a href="locator.html"><i>02</i>周期定位器</a>
+    <a href="structure.html" class="on"><i>03</i>国家·人口·信贷·行业</a>
+    <a href="allocation.html"><i>04</i>四类资产地图</a>
+    <a href="playbook.html"><i>05</i>投资纪律</a>
+    <a href="refs.html"><i>06</i>参考资料</a>
+  </nav>
+</header>
+
+<div class="main"><div class="wrap">
+
+<header class="hero">
+  <div class="kicker">03 · STRUCTURE</div>
+  <h1>四个慢变量：国家、人口、信贷、行业</h1>
+  <p class="lead">短周期决定你今年赚不赚钱，<strong>长结构决定你这辈子能赚多少</strong>。这一页的四条线，都走得很慢，但都不可逆——用周期思维去等它们回归，会等一辈子。</p>
+  <div class="meta">
+    <span class="pill w">国家生命周期 50–100 年</span>
+    <span class="pill s">人口 30–60 年</span>
+    <span class="pill u">信贷 15–20 年</span>
+    <span class="pill a">行业 5–30 年</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">3.1</span>国家：长周期最后的载体</h2>
+  <p>达利欧的八要素框架（见 <a href="theory.html">01 页</a>）本质上是一张<strong>国家竞争力体检表</strong>。它的价值不在于预测谁是下一个霸主，而在于提醒你：<strong>储备货币的地位、资本市场的深度、产权的稳定性，本身就是一种「资产类别的隐含收益率」</strong>。</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>霸权交替</th><th class="c">大致期间</th><th>领先产业</th><th>金融中心</th><th>储备货币</th><th>转折标志</th></tr></thead>
+      <tbody>
+        <tr><td><b>荷兰</b></td><td class="c">1600–1780</td><td>航运、东印度贸易</td><td>阿姆斯特丹</td><td>荷兰盾</td><td>郁金香泡沫（1637）、四次英荷战争</td></tr>
+        <tr><td><b>英国</b></td><td class="c">1780–1914</td><td>蒸汽、铁路、纺织</td><td>伦敦</td><td>英镑</td><td>一战耗尽国力、金本位崩溃（1931）</td></tr>
+        <tr><td><b>美国</b></td><td class="c">1914–至今</td><td>电气、汽车、IT、AI</td><td>纽约</td><td>美元</td><td>1971 尼克松冲击、2008 金融危机、债务/GDP 高企</td></tr>
+      </tbody>
+      <caption>霸权交替史。注意：<strong>「储备货币地位动摇」通常比「经济总量被超越」晚 20–40 年</strong>——英国 GDP 在 1870s 就被美国超过，英镑的储备地位却维持到 1944 年布雷顿森林会议。</caption>
+    </table>
+  </div>
+
+  <div class="box ins">
+    <span class="t">对投资最有用的一条</span>
+    <p>不要试图用「国家兴衰」做短期交易。它真正影响的是<strong>长期贴现率</strong>：一个国家越接近债务与内部分裂的临界点，其资产需要的风险溢价越高。这就是为什么同样的盈利增速，不同国家的 PE 可以差一倍。<strong>国家风险不是新闻事件，是折现率里的一个常数项。</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3.2</span>人口：最慢、也最确定的周期</h2>
+  <p>如果说康波是「事后优美、事前模糊」，人口周期几乎是它的反面：<strong>趋势极其确定，只是没人愿意等</strong>。今天 25 岁的人，2046 年 45 岁，这是小学算术，不是预测。</p>
+
+  <div class="fig">
+    <div class="ft">中国：出生人口、死亡人口与净增人口（2000–2025）</div>
+    <div class="fs">柱＝出生/死亡（万人），线＝净增人口（万人，右轴同单位）</div>
+    <canvas id="c-pop" style="height:340px"></canvas>
+    <div class="src">数据来源：国家统计局历年国民经济和社会发展统计公报。2025 年：出生 792 万、死亡 1131 万、净减 339 万，总人口 140489 万，出生率 5.63‰、死亡率 8.04‰。</div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>指标</th><th class="r">2020</th><th class="r">2023</th><th class="r">2024</th><th class="r">2025</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>出生人口（万）</td><td class="r">1200</td><td class="r">902</td><td class="r">954</td><td class="r">792</td><td>2024 年短暂反弹后再度大幅下滑</td></tr>
+        <tr><td>死亡人口（万）</td><td class="r">998</td><td class="r">1110</td><td class="r">1093</td><td class="r">1131</td><td>老龄化推动的单调上行</td></tr>
+        <tr><td>净增人口（万）</td><td class="r"><span class="bt g">+202</span></td><td class="r"><span class="bt r">−208</span></td><td class="r"><span class="bt r">−139</span></td><td class="r"><span class="bt r">−339</span></td><td>2022 年起连续为负，且缺口扩大</td></tr>
+        <tr><td>总人口（万）</td><td class="r">141212</td><td class="r">140967</td><td class="r">140828</td><td class="r">140489</td><td>峰值约在 2021 年（141260 万）</td></tr>
+        <tr><td>65 岁及以上占比</td><td class="r">13.5%</td><td class="r">15.4%</td><td class="r">15.6%</td><td class="r">15.9%</td><td>约 2.24 亿人，且加速</td></tr>
+        <tr><td>城镇化率</td><td class="r">63.9%</td><td class="r">66.2%</td><td class="r">67.0%</td><td class="r">67.9%</td><td>仍有空间，但斜率明显放缓</td></tr>
+      </tbody>
+      <caption>数据来源：国家统计局 2025 年统计公报（2026-02-28）及历年公报。</caption>
+    </table>
+  </div>
+
+  <h3>人口如何影响资产价格：四条传导链</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>① 房地产：需求的总量拐点</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">25–45 岁是购房主力。中国该年龄段人口在 2015 年前后见顶，<strong>与新开工面积的拐点几乎同步</strong>。这不意味着房价一定跌，但意味着「靠人口增量消化库存」这条路已经走完。</p>
+    </div>
+    <div class="card">
+      <h4>② 利率：储蓄过剩压低自然利率</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">老龄化提高储蓄率、降低投资需求，理论上压低均衡利率。这解释了为什么中国 10Y 国债能到 1.59% 而美国还在 4.84%——<strong>不只是货币政策，是人口结构</strong>。</p>
+    </div>
+    <div class="card">
+      <h4>③ 消费：从「量」到「结构」</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">总人口下降但老年人口增加，消费从「房子车子」转向「医疗、康养、服务」。2025 年中国服务性消费占比 46.1%，这个比例还会升。</p>
+    </div>
+    <div class="card">
+      <h4>④ 财政：养老与医疗的刚性支出</h4>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:0">抚养比上升意味着要么加税、要么发债、要么延退。三条路都指向<strong>更高的政府杠杆与更长期的通胀倾向</strong>——这是长期持有黄金的结构性理由之一。</p>
+    </div>
+  </div>
+
+  <h3>对照：日本与韩国告诉我们什么</h3>
+  <p>日本 1990 年泡沫破裂时，65 岁以上人口占比约 12%，此后三十年升至 29% 以上。日经 225 从 1989 年的 38957 点跌到 2009 年的 7054 点，<strong>用了 34 年才在 2024 年重回 1989 年的点位</strong>。这段历史最残酷的教训不是「股市会跌」，而是<strong>「估值可以二十年不回归」</strong>。</p>
+  <p>韩国总和生育率 2023 年降至 0.72（2024 年小幅回升至约 0.75），是全球最低。它证明了一件事：<strong>当房价收入比与教育竞争强度越过某个阈值，生育率的下滑不是政策能轻易扭转的</strong>。</p>
+
+  <div class="box note">
+    <span class="t">《2052：未来四十年的中国与世界》说了什么</span>
+    <p>乔根·兰德斯（Jorgen Randers，罗马俱乐部《增长的极限》作者之一）在 2012 年用气候—经济模型做了到 2052 年的情景推演。核心结论是：<strong>全球人口在 2040 年前后见顶、约 81 亿；全球 GDP 总量约翻倍但增速持续下移；中国的增速中枢逐步降至 2%–3% 区间；能源与气候约束成为增长的硬阈值；「短视的资本主义」导致资源持续错配。</strong></p>
+    <p style="margin-top:8px">这本书的方法论价值大于结论价值：它提醒我们，<strong>长期模型对「方向」的判断往往正确，对「幅度」和「时点」的判断往往错得离谱</strong>。用它来校准预期，不要用它来做交易。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3.3</span>信贷：把周期放大的那个东西</h2>
+  <p>如果没有信贷，经济周期会温和得多——收入多少花多少，投资只能靠储蓄。信贷的本质是<strong>把未来的需求搬到今天</strong>，代价是未来要还。这决定了三件事：</p>
+  <ol>
+    <li><strong>信贷扩张期，所有资产都涨</strong>（因为分母是信用）；<strong>收缩期，所有资产都跌</strong>，包括「基本面很好」的那些。</li>
+    <li>信贷周期比库存周期长、比人口周期短，约 15–20 年（BIS 金融周期），是<strong>房地产与银行股的主时钟</strong>。</li>
+    <li>信贷见顶的方式，决定了衰退的形状：<strong>通胀型（加息压下去）还是债务型（还不起而崩）</strong>。</li>
+  </ol>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>经济体</th><th class="r">实体经济杠杆率</th><th class="r">居民</th><th class="r">非金融企业</th><th class="r">政府</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td><b>中国</b>（约 2025）</td><td class="r">约 297%</td><td class="r">约 61%</td><td class="r">约 168%</td><td class="r">约 68%</td><td><span class="bt y">高位、增速放缓</span></td></tr>
+        <tr><td><b>美国</b>（约 2025）</td><td class="r">约 255%</td><td class="r">约 70%</td><td class="r">约 75%</td><td class="r">约 110%</td><td><span class="bt r">政府端主导上升</span></td></tr>
+        <tr><td><b>日本</b>（约 2025）</td><td class="r">约 400%</td><td class="r">约 65%</td><td class="r">约 115%</td><td class="r">约 220%</td><td><span class="bt r">政府债务极端</span></td></tr>
+      </tbody>
+      <caption>口径：BIS / 国家金融与发展实验室（NIFD）实体经济部门杠杆率，为<strong>近似值</strong>，不同机构口径可差 5–10 个百分点。用于比较结构，不宜用于精确引用。</caption>
+    </table>
+  </div>
+
+  <h3>日本的教训：资产负债表衰退</h3>
+  <p>辜朝明（Richard Koo）在《大衰退》中提出：1990 年日本泡沫破裂后，企业集体从「利润最大化」转向「负债最小化」——即使利率降到零，企业也不借钱，而是拼命还债。结果是<strong>货币政策失效</strong>：央行放再多水，也只是变成了银行的超额准备金，没有变成需求和通胀。</p>
+  <p>这段历史对今天中国的参照意义被广泛讨论，但要注意<strong>关键差异</strong>：日本当年是<strong>企业</strong>部门去杠杆，中国当前主要是<strong>居民与地方政府</strong>部门的资产负债表修复；日本当年已经完成城镇化（城市化率 77%），中国是 67.9%。同构的部分是「私人部门不愿加杠杆」，不同的部分是「还有多少空间」。</p>
+
+  <div class="box ins">
+    <span class="t">当下中国信贷的两个数字</span>
+    <p><strong>2026 年三季度末，金融机构人民币各项贷款余额 283.44 万亿元，同比仅增长 4.8%</strong>（前三季度新增 11.52 万亿元）。这是很低的速度——它解释了为什么 10 年期国债能跌到 1.59%：不是钱多，是<strong>能借钱的人不借了</strong>。</p>
+    <p style="margin-top:8px">但另一面：<strong>PPI 已从 2025 年的 −2.6% 转为 2026 年前三季度的 +2.3%</strong>。信用弱 + 价格回升，这个组合在历史上通常对应「供给出清 + 外需拉动」，而不是需求全面复苏。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3.4</span>行业周期：三条正在走的路</h2>
+
+  <h3>金融：低利率环境下，最难受的是久期错配</h3>
+  <p>银行看净息差，保险看利差与久期缺口。当前中国的组合是：<strong>10Y 国债 1.59%、30Y 2.03%、1Y 1.17%</strong>。</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>子行业</th><th>核心变量</th><th>当前读数与含义</th><th>周期位置</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>银行</b></td><td>净息差、资产质量</td>
+          <td>贷款增速 4.8%（量弱）、利率下行（价跌），<strong>量价双压</strong>；但高股息属性在低利率下反而受追捧</td>
+          <td><span class="bt w">下行后段</span></td>
+        </tr>
+        <tr>
+          <td><b>寿险</b></td><td>利差损、久期缺口、CSM</td>
+          <td>负债久期通常 15 年以上、资产久期约 7 年，<strong>缺口在利率下行时是最痛的</strong>；传统险预定利率已连续下调至 2% 附近，而 30Y 国债仅 2.03%——新增固收资产覆盖负债成本的难度在上升</td>
+          <td><span class="bt r">压力期</span></td>
+        </tr>
+        <tr>
+          <td><b>券商</b></td><td>成交额、两融、IPO</td>
+          <td>高 β，纯粹的市场周期放大器，<strong>没有独立的周期</strong>，只是指数的杠杆版本</td>
+          <td><span class="bt n">跟随市场</span></td>
+        </tr>
+      </tbody>
+      <caption>对保险资金而言，真正的问题不是「今年赚多少」，而是<strong>未来 20 年的再投资收益率能否覆盖 2% 上下的保证成本</strong>。这就是为什么低利率环境下，长久期资产与权益/另类的配置比例是被负债端逼着上调的。</caption>
+    </table>
+  </div>
+
+  <h3>房地产：一次教科书级的库兹涅茨周期</h3>
+  <p>中国商品房销售面积从 2021 年的 17.94 亿平米，跌到 2026 年前三季度的 5.65 亿平米（同比 −13.2%），全年预计 7.5 亿平米上下——<strong>五年跌去近六成</strong>。房地产开发投资前三季度 5.34 万亿元、同比 −20.6%，新开工 −24.9%。这是有统计数据以来最陡的下行。</p>
+
+  <div class="fig">
+    <div class="ft">中国商品房销售面积（亿平方米，2010–2026E）</div>
+    <div class="fs">2010–2024 为实际值，2025、2026 为根据月度累计同比推算的估算值</div>
+    <canvas id="c-re" style="height:320px"></canvas>
+    <div class="src">数据来源：国家统计局历年《全国房地产市场基本情况》。2026 年 1–9 月：销售面积 5.65 亿平米（−13.2%）、销售额 5.38 万亿元（−13.9%）、开发投资 −20.6%、新开工 −24.9%、到位资金 −21.6%（国内贷款 −33.1%）。</div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>看空的一侧</h4>
+      <ul style="font-size:13px;margin:0 0 0 16px;color:var(--ink-2)">
+        <li>投资仍在 −20% 量级，新开工 −25%，意味着未来 2–3 年施工与竣工继续收缩</li>
+        <li>房企到位资金 −21.6%，国内贷款 −33.1%——融资端没有恢复</li>
+        <li>待售面积 7.48 亿平米，去化仍需时间</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>看多的一侧</h4>
+      <ul style="font-size:13px;margin:0 0 0 16px;color:var(--ink-2)">
+        <li>二手房网签面积 6.17 亿平米、<strong>同比 +10.7%</strong>，且增速在扩大——需求没有消失，只是转向二手</li>
+        <li>2026 年 9 月 70 城二手房价格<strong>首次扭转下跌</strong>，销售均价同比 −0.5%、连续 7 个月收窄</li>
+        <li>政策端：8 月 28 日多部委一揽子政策 + 9 月 29 日购房贷款贴息</li>
+      </ul>
+    </div>
+  </div>
+  <p>结论：<strong>「量」还在出清，「价」可能已经在筑底</strong>。这是库兹涅茨周期的典型末段特征——投资与开工继续下滑（因为存量足够），但成交量与价格先稳住。对投资而言，地产股的机会通常出现在「销售企稳」而不是「投资企稳」，但弹性远不如 2009、2015 那两轮，因为这次没有人口增量做背书。</p>
+
+  <h3>AI：技术周期的「狂热期」，也是最难定价的阶段</h3>
+  <p>2026 年，全球四大云厂商的资本开支进入史无前例的规模：</p>
+
+  <div class="fig">
+    <div class="ft">超大规模云厂商资本开支（亿美元）</div>
+    <div class="fs">亚马逊、谷歌、微软、Meta 合计；2026 为公司指引中值</div>
+    <canvas id="c-ai" style="height:330px"></canvas>
+    <div class="src">数据来源：各公司财报与 2026 年资本开支指引（亚马逊约 2,000 亿、谷歌 1,950–2,050 亿、微软约 1,700–1,750 亿、Meta 1,350–1,450 亿美元），合计约 <strong>7,100–7,500 亿美元</strong>，同比增长约 74%–82%。2024、2025 为根据同比增速反推的近似值。</div>
+  </div>
+
+  <div class="box warn">
+    <span class="t">这个循环最脆弱的一环</span>
+    <p>高盛 CEO 苏德巍在 2026 年 11 月的国际金融领袖投资峰会上说了一句很关键的话：未来数年算力需求远超供应——但<strong>「买算力的钱，很大一部分不是云厂商自己掏的，而是借来的」</strong>。高盛预计五家超大规模算力企业 2026 年发债约 2,500 亿美元、2027 年升至 4,000 亿美元以上；Alphabet 2026 年二季度自由现金流已首次转负。</p>
+    <p style="margin-top:8px">这构成一个典型的<strong>明斯基式链条</strong>：算力是中间品，不是最终消费品。数据中心建起来、芯片装进去，本身不产生收入；只有下游有人为模型付费，借的钱才有还款来源。<strong>一旦应用层的收入增速跟不上资本开支增速，估值与信用会同时承压</strong>——这正是 2000 年电信设备泡沫的剧本。</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>行业周期四阶段</th><th>特征</th><th>AI 当前</th><th>房地产当前</th><th>银行当前</th></tr></thead>
+      <tbody>
+        <tr><td><b>导入期</b></td><td>技术验证、资本先行、无盈利</td><td><span class="bt g">已过</span></td><td>—</td><td>—</td></tr>
+        <tr><td><b>成长期</b></td><td>渗透率快速提升、龙头盈利爆发</td><td><span class="bt y">进行中</span></td><td>—</td><td>—</td></tr>
+        <tr><td><b>成熟期</b></td><td>增速放缓、价格战、集中度提升</td><td><span class="bt n">未到</span></td><td><span class="bt y">进行中</span></td><td><span class="bt y">进行中</span></td></tr>
+        <tr><td><b>衰退/出清期</b></td><td>产能过剩、资产负债表修复</td><td><span class="bt n">未到</span></td><td><span class="bt r">进行中</span></td><td><span class="bt w">后段</span></td></tr>
+      </tbody>
+      <caption>判读要点：<strong>资本开支的高峰，往往就是股价的高峰</strong>（因为市场提前定价），但收入的峰值要晚 1–2 年。这是「成长股见顶」最常见的形态。</caption>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3.5</span>四条线的合成判断</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>慢变量</th><th>方向</th><th>对投资的含义</th><th>可观测的验证指标</th></tr></thead>
+      <tbody>
+        <tr><td><b>国家</b></td><td><span class="bt w">多极化，美元地位缓慢削弱但未崩塌</span></td><td>黄金的长期配置价值上升；跨国资产的汇率风险需要显性管理</td><td>央行黄金储备、美元结算份额、外资持有美债比例</td></tr>
+        <tr><td><b>人口</b></td><td><span class="bt r">总量下行、结构老化（不可逆）</span></td><td>地产长周期向下；医疗康养、服务消费向上；利率长期偏低</td><td>出生人口、65+ 占比、抚养比</td></tr>
+        <tr><td><b>信贷</b></td><td><span class="bt y">中国收缩后段、美国政府端扩张</span></td><td>中国债券票息薄但胜率在；美国长端受财政供给压制</td><td>贷款余额增速、社融脉冲、财政赤字率</td></tr>
+        <tr><td><b>行业</b></td><td><span class="bt u">AI 资本开支狂潮、地产出清、金融承压</span></td><td>AI 是产业趋势但估值风险高；地产看销售不看投资；金融看股息</td><td>云厂商 capex 与自由现金流、二手房成交、净息差</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box ins">
+    <span class="t">把四条线拧成一句话</span>
+    <p>中国处在<strong>「人口向下、信贷收缩、利率极低、产业升级」</strong>的组合里——这是一个历史上很少见的组合：它同时具备「日本化」的通缩压力与「美国化」的科技叙事。这种组合下，<strong>资产的分化会远大于总量的表现</strong>：指数可能十年不涨，但结构性机会巨大。这就是为什么「选对方向」比「判断大盘」更重要。</p>
+  </div>
+</section>
+
+<div class="nxt">
+  <a href="locator.html"><span>上一页 · 02</span><b>← 周期定位器</b></a>
+  <a href="allocation.html" class="r2"><span>下一页 · 04</span><b>四类资产地图 →</b></a>
+</div>
+
+<footer>
+  <b>四季 · 投资周期地图</b>　｜　03 国家·人口·信贷·行业<br>
+  数据来源：国家统计局、中国人民银行、BIS、NIFD、各公司财报、世界黄金协会。部分数值为近似或估算，已在表下标注。
+</footer>
+
+</div></div>
+
+<script src="js/charts.js"></script>
+<script>
+(function () {
+  // 人口：出生/死亡柱 + 净增线
+  var yrs = ['2000','2005','2010','2015','2018','2019','2020','2021','2022','2023','2024','2025'];
+  var births = [1771,1617,1592,1655,1523,1465,1200,1062,956,902,954,792];
+  var deaths = [813,849,953,975,993,998,998,1014,1041,1110,1093,1131];
+  var net = births.map(function (b, i) { return b - deaths[i]; });
+
+  Chart.line(document.getElementById('c-pop'), {
+    labels: yrs, xTicks: 6,
+    yMin: -400, yMax: 1900, yTicks: 5,
+    yFmt: function (v) { return v.toFixed(0); },
+    hlines: [{ y: 0, label: '人口零增长线', color: '#b53d2e' }],
+    series: [
+      { name: '出生', type: 'bar', color: '#4a7c59', data: births, barW: 0.38 },
+      { name: '死亡', type: 'bar', color: '#8a8b7e', data: deaths, barW: 0.38 },
+      { name: '净增', color: '#b53d2e', data: net, lw: 2.4, dots: 2.6, endLabel: '−339' }
+    ]
+  });
+
+  // 房地产销售面积
+  var ry = ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025E','2026E'];
+  var rv = [10.4,10.99,11.13,13.06,12.06,12.85,15.73,16.94,17.17,17.16,17.61,17.94,13.58,11.17,9.74,8.7,7.5];
+  Chart.line(document.getElementById('c-re'), {
+    labels: ry, xTicks: 7,
+    yMin: 0, yMax: 20, yTicks: 5, yUnit: '',
+    yFmt: function (v) { return v.toFixed(0); },
+    series: [
+      { name: '销售面积', type: 'bar', color: '#3f5f7a', data: rv, barW: 0.6 }
+    ],
+    marks: [
+      { i: 11, y: 17.94, text: '2021 峰值 17.94 亿㎡', color: '#b53d2e', dy: -30 },
+      { i: 16, y: 7.5, text: '2026E 约 7.5 亿㎡', color: '#4a7c59', dy: -30 }
+    ]
+  });
+
+  // AI capex
+  var ay = ['2024', '2025E', '2026E'];
+  Chart.line(document.getElementById('c-ai'), {
+    labels: ay, xTicks: 3, padR: 20,
+    yMin: 0, yMax: 8000, yTicks: 5,
+    yFmt: function (v) { return (v / 100).toFixed(0); }, yUnit: ' 千亿$',
+    series: [
+      { name: '合计', type: 'bar', color: '#b53d2e', data: [2304, 4010, 7300], barW: 0.34 }
+    ],
+    marks: [
+      { i: 2, y: 7300, text: '+74%~82% YoY', color: '#b53d2e', dy: -26 }
+    ]
+  });
+})();
+</script>
+</body>
+</html>
