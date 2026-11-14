@@ -13,6 +13,7 @@
 | `allocation.html` | 持币/债/黄金/股票的当下定位：收益三分解、四季表现矩阵、方向性倾斜 + **证伪条件**、五大风险 |
 | `playbook.html` | 投资纪律：收益三因子、风险三种定义、配置 vs 择时（含 91.5% 误读的澄清）、保险资金 ALM 视角、12 条检查清单 |
 | `refs.html` | 参考书目、关键论文、一手数据源链接、季度更新流程 |
+| `about.html` | 关于西红精算：品牌定位、四大内容支柱、关联项目、公众号与知识星球入口 |
 
 ## 数据时点
 
@@ -22,7 +23,8 @@
 
 - `css/style.css`：设计系统（宣纸底 #f7f3e8 + 墨色 + 四季五色：春 #4a7c59 / 夏 #b53d2e / 秋 #bb8a1f / 冬 #3f5f7a）
 - `js/charts.js`：无依赖 Canvas 图表库（折线/柱状/象限时钟/区间底色/注释）
-- `js/ui.js`：移动端侧栏
+- `js/ui.js`：移动端导航辅助
+- `assets/`：品牌资产（公众号二维码 qrcode-gzh.jpg、Logo logo-xihong.png）
 - 本地预览：`python -m http.server 8899` 后访问 `http://127.0.0.1:8899/index.html`；或直接双击 `index.html`（file:// 下同样可用）
 - 打印：各页含 `@media print` 样式，可直接导出 PDF
 
